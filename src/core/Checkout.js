@@ -20,6 +20,10 @@ const Checkout = () => {
         address: ''
     });
 
+    const width = window.innerWidth;
+
+    const breakpoint = 620;
+
     const userId = isAuthenticated() && isAuthenticated().user._id;
     const token = isAuthenticated() && isAuthenticated().token;
 
@@ -78,14 +82,32 @@ const Checkout = () => {
                    
                     options={{
                         authorization: data.clientToken,
-                        paypal: {
-                            flow: 'vault'
-                        }
+                        locale: 'fr_FR'
                     }}
                     onInstance={instance => (data.instance = instance)}
                 />
                 <button  onClick={buy}  className="btn btn-success btn-block">
-                    Pay
+                    Payer
+                </button>
+            </div>
+        ) : null}
+    </div>
+    )
+    const ShowDropInMobile = () => (
+        <div onBlur={() => setData({...data, error: ""})} style={{width:'100%',padding:"20px"}}>
+        {data.clientToken !== null  ? (
+            <div >
+                           <h2>2) Paiement</h2>
+                <DropIn 
+                   
+                    options={{
+                        authorization: data.clientToken,
+                        locale: 'fr_FR'
+                    }}
+                    onInstance={instance => (data.instance = instance)}
+                />
+                <button  onClick={buy}  className="btn btn-success btn-block">
+                    Payer
                 </button>
             </div>
         ) : null}
@@ -118,8 +140,65 @@ const Checkout = () => {
         console.log(data.email)
     }
     return (
-        <div style={{width:'100%', height:'85vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
-             <div style={{width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+        <>
+        { width < breakpoint ? 
+        <div style={{ width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
+            <h1 style={{marginTop:'10px'}}>1) Vos Informations</h1>
+        <div style={{width:'70%', alignItems:'center'}} className="form-group">
+           <label className="text-muted">Email</label>
+           <input
+               name="email"
+               type="email"
+               className="form-control"
+               onChange={handleChangeEmail}
+               value={data.email}
+               
+           />
+           <label className="text-muted">Nom</label>
+           <input
+               name="name"
+               type="text"
+               className="form-control"
+               onChange={handleChangeName}
+               value={data.name}
+           />
+           <label className="text-muted">Prénom</label>
+           <input
+               type="text"
+               className="form-control"
+               onChange={handleChangePrenom}
+               value={data.prenom}
+           />
+           <label className="text-muted">Adresse</label>
+           <input
+               type="text"
+               className="form-control"
+               
+           />
+           <label className="text-muted">Code Postal</label>
+           <input
+               type="text"
+               className="form-control"
+               
+           />
+           <label className="text-muted">Ville</label>
+           <input
+               type="text"
+               className="form-control"
+               
+           />
+       </div>
+       <div style={{borderTop:'1px solid black'}}>
+       {showError(data.error)}
+       {showSuccess(data.success)}
+       {ShowDropInMobile()}
+       </div>
+   </div>
+        :
+        <div style={{width:'100%', height:'80vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
+             <div style={{borderRight:'1px solid black', width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+             <h1>Vos Informations</h1>
+             <h1 style={{position:'absolute', top:'60px', left:'40px'}}>1)</h1>
         <div style={{width:'50%'}} className="form-group">
                 <label className="text-muted">Email</label>
                 <input
@@ -166,11 +245,14 @@ const Checkout = () => {
             </div>
     </div>
             <div style={{display:'flex', flexDirection:'column', width:'50%'}}>
+            <h1 style={{position:'absolute', top:'60px', left:'760px'}}>2)</h1>
+
             {showError(data.error)}
             {showSuccess(data.success)}
             {ShowDropIn()}
             </div>
-        </div>
+        </div>}
+        </>
         );
 }
 

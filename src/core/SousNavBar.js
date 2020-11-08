@@ -1,25 +1,41 @@
 import React from 'react';
 import ProductDescription from './ProductDescription'
 import { Link, withRouter } from 'react-router-dom'
+import './Mobile.css'
+
 
 const SousNavBar = () => {
+    const width = window.innerWidth;
 
+    const breakpoint = 720;
+
+console.log(window.innerWidth)
         return (
             <>
             <div id="navbar" style={{ position:'sticky',zIndex:'1',borderBottom:'0.5px solid #cbcbcb', alignItems:'center', display:'flex', width:'100%', height:'50px', backgroundColor:'rgba(255, 255, 255, 0.9)',  top:'0'}}>
                 <div style={{width:'250px',paddingLeft:'20px'}}>
-                    <h4 style={{marginLeft:'20px', margin:'0', fontSize:'28', display:'inline-block'}}>Qurma (version 1)</h4>
+                    { width < breakpoint ?
+                    <h6>Qurma</h6>
+                    : 
+                    <h4 id="qurma" className="qurma" style={{display:'', marginLeft:'20px', margin:'0', fontSize:'28'}}>Qurma (version 1)</h4>
+                    }
                 </div>
                 <div style={{position:"absolute",right:"10px", backgroundColor:'', display:'flex', alignItems:'center'}}>
-                    <Link style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} to="/">Présentation</Link>
-                    <Link className="btn btn-primary" to="/Checkout">Acheter</Link>
+                    { width < breakpoint ? "" :
+                    <Link style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} to="/">Présentation</Link>}
+                    { width < breakpoint ? 
+                        <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+                    :
+                        <Link className="btn btn-primary btn-lg" to="/Checkout">Acheter</Link>
+                    }
+                    { width < breakpoint ? "" :
                     <Link className="nav-link" to="/user/dashboard">
                          Dashboard
-                    </Link>
+                    </Link>}
                 </div>
             </div>
             <div style={{float:'right', position:'sticky', width:'100%', height:'20px', backgroundColor:'rgba(255, 255, 255, 0.8)', top:'50px'}}>
-            <p style={{textAlign:'center', top:'0px'}}>Livraison gratuite sous 48h en France metropolitaine</p>
+            <p style={{textAlign:'center', top:'0px', fontSize:'x-small'}}>Livraison gratuite sous 48h en France metropolitaine</p>
             </div>
             </>
         );
