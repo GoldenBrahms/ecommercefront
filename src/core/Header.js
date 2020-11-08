@@ -23,7 +23,6 @@ const Header = () => {
             <div style={{position:'block', width:'100%', height:"50px", backgroundColor:'#303030', top:'0', margin:'0', padding:''}}>
             <h1 style={{marginTop:'0', marginLeft:'20px', color:'#c1c1c1', fontFamily:'Roboto'}}>Samemo</h1>
             </div>
-            <SousNavBar/>
 
 
 

@@ -3,6 +3,9 @@ import LuneJaune from '../images/lunejaune.png';
 import Multicolor from '../images/nice.png';
 import AppControl from '../images/app_control.jpg';
 import Smartphone from '../images/smartphone.png'
+import LuneRose from '../images/LuneRose.jpg'
+import SousNavBar from "./SousNavBar";
+
 
 const ProductDescription = () => {
     
@@ -11,6 +14,7 @@ const ProductDescription = () => {
     }
     return (
         <div onScroll={handleScroll} style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <SousNavBar/>
             {/* Decouvrez Qurma */}
             <div style={{backgroundColor:'white', width:'100%',height:'130%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
             <div style={{backgroundColor:'', margin:'0', display:'flex', flexDirection:'column', justifyContent:'left'}}>
@@ -36,7 +40,12 @@ const ProductDescription = () => {
             <p style={{margin:'0'}}>Une application pour plus de maniabilité ainsi pouvoir choisir la sourate<br></br> que l'on souhaite avec son recitateur preferé</p>
             </div>
             </div>
-            <img style={{width:'50%', height:'50%'}} src="./images/touch.jpg"/>
+            <div style={{display:'flex', padding:'50px', width:'100%', height:'100vh'}}>
+            <img style={{width:'50%', height:'100%'}} src={LuneRose}/>
+            <div>
+                <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
+            </div>
+            </div>
         </div>
     );
 }

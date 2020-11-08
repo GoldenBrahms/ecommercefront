@@ -11,6 +11,7 @@ import AdminRoute from './auth/AdminRoute';
 import Header from './core/Header';
 import Checkout from './core/Checkout'
 import ProductDescription from './core/ProductDescription';
+import Footer from './core/Footer'
 
 
 const Routes = () => {
@@ -29,6 +30,7 @@ const Routes = () => {
                     exact 
                     component={AdminDashboard}/>
                 </Switch>
+                <Footer/>
             </BrowserRouter>
         </div>
     );
