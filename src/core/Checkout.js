@@ -3,6 +3,7 @@ import Informations from './Informations';
 import DropIn from 'braintree-web-drop-in-react';
 import { getBraintreeClientToken, processPayment, createOrder } from './apiCore';
 import { isAuthenticated } from '../auth/index';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -44,7 +45,8 @@ const Checkout = () => {
            processPayment(userId, token, paymentData)
            .then(responce => {
                const createOrderData = {
-                   transaction_id: responce.transaction_id
+                   transaction_id: responce.transaction_id,
+                   address: deliveryAdress
                }
                createOrder(userId, token, createOrderData)
                setData({...data, success: responce.success})
@@ -57,6 +59,8 @@ const Checkout = () => {
         })
 
     }
+
+    let deliveryAdress = data.address
 
     const getToken = (userId, token, res) => {
         getBraintreeClientToken(userId, token).then(data => {
@@ -131,6 +135,10 @@ const Checkout = () => {
         setData({...data, name: event.target.value})
         console.log(data.name)
     }
+    const handleAdress = event => {
+        setData({...data, address: event.target.value})
+        console.log(data.address)
+    }
     const handleChangePrenom = event => {
         setData({...data, prenom: event.target.value})
         console.log(data.prenom)
@@ -173,6 +181,8 @@ const Checkout = () => {
            <input
                type="text"
                className="form-control"
+               value={data.address}
+               onChange={handleAdress}
                
            />
            <label className="text-muted">Code Postal</label>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../core/Layout';
 import { Link } from 'react-router-dom';
-import { signup } from '../auth/index';
+import { signup, signout } from '../auth/index';
 
-const Signup = () => {
+const Signup = ({ history }) => {
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -39,7 +39,11 @@ const Signup = () => {
     }
 
     const signUpForm = () => (
-        <form>
+        <div style={{padding:'20px', marginTop:'50px', border:'1px solid black', display:'flex', alignItems:'center', justifyContent:'center'}}>
+            <div style={{width:'50%'}}>
+            <div className="form-group">
+                <h1>Créer un compte</h1>
+            </div>
             <div className="form-group">
                 <label className="text-muted">Name</label>
                 <input onChange={handleChange('name')} value={name} type="text" className="form-control"/>
@@ -52,8 +56,16 @@ const Signup = () => {
                 <label className="text-muted">Password</label>
                 <input onChange={handleChange('password')} value={password} type="password" className="form-control"/>
             </div>
-            <button onClick={clickSubmit} className="btn btn-primary">Submit</button>
-        </form>
+            <div>
+            <button onClick={clickSubmit} className="btn btn-primary btn-lg btn-block">Créer votre compe Samemo</button>
+            </div>
+            <div>
+                <span className="nav-link" onClick={() => signout(() => {
+                    history.push("/signin")
+                })} style={{cursor:'pointer'}} >Vous possédez déjà un compte ? Se connecter</span>
+            </div>
+            </div>
+        </div>
     );
 
     const showError = () => (
@@ -67,11 +79,11 @@ const Signup = () => {
         </div>
     )
     return (
-    <Layout className="container col-md-8 offset-md-2" title="Signup" description="Node React ecommerce App">
+    <div style={{height:'500px'}} className="container col-md-8 offset-md-2" title="Signup" description="Node React ecommerce App">
         {showSuccess()}
         {showError()}
         {signUpForm()}
-    </Layout>
+    </div>
     );
 }
 

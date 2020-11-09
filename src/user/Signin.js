@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import Layout from "../core/Layout";
+import { withRouter, Link } from 'react-router-dom';
+
 import { signin, authenticate, isAuthenticated } from "../auth";
 
 const Signin = () => {
@@ -13,7 +14,7 @@ const Signin = () => {
     });
 
     const { email, password, loading, error, redirectToReferrer } = values;
-    const {user} = isAuthenticated();
+    const { user } = isAuthenticated();
 
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value });
@@ -37,30 +38,28 @@ const Signin = () => {
     };
 
     const signUpForm = () => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input
-                    onChange={handleChange("email")}
-                    type="email"
-                    className="form-control"
-                    value={email}
-                />
+        <div style={{ padding: '20px', marginTop: '50px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '50%' }}>
+                <div className="form-group">
+                    <h1>S'identifier</h1>
+                </div>
+                <div className="form-group">
+                    <label className="text-muted">Email</label>
+                    <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label className="text-muted">Password</label>
+                    <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
+                </div>
+                <div>
+                    <button onClick={clickSubmit} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                </div>
+                <div style={{margin:'10px'}}>
+                    <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
+                    <Link to="/signup" className="btn btn-primary btn-lg btn-block">Créer un compte Samemo</Link>
+                </div>
             </div>
-
-            <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input
-                    onChange={handleChange("password")}
-                    type="password"
-                    className="form-control"
-                    value={password}
-                />
-            </div>
-            <button onClick={clickSubmit} className="btn btn-primary">
-                Submit
-            </button>
-        </form>
+        </div>
     );
 
     const showError = () => (
@@ -81,19 +80,19 @@ const Signin = () => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            if (user && user.role === 1){
+            if (user && user.role === 1) {
                 return <Redirect to="/admin/dashboard" />;
-            }else{
+            } else {
                 return <Redirect to="/user/dashboard" />;
             }
         }
-        if (isAuthenticated()){
+        if (isAuthenticated()) {
             return <Redirect to="/" />;
         }
     };
 
     return (
-        <Layout
+        <div
             title="Signin"
             description="Signin to Node React E-commerce App"
             className="container col-md-8 offset-md-2"
@@ -102,7 +101,7 @@ const Signin = () => {
             {showError()}
             {signUpForm()}
             {redirectUser()}
-        </Layout>
+        </div>
     );
 };
 
