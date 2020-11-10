@@ -8,13 +8,14 @@ import { API } from '../config'
 const Signup = ({ history }) => {
     const [values, setValues] = useState({
         name: '',
+        prename: '',
         email: '',
         password: '',
         error: '',
         success: false
     })
 
-    const { name, email , password, error, success } = values;
+    const { name, prename, email , password, error, success } = values;
     
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value })
@@ -59,6 +60,10 @@ const Signup = ({ history }) => {
             <div className="form-group">
                 <label className="text-muted">Name</label>
                 <input onChange={handleChange('name')} value={name} type="text" className="form-control"/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Prénom</label>
+                <input onChange={handleChange('name')} value={prename} type="text" className="form-control"/>
             </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>
