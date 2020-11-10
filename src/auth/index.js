@@ -1,16 +1,16 @@
 import { API } from '../config'
 
-export const signup = user => {
+ export const signup = (user)=> {
     return fetch(`${API}/signup`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-            Accept: "application/json",
-            "Content-type": "application/json"
+            Accept: 'application/json',
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(user)
     })
     .then(response => {
-        return response.json()
+        return response.json();
     })
     .catch(err => {
         console.log(err);

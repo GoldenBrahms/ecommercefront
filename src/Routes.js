@@ -18,7 +18,6 @@ const Routes = () => {
     return (
         <div>
             <BrowserRouter>
-            <Header/>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/Checkout" component={Checkout}/>

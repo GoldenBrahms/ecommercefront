@@ -1,13 +1,13 @@
 import React from 'react';
+import Menu from './Menu';
+import Header from './Header';
 
 const Layout = ({ title, description, className, children }) => {
         return (
         <div>
-            <div className="jumbotron">
-                <h2>{title}</h2>
-                <p className="lead">{description}</p>
-            </div>
-            <div className={className}>{children}</div>
+            <Header/>
+            
+            <div>{children}</div>
         </div>
         );
 }

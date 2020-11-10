@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Layout from '../core/Layout';
 import { Link } from 'react-router-dom';
 import { signup, signout } from '../auth/index';
+import { API } from '../config'
+
 
 const Signup = ({ history }) => {
     const [values, setValues] = useState({
@@ -12,31 +14,41 @@ const Signup = ({ history }) => {
         success: false
     })
 
-    const {name, email, password, error, success } = values;
-
+    const { name, email , password, error, success } = values;
+    
     const handleChange = name => event => {
-        setValues({...values, error: false, [name]: event.target.value })
+        setValues({ ...values, error: false, [name]: event.target.value })
     }
 
     const clickSubmit = (event) => {
         event.preventDefault();
-        setValues({...values, error: false})
-        signup({name, email, password})
-        .then ( data => {
-            if(data.error) {
-                setValues({...values, error: data.error, success: false })
+        setValues({ ...values, error: false });
+        signup({name, email, password}).then(data => {
+            if (data.error){
+                setValues({...values, error: data.error, success: false });
             } else {
                 setValues({
                     ...values,
-                    name:'',
-                    email:'',
-                    password:'',
-                    error:'',
+                    name: '',
+                    email: '',
+                    password: '',
+                    error: '',
                     success: true
                 })
             }
         })
     }
+
+    const showError = () => (
+        <div className="alert alert-danger" style={{display: error ? '' : "none" }}>
+            {error}
+        </div>
+    )
+    const showSuccess = () => (
+        <div className="alert alert-info" style={{display: success ? '' : "none" }}>
+            New account is created please <Link to="/signin">Sign in</Link>
+        </div>
+    )
 
     const signUpForm = () => (
         <div style={{padding:'20px', marginTop:'50px', border:'1px solid black', display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -66,24 +78,13 @@ const Signup = ({ history }) => {
             </div>
             </div>
         </div>
-    );
-
-    const showError = () => (
-        <div className="alert alert-danger" style={{display: error ? '' : "none"}}>
-            {error}
-        </div>
     )
-    const showSuccess = () => (
-        <div className="alert alert-info" style={{display: success ? '' : "none"}}>
-            New account is created please <Link to="/signin">Sign in</Link>
-        </div>
-    )
-    return (
-    <div style={{height:'500px'}} className="container col-md-8 offset-md-2" title="Signup" description="Node React ecommerce App">
-        {showSuccess()}
-        {showError()}
-        {signUpForm()}
-    </div>
+    return  (
+        <Layout className="container col-md-8 offset-md-2" title="Signup" description="Signup to Node Ecommerce">
+            {showError()}
+            {showSuccess()}
+            {signUpForm()}
+        </Layout>
     );
 }
 

@@ -36,9 +36,12 @@ console.log(window.innerWidth)
     
     }
                     { width < breakpoint ? "" :
-                    <Link className="nav-link" to="/user/dashboard">
+                    isAuthenticated() && (
+                        <Link className="nav-link" to="/user/dashboard">
                          Dashboard
-                    </Link>}
+                    </Link>
+                    )
+                    }
                 </div>
             </div>
             <div style={{float:'right', position:'sticky', width:'100%', height:'20px', backgroundColor:'rgba(255, 255, 255, 0.8)', top:'50px'}}>

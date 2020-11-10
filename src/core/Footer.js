@@ -25,7 +25,7 @@ export default function Footer () {
                     <li style={{marginLeft:'20px', marginRight:'20px'}}> | </li>
                    <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
                    <li style={{marginLeft:'20px', marginRight:'20px'}}> | </li>
-<li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
+                    <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
                 </ul>
             </div>
             </>

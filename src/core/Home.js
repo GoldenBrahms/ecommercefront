@@ -4,7 +4,9 @@ import ProductDescription from './ProductDescription'
 
 const Home = () => {
     return (
-    <ProductDescription/>
+    <Layout>
+        <ProductDescription/>
+    </Layout>
     );
 }
 

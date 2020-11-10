@@ -16,7 +16,8 @@ const ProductDescription = () => {
 
     return (
         <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            <SousNavBar/>
+                        <SousNavBar/>
+
             {/* Decouvrez Qurma */}
             { width < breakpoint ?
             <div style={{ marginTop:'00px',padding:'20px', backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
@@ -56,9 +57,25 @@ const ProductDescription = () => {
          </div>
          </>
              :
-            <div style={{width:'100%', backgroundColor:'', textAlign:'center'}}>
-            <img style={{width:'600px'}} src={LightControl}/>
-            </div>
+             <>
+             <div style={{padding:'10px' ,width:'100%', backgroundColor:'', textAlign:'center'}}>
+                <div>
+                    <h1 style={{margin:'0'}}>Qurma</h1>
+                    <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
+                </div>
+                <img style={{width:'550px'}} src={LightControl}/>
+             </div>
+             <div style={{padding:'20px', marginTop:'00px',width:'100%', height:'', backgroundColor:'', display:'flex', flexDirection:'column'}}>
+             <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                 <h4 style={{margin:'0', position:'', color:'rgb(79, 79, 79)', textAlign:'center'}}>Car Oui, Qurma est Multicouleur.</h4>
+                 <p style={{margin:'00px', fontSize:'19px', color:'rgb(79, 79, 79)', textAlign:'center'}}>Grace à sa led lumineuse intégré, choississez la couleur de votre Qurma
+                 que vous souhaiter. </p>
+             <img style={{width:'900px', marginTop:'50px'}} src={Multicolor}/>
+             </div>
+ 
+ 
+         </div>
+         </>
             }
             
             {/* plusieurs couleurs lune */}
@@ -82,12 +99,9 @@ const ProductDescription = () => {
             </div>
             }
             {width < breakpoint? 
-            <div style={{display:'flex', padding:'20px', width:'100%', height:'100vh'}}>
-                <div>
-                <h4 style={{marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>
-            </div>
-            <img style={{width:'60%', height:'50%'}} src={LuneRose}/>
-            
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'100vh'}}>
+                <img style={{width:'200px', height:'200px'}} src={LuneRose}/>
+                <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
             :
             <div style={{display:'flex', padding:'50px', width:'100%', height:'100vh'}}>

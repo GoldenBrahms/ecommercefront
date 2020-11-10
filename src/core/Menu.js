@@ -10,48 +10,30 @@ const isActive = (history, path) => {
     }
 }
 
-const Menu = ({ history }) => {
-    return (
-    <div>
-        <ul className="nav nav-tabs bg-dark" >
+const Menu = ({ history }) => (
+    <div style={{backgroundColor:'red'}}>
+        <ul className="nav nav-tabs bg-primary">
             <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/")} to="/"><h1>Samemo</h1></Link>
+                <Link className="nav-link" style={isActive(history, "/signup")} to="/">Samemo</Link>
             </li>
-            {isAuthenticated() && isAuthenticated().user.role === 0 && (
+            {!isAuthenticated() &&(
+                <>
                 <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/user/dashboard")} to="/user/dashboard">
-                    Dashboard
-                </Link>
-            </li>
-            )}
-            {isAuthenticated() && isAuthenticated().user.role === 1 && (
-                <li className="nav-item">
-                <Link className="nav-link" to="/admin/dashboard">
-                    Dashboard
-                </Link>
-            </li>
-            )}
-            {!isAuthenticated() && (
-                <div>
-                    <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Signin</Link>
+                <Link className="nav-link" style={isActive(history, "/signup")} to="/signin">Signin</Link>
             </li>
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, "/signup")} to="/signup">Signup</Link>
             </li>
-                </div>
+            </>
             )}
+            
             {isAuthenticated() && (
                 <li className="nav-item">
-                <span className="nav-link" onClick={() => signout(() => {
-                    history.push("/signin")
-                })} style={{cursor:'pointer', color:'white'}} >Signout</span>
+                <span className="nav-link" onClick={() => signout(() => {history.push('/')})} style={{cursor:'pointer', color:'white'}}>Signout</span>
             </li>
             )}
-
         </ul>
     </div>
-    );
-}
+)
 
 export default withRouter(Menu);

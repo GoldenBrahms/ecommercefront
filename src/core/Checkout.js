@@ -4,6 +4,8 @@ import DropIn from 'braintree-web-drop-in-react';
 import { getBraintreeClientToken, processPayment, createOrder } from './apiCore';
 import { isAuthenticated } from '../auth/index';
 import { Redirect } from 'react-router-dom';
+import Menu from './Menu'
+import Layout from './Layout'
 
 
 
@@ -150,7 +152,7 @@ const Checkout = () => {
     return (
         <>
         { width < breakpoint ? 
-        <div style={{ width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
+        <Layout style={{ width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
             <h1 style={{marginTop:'10px'}}>1) Vos Informations</h1>
         <div style={{width:'70%', alignItems:'center'}} className="form-group">
            <label className="text-muted">Email</label>
@@ -203,9 +205,12 @@ const Checkout = () => {
        {showSuccess(data.success)}
        {ShowDropInMobile()}
        </div>
-   </div>
+   </Layout>
         :
+        <>
+        <Menu/>
         <div style={{width:'100%', height:'80vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
+            
              <div style={{borderRight:'1px solid black', width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
              <h1>Vos Informations</h1>
              <h1 style={{position:'absolute', top:'60px', left:'40px'}}>1)</h1>
@@ -261,7 +266,9 @@ const Checkout = () => {
             {showSuccess(data.success)}
             {ShowDropIn()}
             </div>
-        </div>}
+        </div>
+        </>
+        }
         </>
         );
 }

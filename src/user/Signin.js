@@ -1,43 +1,61 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { withRouter, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import Layout from '../core/Layout';
+import { Link, Redirect } from 'react-router-dom';
+import { signin, authenticate } from '../auth/index';
+import { API } from '../config'
 
-import { signin, authenticate, isAuthenticated } from "../auth";
 
-const Signin = () => {
+const Signin = ({ history }) => {
     const [values, setValues] = useState({
-        email: "",
-        password: "",
-        error: "",
+        email: '',
+        password: '',
+        error: '',
         loading: false,
-        redirectToReferrer: false
-    });
+        redirectToReferrer: false,
+    })
 
-    const { email, password, loading, error, redirectToReferrer } = values;
-    const { user } = isAuthenticated();
-
+    const {  email , password, error, loading, redirectToReferrer } = values;
+    
     const handleChange = name => event => {
-        setValues({ ...values, error: false, [name]: event.target.value });
-    };
+        setValues({ ...values, error: false, [name]: event.target.value })
+    }
 
-    const clickSubmit = event => {
+    const clickSubmit = (event) => {
         event.preventDefault();
-        setValues({ ...values, error: false, loading: true });
-        signin({ email, password }).then(data => {
-            if (data.error) {
-                setValues({ ...values, error: data.error, loading: false });
+        setValues({ ...values, error: false});
+        signin({email, password}).then(data => {
+            if (data.error){
+                setValues({...values, error: data.error, loading: false });
             } else {
                 authenticate(data, () => {
                     setValues({
                         ...values,
                         redirectToReferrer: true
-                    });
-                });
+                })
+                })
             }
-        });
-    };
+        })
+    }
 
-    const signUpForm = () => (
+    const showError = () => (
+        <div className="alert alert-danger" style={{display: error ? "" : "none" }}>
+            {error}
+        </div>
+    );
+
+    const showLoading = () => (
+        loading && (<div className="alert alert-info">
+            <h2>Loading</h2>
+        </div>)
+    )
+
+    const redirectUser = () => {
+        if (redirectToReferrer) {
+            return <Redirect to="/"/>
+        }
+    }
+
+    const signInForm = () => (
         <div style={{ padding: '20px', marginTop: '50px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ width: '50%' }}>
                 <div className="form-group">
@@ -60,49 +78,15 @@ const Signin = () => {
                 </div>
             </div>
         </div>
-    );
-
-    const showError = () => (
-        <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-        >
-            {error}
-        </div>
-    );
-
-    const showLoading = () =>
-        loading && (
-            <div className="alert alert-info">
-                <h2>Loading...</h2>
-            </div>
-        );
-
-    const redirectUser = () => {
-        if (redirectToReferrer) {
-            if (user && user.role === 1) {
-                return <Redirect to="/admin/dashboard" />;
-            } else {
-                return <Redirect to="/user/dashboard" />;
-            }
-        }
-        if (isAuthenticated()) {
-            return <Redirect to="/" />;
-        }
-    };
-
-    return (
-        <div
-            title="Signin"
-            description="Signin to Node React E-commerce App"
-            className="container col-md-8 offset-md-2"
-        >
-            {showLoading()}
+    )
+    return  (
+        <Layout className="container col-md-8 offset-md-2" title="Signin" description="Signin to Node Ecommerce">
             {showError()}
-            {signUpForm()}
+            {showLoading()}
             {redirectUser()}
-        </div>
+            {signInForm()}
+        </Layout>
     );
-};
+}
 
 export default Signin;
