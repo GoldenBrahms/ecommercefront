@@ -14,12 +14,14 @@ import {isAuthenticated} from '../auth';
 const ProductDescription2 = () => {
     const width = window.innerWidth;
     
-    const { user: {_id, name, email, role}} = isAuthenticated();
+    const { user: {_id, name, prename, email, role}} = isAuthenticated();
 
     const breakpoint = 720;
-    const Capitalize = (str) =>{
-        return str.charAt(0).toUpperCase() + str.slice(1);
-        }
+
+    const Capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1)
+    }
+    
     return (
         <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <SousNavBar/>
@@ -28,7 +30,7 @@ const ProductDescription2 = () => {
             { width < breakpoint ?
             <div style={{ marginTop:'00px',padding:'20px', backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div style={{marginTop:'',backgroundColor:'', display:'flex', flexDirection:'column', justifyContent:'left', alignItems:'center'}}>
-            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {name.charAt(0).toUpperCase() + name.slice(1)} </h4>
+            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {Capitalize(prename)} </h4>
             <span style={{height:'6px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
             <img style={{marginTop:'50px',width:'70%', height:'100%' }} src={LuneJaune}/>
@@ -36,7 +38,7 @@ const ProductDescription2 = () => {
             :
             <div style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
             <div style={{backgroundColor:'', margin:'0', display:'flex', flexDirection:'column', justifyContent:'left'}}>
-            <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {name.charAt(0).toUpperCase() + name.slice(1)}</h1>
+            <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {Capitalize(prename)}</h1>
             <span style={{height:'10px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
             <img style={{width:'30%', height:'100%' }} src={LuneJaune}/>

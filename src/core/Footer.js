@@ -9,11 +9,29 @@ export default function Footer () {
         <div style={{width:'100%', height:'300px', bottom:'0', backgroundColor:'#f2f2f2', display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {width < breakpoint? "" :
                         <>
-            <div style={{width:'100%', height:'80%', padding:'50px'}}>
+            <div style={{display:'flex', width:'100%', height:'80%', paddingLeft:'300px', paddingTop:'50px'}}>
+                <ul style={{listStyleType:'none',}}>
+                    <h4 style={{color:"#444", fontSize:'16px'}}>Pour mieux nous connaître</h4>
+                    <li style={{fontSize:'14px'}}>À propos de Samemo</li>
+                    <li style={{fontSize:'14px'}}>Numéros de télephone</li>
+                </ul>
+                <ul></ul>
                 <ul style={{listStyleType:'none',}}>
                     <h4 style={{color:"#444"}}>Contact</h4>
                     <li style={{fontSize:'12px'}}>Contactez-nous</li>
                     <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                </ul>
+                <ul></ul>
+                <ul style={{listStyleType:'none',}}>
+                    <h4 style={{color:"#444"}}>Contact</h4>
+                    <li style={{fontSize:'12px'}}>Contactez-nous</li>
+                    <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                </ul>
+                <ul></ul>
+                <ul style={{listStyleType:'none',}}>
+                    <h4 style={{color:"#444"}}>Besoin d'aide?</h4>
+                    <li style={{fontSize:'14px'}}>Samemo et le Covid-19</li>
+                    <li style={{fontSize:'14px'}}>Retours et remplacements</li>
                 </ul>
             </div>
             <div style={{padding:'20px',display:'flex',flexDirection:'column', width:'95%', height:'20%', marginBottom:'0', borderTop:'1px solid #d2d2d7'}}>

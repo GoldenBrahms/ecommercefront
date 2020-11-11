@@ -7,7 +7,6 @@ import LightControl from '../images/lightControl.jpeg';
 import AppSourate from '../images/AppSourate.jpeg';
 import LuneVerte from '../images/luneVerte.jpg'
 import SousNavBar from "./SousNavBar";
-import {isAuthenticated} from '../auth';
 
 
 

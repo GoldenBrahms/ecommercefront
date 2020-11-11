@@ -11,7 +11,6 @@ const SousNavBar = () => {
 
     const breakpoint = 720;
 
-console.log(window.innerWidth)
         return (
             <>
             <div id="navbar" style={{ position:'sticky',zIndex:'1',borderBottom:'0.5px solid #cbcbcb', alignItems:'center', display:'flex', width:'100%', height:'50px', backgroundColor:'rgba(255, 255, 255, 0.9)',  top:'0'}}>
@@ -25,20 +24,27 @@ console.log(window.innerWidth)
                 <div style={{position:"absolute",right:"10px", backgroundColor:'', display:'flex', alignItems:'center'}}>
                     { width < breakpoint ? "" :
                     <Link style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} to="/">Présentation</Link>}
-                    { width < breakpoint ? 
-                        isAuthenticated() && (
+                    { width < breakpoint ?
+                        !isAuthenticated() ?
                         <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
-                        )
+
+                        :
+                         isAuthenticated() &&(
+                        <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>)
+                       
                     : 
-                    isAuthenticated() && (
-                        <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>)
+                    !isAuthenticated() ?
+                        <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+
+                        :
+                         isAuthenticated() &&(
+                        <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>)
                     
-    
     }
                     { width < breakpoint ? "" :
                     isAuthenticated() && (
                         <Link className="nav-link" to="/user/dashboard">
-                         Dashboard
+                         Mon compte
                     </Link>
                     )
                     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../core/Layout';
-import { Link } from 'react-router-dom';
-import { signup, signout } from '../auth/index';
+import { Link, Redirect } from 'react-router-dom';
+import { signup, signout, signin, authenticate } from '../auth/index';
 import { API } from '../config'
 
 
@@ -12,10 +12,12 @@ const Signup = ({ history }) => {
         email: '',
         password: '',
         error: '',
-        success: false
+        success: false,
+        redirectToReferrer: false
+
     })
 
-    const { name, prename, email , password, error, success } = values;
+    const { name, prename, email , password, error, success, redirectToReferrer } = values;
     
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value })
@@ -24,20 +26,35 @@ const Signup = ({ history }) => {
     const clickSubmit = (event) => {
         event.preventDefault();
         setValues({ ...values, error: false });
-        signup({name, email, password}).then(data => {
+        signup({name, prename, email, password})
+        .then(data => {
             if (data.error){
                 setValues({...values, error: data.error, success: false });
             } else {
+                signin({email, password}).then(data => {
+                    if (data.error){
+                        setValues({...values, error: data.error, loading: false });
+                    } else {
+                        authenticate(data, () => {
+                            setValues({
+                                ...values,
+                                redirectToReferrer: true
+                        })
+                        })
+                    }
+                })
                 setValues({
                     ...values,
                     name: '',
+                    prename: '',
                     email: '',
                     password: '',
                     error: '',
                     success: true
                 })
             }
-        })
+        });
+        signin({email, password})
     }
 
     const showError = () => (
@@ -50,6 +67,11 @@ const Signup = ({ history }) => {
             New account is created please <Link to="/signin">Sign in</Link>
         </div>
     )
+    const redirectUser = () => {
+        if (redirectToReferrer) {
+            return <Redirect to="/"/>
+        }
+    }
 
     const signUpForm = () => (
         <div style={{padding:'20px', marginTop:'50px', border:'1px solid black', display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -63,7 +85,7 @@ const Signup = ({ history }) => {
             </div>
             <div className="form-group">
                 <label className="text-muted">Prénom</label>
-                <input onChange={handleChange('name')} value={prename} type="text" className="form-control"/>
+                <input onChange={handleChange('prename')} value={prename} type="text" className="form-control"/>
             </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>
@@ -89,6 +111,7 @@ const Signup = ({ history }) => {
             {showError()}
             {showSuccess()}
             {signUpForm()}
+            {redirectUser()}
         </Layout>
     );
 }

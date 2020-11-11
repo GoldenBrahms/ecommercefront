@@ -1,13 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import {isAuthenticated} from '../auth';
 import {Link} from 'react-router-dom';
 import Header from '../core/Header'
+import {getPurchaseHistory} from './ApiUser'
 
 const Dashboard = () => {
 
-    const { user: {_id, name, email, role}} = isAuthenticated();
+    const [ history, setHistory] = useState([])
+    const { user: {_id, name, prename, email, role, adresse}} = isAuthenticated();
 
+    const { token } = isAuthenticated();
+
+    const init = (userId, token) => {
+        getPurchaseHistory(userId, token).then(data => {
+            if (data.error){
+                console.log(data.error)
+            } else {
+                setHistory(data)
+            }
+        })
+    }
+
+    useEffect(() => {
+        init(_id, token)
+    }, [])
     const userLinks = () => {
         return (
             <div className="card">
@@ -17,7 +34,7 @@ const Dashboard = () => {
                         <Link className="nav-link" to="/cart">My cart</Link>
                     </li>
                     <li className="list-group-item">
-                        <Link className="nav-link" to="/profile/update">Update Profile</Link>
+                        <Link className="nav-link" to={`/profile/${_id}`}>Update Profile</Link>
                     </li>
                 </ul>
             </div>
@@ -30,19 +47,22 @@ const Dashboard = () => {
                 <h3 className="card-header">Vos informations</h3>
                 <ul className="list-group">
                     <li className="list-group-item">Nom: {name}</li>
+                    <li className="list-group-item">Prenom: {prename}</li>
                     <li className="list-group-item">Email: {email}</li>
-                    <li className="list-group-item">{role == 1 ? "Admin" : "User" }</li>
+                    <li className="list-group-item">{adresse}</li>
                 </ul>
             </div>
         )
     }
 
-    const purchaseHistory = () => {
+    const purchaseHistory = (history) => {
         return (
             <div className="card mb-5">
-                <h3 className="card-header">Purchase History</h3>
+                <h3 className="card-header">Vos commandes</h3>
                 <ul className="list-group">
-                    <li className="list-group-item">History</li>
+                    <li className="list-group-item">
+                        {JSON.stringify(history)}
+                    </li>
                 </ul>
             </div>
         )
@@ -57,7 +77,7 @@ const Dashboard = () => {
                 </div>
                 <div className="col-9">
                     {userInfo()}
-                    {purchaseHistory()}
+                    {purchaseHistory(history)}
                 </div>
             </div>
         </div>
