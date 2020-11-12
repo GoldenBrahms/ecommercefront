@@ -22,8 +22,10 @@ const SousNavBar = () => {
                     }
                 </div>
                 <div style={{position:"absolute",right:"10px", backgroundColor:'', display:'flex', alignItems:'center'}}>
-                    { width < breakpoint ? "" :
-                    <Link style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} to="/">Présentation</Link>}
+                    { width < breakpoint ? 
+                     <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>
+                    :
+                    <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>}
                     { width < breakpoint ?
                         !isAuthenticated() ?
                         <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>

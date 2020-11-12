@@ -158,8 +158,8 @@ const CheckoutDirect = () => {
     return (
         <>
         { width < breakpoint ? 
-        <Layout style={{ width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
-            <h1 style={{marginTop:'10px'}}>1) Vos Informations</h1>
+        <div style={{padding:'20px', width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
+            <h2 style={{marginTop:'10px'}}>1) Vos Informations</h2>
         <div style={{width:'70%', alignItems:'center'}} className="form-group">
            <label className="text-muted">Email</label>
            <input
@@ -211,7 +211,7 @@ const CheckoutDirect = () => {
        {showSuccess(data.success)}
        {ShowDropInMobile()}
        </div>
-   </Layout>
+   </div>
         :
         <>
         <Header/>

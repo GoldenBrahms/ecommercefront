@@ -5,11 +5,47 @@ export default function Footer () {
 
     const breakpoint = 720;
     return (
-
-        <div style={{width:'100%', height:'300px', bottom:'0', backgroundColor:'#f2f2f2', display:'flex', flexDirection:'column', alignItems:'center'}}>
-                        {width < breakpoint? "" :
+                    <>
+                        {width < breakpoint? 
+                        <div style={{height:'540px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
+                        <div style={{display:'flex', flexDirection:'column'}}>
+                            <ul style={{listStyleType:'none',}}>
+                                <h4 style={{color:"#444", fontSize:'16px'}}>Pour mieux nous connaître</h4>
+                                <li style={{fontSize:'14px'}}>À propos de Samemo</li>
+                                <li style={{fontSize:'14px'}}>Numéros de télephone</li>
+                            </ul>
+                            <ul></ul>
+                            <ul style={{listStyleType:'none',}}>
+                                <h4 style={{color:"#444"}}>Contact</h4>
+                                <li style={{fontSize:'12px'}}>Contactez-nous</li>
+                                <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                            </ul>
+                            <ul></ul>
+                            <ul style={{listStyleType:'none',}}>
+                                <h4 style={{color:"#444"}}>Contact</h4>
+                                <li style={{fontSize:'12px'}}>Contactez-nous</li>
+                                <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                            </ul>
+                            <ul></ul>
+                            <ul style={{listStyleType:'none',}}>
+                                <h4 style={{color:"#444"}}>Besoin d'aide?</h4>
+                                <li style={{fontSize:'14px'}}>Samemo et le Covid-19</li>
+                                <li style={{fontSize:'14px'}}>Retours et remplacements</li>
+                            </ul>
+                        </div>
+                        <div style={{ backgroundColor:'#f4f4f4',display:'flex',flexDirection:'', marginBottom:'0', borderTop:'1px solid #d2d2d7', paddingTop:'10px'}}>
+                            <ul style={{margin:'0',display:'flex', textDecoration:'none', listStyleType:'none', padding:'0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                                <h5 style={{margin:'0', marginRight:'20px',color:'#87878c', fontFamily:'Titillium'}}>Copyright 2020</h5>
+                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
+                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Mentions Légales</a></li>
+                               <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
+                                <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
+                            </ul>
+                        </div>
+                        </div>
+                        :
                         <>
-            <div style={{display:'flex', width:'100%', height:'80%', paddingLeft:'300px', paddingTop:'50px'}}>
+            <div style={{backgroundColor:'#f4f4f4', display:'flex', width:'100%', height:'80%', paddingLeft:'250px', paddingTop:'50px'}}>
                 <ul style={{listStyleType:'none',}}>
                     <h4 style={{color:"#444", fontSize:'16px'}}>Pour mieux nous connaître</h4>
                     <li style={{fontSize:'14px'}}>À propos de Samemo</li>
@@ -34,7 +70,7 @@ export default function Footer () {
                     <li style={{fontSize:'14px'}}>Retours et remplacements</li>
                 </ul>
             </div>
-            <div style={{padding:'20px',display:'flex',flexDirection:'column', width:'95%', height:'20%', marginBottom:'0', borderTop:'1px solid #d2d2d7'}}>
+            <div style={{backgroundColor:'#f4f4f4', padding:'20px',display:'flex',flexDirection:'column', width:'100%', height:'20%', marginBottom:'0', borderTop:'1px solid #d2d2d7'}}>
                 <ul style={{margin:'0',display:'flex', textDecoration:'none', listStyleType:'none', padding:'0'}}>
                     <h5 style={{margin:'0', marginRight:'20px',color:'#87878c', fontFamily:'Titillium'}}>Copyright 2020</h5>
                     <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
@@ -48,7 +84,7 @@ export default function Footer () {
             </div>
             </>
             }
+            </>
 
-        </div>
     );
 }

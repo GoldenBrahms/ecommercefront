@@ -9,13 +9,14 @@ const Profile = (props) => {
     const [values, setValues] = useState({
         name: '',
         email: '',
+        prename: '',
         password: '',
         error: '',
         success: false
     })
 
     const { token } = isAuthenticated();
-    const {name, email, password, error, success} = values;
+    const {name, email, password, prename, error, success} = values;
 
     const init = (userId) => {
         console.log(userId)
@@ -53,6 +54,10 @@ const Profile = (props) => {
             <div className="form-group">
                 <label className="text-muted">Nom</label>
                 <input type="text" className="form-control" value={name} onChange={handleChange('name')}/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Prenom</label>
+                <input type="text" className="form-control" value={prename} onChange={handleChange('prename')}/>
             </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>

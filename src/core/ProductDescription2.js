@@ -8,6 +8,10 @@ import AppSourate from '../images/AppSourate.jpeg';
 import LuneVerte from '../images/luneVerte.jpg'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
+import { Link, withRouter } from 'react-router-dom'
+
 
 
 
@@ -23,17 +27,17 @@ const ProductDescription2 = () => {
     }
     
     return (
-        <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <div style={{width:'100%', display:'flex', flexDirection:'column'}}>
                         <SousNavBar/>
 
             {/* Decouvrez Qurma */}
             { width < breakpoint ?
             <div style={{ marginTop:'00px',padding:'20px', backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div style={{marginTop:'',backgroundColor:'', display:'flex', flexDirection:'column', justifyContent:'left', alignItems:'center'}}>
-            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {Capitalize(prename)} </h4>
+            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)', textAlign:'center'}}>Découvrez Qurma {name} </h4>
             <span style={{height:'6px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
-            <img style={{marginTop:'50px',width:'70%', height:'100%' }} src={LuneJaune}/>
+            <img style={{marginTop:'50px',width:'313px', height:'100%' }} src={LuneJaune}/>
             </div>
             :
             <div style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
@@ -48,10 +52,10 @@ const ProductDescription2 = () => {
             <>
              <div style={{padding:'10px' ,width:'100%', backgroundColor:'', textAlign:'center'}}>
                 <div>
-                    <h1 style={{margin:'0'}}>Qurma</h1>
+                    <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Qurma</h1>
                     <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
                 </div>
-                <img style={{width:'250px'}} src={LightControl}/>
+                <img style={{width:'350px'}} src={LightControl}/>
              </div>
              <div style={{padding:'20px', marginTop:'00px',width:'100%', height:'', backgroundColor:'', display:'flex', flexDirection:'column'}}>
              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
@@ -85,6 +89,16 @@ const ProductDescription2 = () => {
          </div>
          </>
             }
+            {width < breakpoint ? 
+                <div style={{padding:'10px' ,width:'100%', backgroundColor:'', textAlign:'center'}}>
+                <div>
+                    <h1 style={{margin:'0'}}>Qurma</h1>
+                    <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
+                </div>
+                <img style={{width:'350px'}} src={AppSourate}/>
+             </div>
+
+            : "" }
             
             {/* plusieurs couleurs lune */}
             
@@ -118,6 +132,32 @@ const ProductDescription2 = () => {
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
             </div>}
+            {width < breakpoint? 
+            <>
+            <div id="details" style={{width:'100%', height:'55px'}}></div>
+            <div  style={{padding:'20px', margin:'10px', border:'1px solid black', display:'flex',flexDirection:'column'}}>
+                <h1>Details</h1>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée</p>
+                <h1 style={{margin:'0'}}>29 €</h1>
+                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
+                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
+                <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>
+
+            </div>
+            </>
+            :
+            <div id="details" style={{margin:'20px', border:'1px solid black', display:'flex',flexDirection:'column', alignItems:"left", padding:'50px'}}>
+                <h1>Details</h1>
+                <p><span style={{height: "10px", width: "10px", backgroundColor: "#007600", borderRadius: "50%", display: "inline-block"}}></span> En stock</p>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée</p>
+                <h1 style={{margin:'0'}}>29 €</h1>
+                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
+                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
+                <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>
+            </div>
+            }
         </div>
     );
 }

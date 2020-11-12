@@ -7,6 +7,10 @@ import LightControl from '../images/lightControl.jpeg';
 import AppSourate from '../images/AppSourate.jpeg';
 import LuneVerte from '../images/luneVerte.jpg'
 import SousNavBar from "./SousNavBar";
+import {isAuthenticated} from '../auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
+import { Link, withRouter } from 'react-router-dom'
 
 
 
@@ -111,6 +115,32 @@ const ProductDescription = () => {
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
             </div>}
+            {width < breakpoint? 
+            <>
+            <div id="details" style={{width:'100%', height:'55px'}}></div>
+            <div  style={{padding:'20px', margin:'10px', border:'1px solid black', display:'flex',flexDirection:'column'}}>
+                <h1>Details</h1>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée</p>
+                <h1 style={{margin:'0'}}>29 €</h1>
+                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
+                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
+                <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+
+            </div>
+            </>
+            :
+            <div id="details" style={{margin:'20px', border:'1px solid black', display:'flex',flexDirection:'column', alignItems:"left", padding:'50px'}}>
+                <h1>Details</h1>
+                <p><span style={{height: "10px", width: "10px", backgroundColor: "#007600", borderRadius: "50%", display: "inline-block"}}></span> En stock</p>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée</p>
+                <h1 style={{margin:'0'}}>29 €</h1>
+                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
+                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
+                <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+            </div>
+            }
         </div>
     );
 }
