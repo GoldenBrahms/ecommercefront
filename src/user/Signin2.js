@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { Link, Redirect } from 'react-router-dom';
 import { signin, authenticate } from '../auth/index';
 import { API } from '../config'
 
 
-const Signin2 = ({ history }) => {
+
+const Signin2 = ( history ) => {
+    const [path, setPath] = useState()
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -13,6 +15,14 @@ const Signin2 = ({ history }) => {
         loading: false,
         redirectToReferrer: false,
     })
+    
+    
+    useEffect(() => {
+        const path1 = history.location.pathname
+        setPath(path1)   
+    }, [])
+
+    const pathname = path;
 
     const {  email , password, error, loading, redirectToReferrer } = values;
     
@@ -56,10 +66,10 @@ const Signin2 = ({ history }) => {
     }
 
     const signInForm = () => (
-        <div style={{ padding: '20px', marginTop: '50px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: '50%' }}>
+        <div style={{ width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '80%' }}>
                 <div className="form-group">
-                    <h1>S'identifier</h1>
+                    <h2 style={{margin:'0'}}>S'identifier</h2>
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Email</label>
@@ -70,22 +80,23 @@ const Signin2 = ({ history }) => {
                     <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
                 </div>
                 <div>
-                    <button onClick={clickSubmit} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                    <button onClick={clickSubmit} style={{borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
                 </div>
                 <div style={{margin:'10px'}}>
                     <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
-                    <Link to="/signup" className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
+                    <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
+                    {console.log(pathname)}
                 </div>
             </div>
         </div>
     )
     return  (
-        <Layout className="container col-md-8 offset-md-2" title="Signin" description="Signin to Node Ecommerce">
+        <>
             {showError()}
             {showLoading()}
             {redirectUser()}
             {signInForm()}
-        </Layout>
+        </>
     );
 }
 

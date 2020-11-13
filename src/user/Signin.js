@@ -56,10 +56,10 @@ const Signin = ({ history }) => {
     }
 
     const signInForm = () => (
-        <div style={{ padding: '20px', marginTop: '50px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ padding: '20px', marginTop: '0px',  display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ width: '50%' }}>
                 <div className="form-group">
-                    <h1>S'identifier</h1>
+                    <h1 style={{textAlign:'center'}}>S'identifier</h1>
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Email</label>
@@ -70,11 +70,11 @@ const Signin = ({ history }) => {
                     <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
                 </div>
                 <div>
-                    <button onClick={clickSubmit} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                    <button onClick={clickSubmit} style={{color:'#0071e3', borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
                 </div>
                 <div style={{margin:'10px'}}>
                     <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
-                    <Link to="/signup" className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
+                    <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
                 </div>
             </div>
         </div>

@@ -61,7 +61,22 @@ const Dashboard = () => {
                 <h3 className="card-header">Vos commandes</h3>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        {JSON.stringify(history)}
+                        {
+                            history.map((h, i) => {
+                                return (
+                                    <div>
+                                {
+                                h.products.map((p, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <h6>Name: {p.name}</h6>  
+                                        </div>
+                                    )
+                                })}
+                                </div>
+                                )
+                            })
+                        }
                     </li>
                 </ul>
             </div>

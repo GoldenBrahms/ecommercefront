@@ -8,19 +8,19 @@ import Signin2 from '../user/Signin2'
 import CompteInvite from '../user/CompteInvite'
 import Header from './Header'
 import Layout from './Layout'
+import {Route } from 'react-router-dom'
 
 
 
 
 const Checkout = () => {
     return (
-        <div style={{width:'100%',height:'80vh', display:'flex'}}>
-        <div style={{backgroundColor:'blue', width:'50%'}}>
-            <Signin2/>
-        </div>
-        <div style={{backgroundColor:'', width:'50%'}}>
-           {/*} <CompteInvite/> */}
-        </div>
+        <div style={{width:'100%',height:'80vh'}}>
+            <Header/>
+            <div style={{display:'flex'}}>
+                <Route  exat path="/Checkout" component={Signin2} />
+                <CompteInvite/>
+            </div>
         </div>
     )
 }

@@ -34,7 +34,7 @@ const ProductDescription2 = () => {
             { width < breakpoint ?
             <div style={{ marginTop:'00px',padding:'20px', backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div style={{marginTop:'',backgroundColor:'', display:'flex', flexDirection:'column', justifyContent:'left', alignItems:'center'}}>
-            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)', textAlign:'center'}}>Découvrez Qurma {name} </h4>
+            <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)', textAlign:'center'}}>Découvrez Qurma {Capitalize(prename)} </h4>
             <span style={{height:'6px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
             <img style={{marginTop:'50px',width:'313px', height:'100%' }} src={LuneJaune}/>
@@ -42,7 +42,7 @@ const ProductDescription2 = () => {
             :
             <div style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
             <div style={{backgroundColor:'', margin:'0', display:'flex', flexDirection:'column', justifyContent:'left'}}>
-            <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma {Capitalize(prename)}</h1>
+            <h1 style={{margin:'0', color:'rgb(79, 79, 79)', fontFamily:'Lato'}}>Découvrez Qurma {Capitalize(prename)}</h1>
             <span style={{height:'10px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
             <img style={{width:'30%', height:'100%' }} src={LuneJaune}/>
@@ -98,7 +98,15 @@ const ProductDescription2 = () => {
                 <img style={{width:'350px'}} src={AppSourate}/>
              </div>
 
-            : "" }
+            : 
+            <div style={{padding:'10px' ,width:'100%', backgroundColor:'', textAlign:'center'}}>
+                <div>
+                    <h1 style={{margin:'0'}}>Qurma</h1>
+                    <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
+                </div>
+                <img style={{width:'700px'}} src={AppSourate}/>
+             </div>
+            }
             
             {/* plusieurs couleurs lune */}
             
