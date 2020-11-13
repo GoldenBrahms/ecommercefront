@@ -16,6 +16,7 @@ const Profile = (props) => {
     })
 
     const { token } = isAuthenticated();
+    const { user: {prename1}} = isAuthenticated();
     const {name, email, password, prename, error, success} = values;
 
     const init = (userId) => {
@@ -50,13 +51,14 @@ const Profile = (props) => {
         }
     }
     const profilUpdate = (name, email, password) => (
-        <form>
+        <form style={{width:'500px', display:'flex', flexDirection:'column'}}>
             <div className="form-group">
                 <label className="text-muted">Nom</label>
                 <input type="text" className="form-control" value={name} onChange={handleChange('name')}/>
             </div>
             <div className="form-group">
                 <label className="text-muted">Prenom</label>
+                
                 <input type="text" className="form-control" value={prename} onChange={handleChange('prename')}/>
             </div>
             <div className="form-group">
@@ -71,12 +73,14 @@ const Profile = (props) => {
         </form>
     )
     return (
-        <div className="container">
-            
+        <>
+            <Header/>
+        <div style={{height:'72vh', backgroundColor:'',width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <h2>Profile update</h2>
             {profilUpdate(name, email, password)}
             {redirectUser(success)}
         </div>
+        </>
     )
 }
 

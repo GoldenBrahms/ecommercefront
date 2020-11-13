@@ -14,6 +14,8 @@ import Checkout from './core/Checkout'
 import CheckoutDirect from './core/CheckoutDirect'
 import ProductDescription from './core/ProductDescription';
 import Footer from './core/Footer'
+import Contact from './core/Contact'
+import ContactEmail from './core/ContactEmail'
 
 
 const Routes = () => {
@@ -26,6 +28,8 @@ const Routes = () => {
                     <Route exact path="/CheckoutDirect" component={CheckoutDirect}/>
                     <Route exact path="/signin" component={Signin}/>
                     <Route exact path="/signup" component={Signup}/>
+                    <Route exact path="/Contact" component={Contact}/>
+                    <Route exact path="/contact/email" component={ContactEmail}/>
                     <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
                     <PrivateRoute path="/profile/:userId" exact component={Profile}/>
                     <AdminRoute 

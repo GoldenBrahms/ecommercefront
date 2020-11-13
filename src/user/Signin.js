@@ -70,7 +70,8 @@ const Signin = ({ history }) => {
                     <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
                 </div>
                 <div>
-                    <button onClick={clickSubmit} style={{color:'#0071e3', borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                    <p style={{margin:'0'}}>Mot de passe oublié?</p>
+                    <button onClick={clickSubmit} style={{ borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
                 </div>
                 <div style={{margin:'10px'}}>
                     <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
