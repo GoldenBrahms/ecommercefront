@@ -12,6 +12,10 @@ const CompteInvite = ({ history }) => {
         loading: false,
         redirectToReferrer: false,
     })
+    const width = window.innerWidth;
+    
+
+    const breakpoint = 720;
 
     const {  email , password, error, loading, redirectToReferrer } = values;
     
@@ -54,6 +58,17 @@ const CompteInvite = ({ history }) => {
         }
     }
 
+    const InviteFormMobile = () => (
+        <div style={{padding:'10px', backgroundColor:'', display:"flex",flexDirection:'column',justifyContent:'center',alignItems:'center', width:'100%' }}>
+            <h2 style={{margin:'0'}}>Vous n'avez pas de compte Samemo?</h2>
+            <p>Poursuivez ainsi. Vous créerez un compte Samemo ultérieurement.</p>
+            <div className="form-group">
+                <label className="text-muted">Email</label>
+                <input style={{width:'350px'}} onChange={handleChange('email')} value={email} type="email" className="form-control"/>
+            </div>
+            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/CheckoutDirect" className="btn btn-secondary btn-lg btn-block">Continuer comme invité</Link>
+        </div>
+    )
     const InviteForm = () => (
         <div style={{width:'50%', padding: '20px', marginTop: '50px' }}>
             <h2>Vous n'avez pas de compte Samemo?</h2>
@@ -69,7 +84,11 @@ const CompteInvite = ({ history }) => {
         <>
             {showError()}
             {showLoading()}
-            {InviteForm()}
+            {width < breakpoint ?
+            InviteFormMobile()
+            :
+            InviteForm()
+        }
             {redirectUser()}
         </>
     );

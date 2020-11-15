@@ -14,14 +14,29 @@ import {Route } from 'react-router-dom'
 
 
 const Checkout = () => {
+    const width = window.innerWidth;
+
+    const breakpoint = 620;
     return (
-        <div style={{width:'100%',height:'80vh'}}>
+        
+        <>
+            {width < breakpoint? 
+            <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+            <Route  exat path="/Checkout" component={Signin2} />
+            <div style={{marginLeft:'35px', width:'80%', height:'1px', backgroundColor:'black'}}></div>
+            <CompteInvite/>
+             </div>
+            :
+            <div style={{width:'100%',height:'77vh'}}>
             <Header2/>
             <div style={{display:'flex'}}>
                 <Route  exat path="/Checkout" component={Signin2} />
+                <div style={{position:'absolute',marginLeft:'35px', width:'1px', height:'450px',marginTop:'20px',right:'750px', backgroundColor:'#CBCBCB'}}></div>
                 <CompteInvite/>
             </div>
         </div>
+            }
+        </>
     )
 }
 

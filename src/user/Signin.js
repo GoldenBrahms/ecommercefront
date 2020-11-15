@@ -56,7 +56,7 @@ const Signin = ({ history }) => {
     }
 
     const signInForm = () => (
-        <div style={{ padding: '20px', marginTop: '0px',  display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ padding: '20px', marginTop: '0px',  display: 'flex', alignItems: 'center', justifyContent: 'center', height:'71vh' }}>
             <div style={{ width: '50%' }}>
                 <div className="form-group">
                     <h1 style={{textAlign:'center'}}>S'identifier</h1>

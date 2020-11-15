@@ -7,7 +7,7 @@ export default function Footer () {
     return (
                     <>
                         {width < breakpoint? 
-                        <div style={{height:'540px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
+                        <div style={{  height:'560px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
                         <div style={{display:'flex', flexDirection:'column'}}>
                             <ul style={{listStyleType:'none',}}>
                                 <h4 style={{color:"#444", fontSize:'16px'}}>Pour mieux nous connaître</h4>
