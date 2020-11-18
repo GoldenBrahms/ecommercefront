@@ -135,7 +135,7 @@ const ProductDescription = () => {
                 <h1 style={{margin:'0'}}>29 €</h1>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
-                <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+                <a className="btn btn-primary btn-sm" href="/Checkout">Acheter</a>
 
             </div>
             </>
