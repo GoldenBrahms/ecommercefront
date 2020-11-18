@@ -72,7 +72,7 @@ const Signin2 = ( history ) => {
     const signInForm = () => (
  
         
-        <div style={{ width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
         <div style={{ width: '80%' }}>
             <div className="form-group">
                 <h2 style={{margin:'0'}}>S'identifier</h2>
@@ -98,10 +98,10 @@ const Signin2 = ( history ) => {
     )
     const signInFormMobile = () => (
  
-        <div style={{ width:'100%', padding: '20px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
-            <div style={{ width: '100%' }}>
+        <div style={{ width:'100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '100%'}}>
                 <div className="form-group">
-                    <h2 style={{margin:'0'}}>S'identifier</h2>
+                    <h2 style={{margin:'0', textAlign:'center'}}>S'identifier</h2>
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Email</label>

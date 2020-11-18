@@ -12,10 +12,12 @@ import AdminRoute from './auth/AdminRoute';
 import Header from './core/Header';
 import Checkout from './core/Checkout'
 import CheckoutDirect from './core/CheckoutDirect'
+import CheckoutDirectInvite from './core/CheckoutDirectInvite'
 import ProductDescription from './core/ProductDescription';
 import Footer from './core/Footer'
 import Contact from './core/Contact'
 import ContactEmail from './core/ContactEmail'
+import './Style.css'
 
 
 const Routes = () => {
@@ -26,6 +28,7 @@ const Routes = () => {
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/Checkout" component={Checkout}/>
                     <Route exact path="/CheckoutDirect" component={CheckoutDirect}/>
+                    <Route exact path="/CheckoutDirectInvite" component={CheckoutDirectInvite}/>
                     <Route exact path="/signin" component={Signin}/>
                     <Route exact path="/signup" component={Signup}/>
                     <Route exact path="/Contact" component={Contact}/>

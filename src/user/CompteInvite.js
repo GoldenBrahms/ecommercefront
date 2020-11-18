@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../core/Layout';
 import { Link, Redirect } from 'react-router-dom';
-import { signin, authenticate, userinvite } from '../auth/index';
+import { signin, authenticate1, userinvite } from '../auth/index';
 import { API } from '../config'
 
 
@@ -30,7 +30,7 @@ const CompteInvite = ({ history }) => {
             if (data.error){
                 setValues({...values, error: data.error, loading: false });
             } else {
-                authenticate(data, () => {
+                authenticate1(data, () => {
                     setValues({
                         ...values,
                         redirectToReferrer: true
@@ -54,14 +54,14 @@ const CompteInvite = ({ history }) => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            return <Redirect to="/CheckoutDirect"/>
+            return <Redirect to="/CheckoutDirectInvite"/>
         }
     }
 
     const InviteFormMobile = () => (
         <div style={{padding:'10px', backgroundColor:'', display:"flex",flexDirection:'column',justifyContent:'center',alignItems:'center', width:'100%' }}>
-            <h2 style={{margin:'0'}}>Vous n'avez pas de compte Samemo?</h2>
-            <p>Poursuivez ainsi. Vous créerez un compte Samemo ultérieurement.</p>
+            <h2 style={{margin:'0', textAlign:'center'}}>Vous n'avez pas de compte Samemo?</h2>
+            <p style={{margin:'0', textAlign:'center'}}>Poursuivez ainsi. Vous créerez un compte Samemo ultérieurement.</p>
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input style={{width:'350px'}} onChange={handleChange('email')} value={email} type="email" className="form-control"/>

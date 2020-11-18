@@ -11,7 +11,11 @@ import {isAuthenticated} from '../auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import { Link, withRouter } from 'react-router-dom'
+import { css, jsx} from '@emotion/react'
 
+
+
+const color = 'white'
 
 
 const ProductDescription = () => {
@@ -19,6 +23,7 @@ const ProductDescription = () => {
     
 
     const breakpoint = 720;
+    const maxpoint = 1920;
     return (
         <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <SousNavBar/>
@@ -33,9 +38,14 @@ const ProductDescription = () => {
             <img style={{marginTop:'50px',width:'70%', height:'100%' }} src={LuneJaune}/>
             </div>
             :
-            <div style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+            <div style={{ width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
             <div style={{backgroundColor:'', margin:'0', display:'flex', flexDirection:'column', justifyContent:'left'}}>
-            <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma </h1>
+            <h1 css={{
+      backgroundColor: 'hotpink',
+      '&:hover': {
+        color: 'lightgreen'
+      }
+    }}  >Découvrez Qurma </h1>
             <span style={{height:'10px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée</span>
             </div>
             <img style={{width:'30%', height:'100%' }} src={LuneJaune}/>

@@ -57,6 +57,12 @@ export const authenticate = (data, next) => {
         next()
     }
 }
+export const authenticate1 = (data, next) => {
+    if(typeof window !== 'undefined'){
+        localStorage.setItem('jwd', JSON.stringify(data))
+        next()
+    }
+}
 
 export const signout = next => {
     if(typeof window !== 'undefined'){
@@ -78,6 +84,16 @@ export const isAuthenticated = () => {
     }
     if (localStorage.getItem('jwt')){
         return JSON.parse(localStorage.getItem('jwt'));
+    } else {
+        return false;
+    }
+}
+export const isIdentified = () => {
+    if (typeof window == 'undefined') {
+        return false;
+    }
+    if (localStorage.getItem('jwd')){
+        return JSON.parse(localStorage.getItem('jwd'));
     } else {
         return false;
     }

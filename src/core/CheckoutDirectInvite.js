@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Informations from './Informations';
 import DropIn from 'braintree-web-drop-in-react';
-import { getBraintreeClientToken, processPayment, createOrder } from './apiCore';
-import { isAuthenticated } from '../auth/index';
+import { getBraintreeClientToken1, processPayment, createInviteOrder } from './apiCore';
+import { isAuthenticated, isIdentified } from '../auth/index';
 import { Redirect } from 'react-router-dom';
 import Header from './Header'
 import Layout from './Layout'
@@ -10,7 +10,7 @@ import Layout from './Layout'
 
 
 
-const CheckoutDirect = () => {
+const CheckoutDirectInvite = () => {
     
     const [data, setData] = useState({
         loading: false,
@@ -24,14 +24,14 @@ const CheckoutDirect = () => {
         address: '',
     });
 
-    const { user: {_id, name, prename, email, role}} = isAuthenticated();
+    const { user: {_id, name, prename, email, role}} = isIdentified();
 
     const width = window.innerWidth;
 
     const breakpoint = 620;
 
-    const userId = isAuthenticated() && isAuthenticated().user._id;
-    const token = isAuthenticated() && isAuthenticated().token;
+    const userId = isIdentified() && isIdentified().user._id;
+    const token = isIdentified() && isIdentified().token;
 
     const buy = () => {
         let nonce;
@@ -53,7 +53,7 @@ const CheckoutDirect = () => {
                    transaction_id: responce.transaction_id,
                    address: deliveryAdress
                }
-               createOrder(userId, token, createOrderData)
+               createInviteOrder(userId, token, createOrderData)
                setData({...data, success: responce.success })
            })
            .catch(error => console.log(error))
@@ -62,6 +62,7 @@ const CheckoutDirect = () => {
             console.log("dropin :", error)
             setData({...data, error: error.message})
         })
+        return <Redirect to="/"/>
     }
 
 
@@ -69,17 +70,18 @@ const CheckoutDirect = () => {
 
     const getToken = (userId, token, res) => {
        
-       getBraintreeClientToken(userId, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-                setData({ ...data, error: data.error });
-            } else {
-                console.log({name})
-
-                console.log(data);
-                setData({ clientToken: data.clientToken });
-            }
-        });
+       
+            
+           getBraintreeClientToken1(userId, token).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                    setData({ ...data, error: data.error });
+                } else {
+                    console.log(data);
+                    setData({ clientToken: data.clientToken });
+                }
+            });
+       
     };
     const showButton = () => {
         console.log("clicked")
@@ -126,7 +128,9 @@ const CheckoutDirect = () => {
     </div>
     )
     useEffect(() => {
+        if ({name} !== 'undefined'){
         getToken(userId, token);
+        }
     }, []);
 
     const showError = error => (
@@ -161,8 +165,6 @@ const CheckoutDirect = () => {
     return (
         <>
         { width < breakpoint ? 
-        <>
-                <Header/>
         <div style={{padding:'20px', width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
             <h2 style={{marginTop:'10px'}}>1) Vos Informations</h2>
         <div style={{width:'70%', alignItems:'center'}} className="form-group">
@@ -217,7 +219,6 @@ const CheckoutDirect = () => {
        {ShowDropInMobile()}
        </div>
    </div>
-   </>
         :
         <>
         <Header/>
@@ -287,5 +288,5 @@ const CheckoutDirect = () => {
         );
 }
 
-export default CheckoutDirect;
+export default CheckoutDirectInvite;
     

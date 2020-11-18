@@ -26,7 +26,11 @@ const Header = ({ history }) => {
                     <h1 style={{marginTop:'0', marginLeft:'20px', color:'#c1c1c1', fontFamily:'Roboto'}}><a href="/" style={{textDecoration:'none', color:'white'}}>Samemo</a></h1>
                     { width < breakpoint ?
                     !isAuthenticated() && (
+                        <>
+                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Contact'>?</Link>
+
                     <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'10px'}} to="/signin">Connexion</Link>
+                    </>
                     )
 
                     :
@@ -39,15 +43,21 @@ const Header = ({ history }) => {
 }
                     { width < breakpoint ?
                     isAuthenticated() && (
+                        <>
+                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Contact'>?</Link>
                         <span onClick={() => {signout(() =>{
                             history.push('/')
                                 })}} className="btn btn-dark" style={{position:'absolute', right:'10px', color:'white'}}>Deconnexion</span>
+                        </>
                     ) 
                     :
                     isAuthenticated() && (
+                        <>
+                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Contact'>Assistance</Link>
                         <span onClick={() => {signout(() =>{
                             history.push('/')
                                 })}} className="btn btn-dark" style={{position:'absolute', right:'10px', color:'white'}}>Deconnexion</span>
+                    </>
                     )
                 }
             </div>

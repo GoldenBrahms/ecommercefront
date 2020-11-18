@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link} from 'react-router-dom'
 
 export default function Footer () {
     const width = window.innerWidth;
@@ -8,29 +9,29 @@ export default function Footer () {
                     <>
                         {width < breakpoint? 
                         <div style={{  height:'560px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
-                        <div style={{display:'flex', flexDirection:'column'}}>
-                            <ul style={{listStyleType:'none',}}>
-                                <h4 style={{color:"#444", fontSize:'16px'}}>Pour mieux nous connaître</h4>
-                                <li style={{fontSize:'14px'}}>À propos de Samemo</li>
+                        <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                            <ul style={{listStyleType:'none'}}>
+                                <h4 style={{color:"#444"}}>Nous Connaitre</h4>
+                                <li style={{fontSize:'14px'}}><a style={{color:'black'}} href="#">À propos de Samemo</a></li>
                                 <li style={{fontSize:'14px'}}>Numéros de télephone</li>
                             </ul>
                             <ul></ul>
                             <ul style={{listStyleType:'none',}}>
                                 <h4 style={{color:"#444"}}>Contact</h4>
-                                <li style={{fontSize:'12px'}}>Contactez-nous</li>
-                                <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                                <li style={{fontSize:'14px'}}> <a style={{color:'black'}}  href="/contact">Contactez-nous</a></li>
+                                <li style={{fontSize:'14px'}}>Numéros de télephone</li>
                             </ul>
                             <ul></ul>
                             <ul style={{listStyleType:'none',}}>
                                 <h4 style={{color:"#444"}}>Contact</h4>
-                                <li style={{fontSize:'12px'}}>Contactez-nous</li>
-                                <li style={{fontSize:'12px'}}>Numéros de télephone</li>
+                                <li style={{fontSize:'14px'}}>Contactez-nous</li>
+                                <li style={{fontSize:'14px'}}>Numéros de télephone</li>
                             </ul>
                             <ul></ul>
                             <ul style={{listStyleType:'none',}}>
                                 <h4 style={{color:"#444"}}>Besoin d'aide?</h4>
-                                <li style={{fontSize:'14px'}}>Samemo et le Covid-19</li>
-                                <li style={{fontSize:'14px'}}>Retours et remplacements</li>
+                                <li style={{fontSize:'14px'}}><a style={{color:'black'}}  href="#">Samemo et le Covid-19</a></li>
+                                <li style={{fontSize:'14px'}}><a style={{color:'black'}} href="#">Retours et remplacements</a></li>
                             </ul>
                         </div>
                         <div style={{ backgroundColor:'#f4f4f4',display:'flex',flexDirection:'', marginBottom:'0', borderTop:'1px solid #d2d2d7', paddingTop:'10px'}}>
