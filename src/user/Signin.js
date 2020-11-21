@@ -54,10 +54,38 @@ const Signin = ({ history }) => {
             return <Redirect to="/"/>
         }
     }
+    const width = window.innerWidth;
+
+    const breakpoint = 620;
 
     const signInForm = () => (
         <div style={{ padding: '20px', marginTop: '0px',  display: 'flex', alignItems: 'center', justifyContent: 'center', height:'71vh' }}>
             <div style={{ width: '50%' }}>
+                <div className="form-group">
+                    <h1 style={{textAlign:'center'}}>S'identifier</h1>
+                </div>
+                <div className="form-group">
+                    <label className="text-muted">Email</label>
+                    <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label className="text-muted">Password</label>
+                    <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
+                </div>
+                <div>
+                    <p style={{margin:'0'}}>Mot de passe oublié?</p>
+                    <button onClick={clickSubmit} style={{ borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                </div>
+                <div style={{margin:'10px'}}>
+                    <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
+                    <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
+                </div>
+            </div>
+        </div>
+    )
+    const signInFormMobile = () => (
+        <div style={{ padding: '20px', marginTop: '0px',  display: 'flex', alignItems: '', justifyContent: 'center', height:'60vh' }}>
+            <div>
                 <div className="form-group">
                     <h1 style={{textAlign:'center'}}>S'identifier</h1>
                 </div>
@@ -85,7 +113,7 @@ const Signin = ({ history }) => {
             {showError()}
             {showLoading()}
             {redirectUser()}
-            {signInForm()}
+            {width < breakpoint ? signInFormMobile() :signInForm()}
         </Layout>
     );
 }

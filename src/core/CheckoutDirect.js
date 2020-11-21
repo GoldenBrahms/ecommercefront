@@ -10,7 +10,7 @@ import Layout from './Layout'
 
 
 
-const CheckoutDirect = () => {
+const CheckoutDirect = ({ history }) => {
     
     const [data, setData] = useState({
         loading: false,
@@ -22,6 +22,7 @@ const CheckoutDirect = () => {
         prenom: '',
         email:'',
         address: '',
+        city: '',
     });
 
     const { user: {_id, name, prename, email, role}} = isAuthenticated();
@@ -51,10 +52,13 @@ const CheckoutDirect = () => {
            .then(responce => {
                const createOrderData = {
                    transaction_id: responce.transaction_id,
-                   address: deliveryAdress
+                   address: deliveryAdress,
+                   city: deliveryCity,
+                   amount: 30
                }
                createOrder(userId, token, createOrderData)
                setData({...data, success: responce.success })
+               history.push('/remerciement')
            })
            .catch(error => console.log(error))
         })
@@ -66,6 +70,7 @@ const CheckoutDirect = () => {
 
 
     let deliveryAdress = data.address
+    let deliveryCity = data.city
 
     const getToken = (userId, token, res) => {
        
@@ -153,6 +158,10 @@ const CheckoutDirect = () => {
         setData({...data, email: event.target.value})
         console.log(data.email)
     }
+    const handleChangeCity = event => {
+        setData({...data, city: event.target.value})
+        console.log(data.city)
+    }
 
     const disableDiv = event => {
         event.preventDefault()
@@ -172,7 +181,7 @@ const CheckoutDirect = () => {
                type="email"
                className="form-control"
                onChange={handleChangeEmail}
-               value={email}
+               value={data.email}
                
            ></input>
            <label className="text-muted">Nom</label>
@@ -181,14 +190,14 @@ const CheckoutDirect = () => {
                type="text"
                className="form-control"
                onChange={handleChangeName}
-               value={name}
+               value={data.name}
            />
            <label className="text-muted">Prénom</label>
            <input
                type="text"
                className="form-control"
                onChange={handleChangePrenom}
-               value={prename}
+               value={data.prename}
            />
            <label className="text-muted">Adresse</label>
            <input
@@ -233,7 +242,7 @@ const CheckoutDirect = () => {
                     type="email"
                     className="form-control"
                     onChange={handleChangeEmail}
-                    value={email}
+                    value={data.email}
                     
                 />
                 <label className="text-muted">Nom</label>
@@ -242,20 +251,21 @@ const CheckoutDirect = () => {
                     type="text"
                     className="form-control"
                     onChange={handleChangeName}
-                    value={name}
+                    value={data.name}
                 />
                 <label className="text-muted">Prénom</label>
                 <input
                     type="text"
                     className="form-control"
                     onChange={handleChangePrenom}
-                    value={prename}
+                    value={data.prename}
                 />
                 <label className="text-muted">Adresse</label>
                 <input
                     type="text"
                     className="form-control"
-                    
+                    onChange={handleAdress}
+                    value={data.address}
                 />
                 <label className="text-muted">Code Postal</label>
                 <input
@@ -267,7 +277,8 @@ const CheckoutDirect = () => {
                 <input
                     type="text"
                     className="form-control"
-                    
+                    value={data.city}
+                    onChange={handleChangeCity}
                 />
                 <button onClick={disableDiv} className="btn btn-dark">Valider</button>
             </div>

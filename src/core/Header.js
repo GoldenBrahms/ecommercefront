@@ -36,8 +36,9 @@ const Header = ({ history }) => {
                     :
                     !isAuthenticated() &&  (
                         <>
-                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Contact'>Assistance</Link>
+                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'240px', textAlign:'center'}} to='/Contact'>Assistance</Link>
                     <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'10px'}} to="/signin">Connexion</Link>
+                    <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'120px'}} to="/signup">Inscription</Link>
                     </>
                     )
 }

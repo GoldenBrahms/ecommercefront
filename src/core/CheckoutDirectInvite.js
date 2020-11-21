@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Informations from './Informations';
 import DropIn from 'braintree-web-drop-in-react';
-import { getBraintreeClientToken1, processPayment, createInviteOrder } from './apiCore';
+import { getBraintreeClientToken1, processPayment1, createInviteOrder } from './apiCore';
 import { isAuthenticated, isIdentified } from '../auth/index';
 import { Redirect } from 'react-router-dom';
 import Header from './Header'
 import Layout from './Layout'
+import { signoutInvite } from '../auth';
 
 
 
 
-const CheckoutDirectInvite = () => {
+
+const CheckoutDirectInvite = ({ history }) => {
     
     const [data, setData] = useState({
         loading: false,
@@ -19,9 +21,11 @@ const CheckoutDirectInvite = () => {
         error: '',
         instance: {},
         name: '',
-        prenom: '',
+        prename: '',
         email:'',
         address: '',
+        zipcode: '',
+        city: ''
     });
 
     const { user: {_id, name, prename, email, role}} = isIdentified();
@@ -47,14 +51,23 @@ const CheckoutDirectInvite = () => {
                paymentMethodNonce: nonce,
                amount: 30
            }
-           processPayment(userId, token, paymentData)
+           processPayment1(userId, token, paymentData)
            .then(responce => {
                const createOrderData = {
                    transaction_id: responce.transaction_id,
-                   address: deliveryAdress
+                   email: deliveryEmail,
+                   name: deliveryName,
+                   prename: deliveryPrename,
+                   address: deliveryAdress,
+                   city: deliveryCity,
+                   zipcode: deliveryZipCode
                }
                createInviteOrder(userId, token, createOrderData)
                setData({...data, success: responce.success })
+               signoutInvite(() =>{
+                history.push('/remerciement')
+                    })
+
            })
            .catch(error => console.log(error))
         })
@@ -62,11 +75,15 @@ const CheckoutDirectInvite = () => {
             console.log("dropin :", error)
             setData({...data, error: error.message})
         })
-        return <Redirect to="/"/>
     }
 
 
+    let deliveryEmail = data.email
+    let deliveryName = data.name
+    let deliveryPrename = data.prename
     let deliveryAdress = data.address
+    let deliveryCity = data.city
+    let deliveryZipCode = data.zipcode
 
     const getToken = (userId, token, res) => {
        
@@ -150,12 +167,20 @@ const CheckoutDirectInvite = () => {
         console.log(data.address)
     }
     const handleChangePrenom = event => {
-        setData({...data, prenom: event.target.value})
-        console.log(data.prenom)
+        setData({...data, prename: event.target.value})
+        console.log(data.prename)
     }
     const handleChangeEmail = event => {
         setData({...data, email: event.target.value})
         console.log(data.email)
+    }
+    const handleCity = event => {
+        setData({...data, city: event.target.value})
+        console.log(data.city)
+    }
+    const handleZipcode = event => {
+        setData({...data, zipcode: event.target.value})
+        console.log(data.zipcode)
     }
 
     const disableDiv = event => {
@@ -243,34 +268,40 @@ const CheckoutDirectInvite = () => {
                     type="text"
                     className="form-control"
                     onChange={handleChangeName}
-                    value={name}
+                    value={data.name}
                 />
                 <label className="text-muted">Prénom</label>
                 <input
                     type="text"
                     className="form-control"
                     onChange={handleChangePrenom}
-                    value={prename}
+                    value={data.prename}
                 />
                 <label className="text-muted">Adresse</label>
                 <input
                     type="text"
                     className="form-control"
+                    value={data.address}
+                    onChange={handleAdress}
                     
                 />
                 <label className="text-muted">Code Postal</label>
                 <input
                     type="text"
                     className="form-control"
+                    value={data.zipcode}
+                    onChange={handleZipcode}
                     
                 />
                 <label className="text-muted">Ville</label>
                 <input
                     type="text"
                     className="form-control"
+                    value={data.city}
+                    onChange={handleCity}
                     
                 />
-                <button onClick={disableDiv} className="btn btn-dark">Valider</button>
+                <button style={{marginTop:'20px'}} onClick={disableDiv} className="btn btn-dark">Valider</button>
             </div>
     </div>
             <div style={{display:'flex', flexDirection:'column', width:'50%'}}>

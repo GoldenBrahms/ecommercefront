@@ -74,11 +74,11 @@ export default function Footer () {
             <div style={{backgroundColor:'#f4f4f4', padding:'20px',display:'flex',flexDirection:'column', width:'100%', height:'20%', marginBottom:'0', borderTop:'1px solid #d2d2d7'}}>
                 <ul style={{margin:'0',display:'flex', textDecoration:'none', listStyleType:'none', padding:'0'}}>
                     <h5 style={{margin:'0', marginRight:'20px',color:'#87878c', fontFamily:'Titillium'}}>Copyright 2020</h5>
-                    <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
+                    <li><a href='/politiquedeconfidentialitée' style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
                     <li style={{marginLeft:'20px', marginRight:'20px'}}> | </li>
-                    <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Mentions Légales</a></li>
+                    <li><a href='/mentionslegales' style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Mentions Légales</a></li>
                     <li style={{marginLeft:'20px', marginRight:'20px'}}> | </li>
-                   <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
+                   <li><a href="/conditions-dutilisation" style={{fontSize:'11px',textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Conditions générales de vente et d'utilisation</a></li>
                    <li style={{marginLeft:'20px', marginRight:'20px'}}> | </li>
                     <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
                 </ul>

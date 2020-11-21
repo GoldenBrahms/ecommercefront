@@ -105,11 +105,11 @@ const Signin2 = ( history ) => {
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Email</label>
-                    <input style={{height:'60px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
+                    <input style={{height:'60px', fontSize:'20px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Password</label>
-                    <input style={{height:'60px'}}  onChange={handleChange('password')} value={password} type="password" className="form-control" />
+                    <input style={{height:'60px', fontSize:'20px'}}  onChange={handleChange('password')} value={password} type="password" className="form-control" />
                 </div>
                 <div>
                     <button onClick={clickSubmit} style={{borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>

@@ -16,6 +16,9 @@ const Signup = ({ history }) => {
         redirectToReferrer: false
 
     })
+    const width = window.innerWidth;
+
+    const breakpoint = 620;
 
     const { name, prename, email , password, error, success, redirectToReferrer } = values;
     
@@ -74,7 +77,7 @@ const Signup = ({ history }) => {
     }
 
     const signUpForm = () => (
-        <div style={{padding:'20px', marginTop:'50px', border:'1px solid black', display:'flex', alignItems:'center', justifyContent:'center'}}>
+        <div style={{padding:'20px', marginTop:'50px',  display:'flex', alignItems:'center', justifyContent:'center'}}>
             <div style={{width:'50%'}}>
             <div className="form-group">
                 <h1>Créer un compte</h1>
@@ -106,11 +109,44 @@ const Signup = ({ history }) => {
             </div>
         </div>
     )
+    const signUpFormMobile = () => (
+        <div style={{padding:'20px', marginTop:'20px',  display:'flex', alignItems:'center', justifyContent:'center'}}>
+            <div>
+            <div className="form-group">
+                <h1>Créer un compte</h1>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Votre Nom</label>
+                <input onChange={handleChange('name')} value={name} type="text" className="form-control"/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Votre Prénom</label>
+                <input onChange={handleChange('prename')} value={prename} type="text" className="form-control"/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Votre Email</label>
+                <input onChange={handleChange('email')} value={email} type="email" className="form-control"/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Votre mot de passe</label>
+                <input onChange={handleChange('password')} value={password} type="password" className="form-control"/>
+            </div>
+            <div>
+            <button onClick={clickSubmit} className="btn btn-primary btn-lg btn-block">Créer votre compe Samemo</button>
+            </div>
+            <div>
+                <span className="nav-link" onClick={() => signout(() => {
+                    history.push("/signin")
+                })} style={{cursor:'pointer'}} >Vous possédez déjà un compte ? Se connecter</span>
+            </div>
+            </div>
+        </div>
+    )
     return  (
         <Layout className="container col-md-8 offset-md-2" title="Signup" description="Signup to Node Ecommerce">
             {showError()}
             {showSuccess()}
-            {signUpForm()}
+            {width < breakpoint ? signUpFormMobile() :signUpForm()}
             {redirectUser()}
         </Layout>
     );

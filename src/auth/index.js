@@ -77,6 +77,19 @@ export const signout = next => {
         .catch(err => console.log(err))
     }
 }
+export const signoutInvite = next => {
+    if(typeof window !== 'undefined'){
+        localStorage.removeItem('jwd')
+        next()
+        return fetch(`${API}/signout`, {
+            method: "GET",
+        })
+        .then(response =>{
+            console.log('signout')
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 export const isAuthenticated = () => {
     if (typeof window == 'undefined') {

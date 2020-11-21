@@ -4,7 +4,7 @@ import Multicolor from '../images/nice.png';
 import Smartphone from '../images/smartphone.png';
 import LuneRose from '../images/LuneRose.jpg';
 import LightControl from '../images/lightControl.jpeg';
-import AppSourate from '../images/AppSourate.jpeg';
+import Veilleuse from '../images/veilleuse.jpg';
 import LuneVerte from '../images/luneVerte.jpg'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
@@ -124,6 +124,18 @@ const ProductDescription = () => {
             <div>
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
+            </div>}
+            {width < breakpoint? 
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'100vh'}}>
+                <img style={{width:'200px', height:'200px'}} src={Veilleuse}/>
+                <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
+            </div>
+            :
+            <div style={{display:'flex', padding:'50px', width:'100%', height:'100vh'}}>
+            <div>
+                <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>traduction en arabe et francais</h1>
+            </div>
+            <img style={{width:'750px'}} src={Veilleuse}/>
             </div>}
             {width < breakpoint? 
             <>

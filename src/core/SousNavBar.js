@@ -28,15 +28,15 @@ const SousNavBar = () => {
                     <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>}
                     { width < breakpoint ?
                         !isAuthenticated() ?
-                        <Link className="btn btn-primary btn-sm" to="/Checkout">Acheter</Link>
+                        <a className="btn btn-primary btn-sm" href="/Checkout">Acheter</a>
 
                         :
                          isAuthenticated() &&(
-                        <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>)
+                        <a className="btn btn-primary btn-sm" href="/CheckoutDirect">Acheter</a>)
                        
                     : 
                     !isAuthenticated() ?
-                        <a className="btn btn-primary btn-sm" to="/Checkout">Acheter</a>
+                        <a className="btn btn-primary btn-sm" href="/Checkout">Acheter</a>
 
                         :
                          isAuthenticated() &&(

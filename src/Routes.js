@@ -17,6 +17,10 @@ import ProductDescription from './core/ProductDescription';
 import Footer from './core/Footer'
 import Contact from './core/Contact'
 import ContactEmail from './core/ContactEmail'
+import Conditions from './Conditions'
+import PolitiqueConf from './PolitiqueConf'
+import MentionsLegales from './MentionsLegales'
+import Remerciement from './Remerciement'
 import './Style.css'
 
 
@@ -33,6 +37,10 @@ const Routes = () => {
                     <Route exact path="/signup" component={Signup}/>
                     <Route exact path="/Contact" component={Contact}/>
                     <Route exact path="/contact/email" component={ContactEmail}/>
+                    <Route exact path="/conditions-dutilisation" component={Conditions}/>
+                    <Route exact path="/politiquedeconfidentialitée" component={PolitiqueConf}/>
+                    <Route exact path="/mentionslegales" component={MentionsLegales}/>
+                    <Route exact path="/remerciement" component={Remerciement}/>
                     <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
                     <PrivateRoute path="/profile/:userId" exact component={Profile}/>
                     <AdminRoute 
