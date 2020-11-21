@@ -165,16 +165,17 @@ const CheckoutDirect = ({ history }) => {
 
     const disableDiv = event => {
         event.preventDefault()
-        document.getElementById("divBlock").style.display = "none";
+        if (data.name && data.prenom && data.email){
+        document.getElementById("divBlock").style.display = "none";}
     }
     return (
         <>
         { width < breakpoint ? 
         <>
                 <Header/>
-        <div style={{padding:'20px', width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
+        <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
             <h2 style={{marginTop:'10px'}}>1) Vos Informations</h2>
-        <div style={{width:'70%', alignItems:'center'}} className="form-group">
+        <div style={{width:'80%'}} className="form-group">
            <label className="text-muted">Email</label>
            <input
                name="email"
@@ -219,11 +220,14 @@ const CheckoutDirect = ({ history }) => {
                className="form-control"
                
            />
+           <button onClick={disableDiv} style={{marginLeft:'40%', marginTop:'10px'}} className="btn btn-dark">Valider</button>
        </div>
        <div style={{borderTop:'1px solid black'}}>
        {showError(data.error)}
        {showSuccess(data.success)}
        {ShowDropInMobile()}
+       <div id="divBlock" style={{top:'590px',cursor:'none',position:'absolute',zIndex:999, backgroundColor:'rgba(0, 0, 0, 0.5)', width:'100%', height:'67%'}}></div>
+
        </div>
    </div>
    </>
