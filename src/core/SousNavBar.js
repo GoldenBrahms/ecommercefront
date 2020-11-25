@@ -41,7 +41,7 @@ const SousNavBar = () => {
                        
                     : 
                     !isAuthenticated() ?
-                        <a className="btn btn-primary btn-sm" href="/dentifier">Acheter</a>
+                        <a className="btn btn-primary btn-sm" href="/identifier">Acheter</a>
 
                         :
                          isAuthenticated() &&(
