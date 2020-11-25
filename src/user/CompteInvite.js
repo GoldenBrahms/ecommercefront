@@ -54,14 +54,14 @@ const CompteInvite = ({ history }) => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            return <Redirect to="/CheckoutDirectInvite"/>
+            return <Redirect to="/paiement-secure-invite"/>
         }
     }
 
     const InviteFormMobile = () => (
         <div style={{padding:'10px', backgroundColor:'', display:"flex",flexDirection:'column',justifyContent:'center',alignItems:'center', width:'100%' }}>
-            <h2 style={{margin:'0', textAlign:'center'}}>Vous n'avez pas de compte Samemo?</h2>
-            <p style={{margin:'0', textAlign:'center'}}>Poursuivez ainsi. Vous créerez un compte Samemo ultérieurement.</p>
+            <h2 style={{margin:'0', textAlign:'center'}}>Vous ne souhaitez pas de compte Samemo?</h2>
+            <p style={{margin:'0', textAlign:'center'}}>Poursuivez ainsi en tant que invité(e).</p>
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input style={{width:'350px'}} onChange={handleChange('email')} value={email} type="email" className="form-control"/>
@@ -71,8 +71,8 @@ const CompteInvite = ({ history }) => {
     )
     const InviteForm = () => (
         <div style={{width:'50%', padding: '20px', marginTop: '50px' }}>
-            <h2>Vous n'avez pas de compte Samemo?</h2>
-            <p>Poursuivez ainsi. Vous créerez un compte Samemo ultérieurement.</p>
+            <h2>Vous ne souhaitez pas de compte Samemo?</h2>
+            <p>Poursuivez ainsi en tant que invité(e).</p>
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input onChange={handleChange('email')} value={email} type="email" className="form-control"/>

@@ -65,7 +65,7 @@ const Signin2 = ( history ) => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            return <Redirect to="/CheckoutDirect"/>
+            return <Redirect to="/paiement-secure"/>
         }
     }
 
@@ -75,11 +75,11 @@ const Signin2 = ( history ) => {
         <div style={{ width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
         <div style={{ width: '80%' }}>
             <div className="form-group">
-                <h2 style={{margin:'0'}}>S'identifier</h2>
+                <h2 style={{margin:'0'}}>Se connecter</h2>
             </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>
-                <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
+                <input style={{borderRadius:'15px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
             </div>
             <div className="form-group">
                 <label className="text-muted">Password</label>
@@ -101,7 +101,7 @@ const Signin2 = ( history ) => {
         <div style={{ width:'100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ width: '100%'}}>
                 <div className="form-group">
-                    <h2 style={{margin:'0', textAlign:'center'}}>S'identifier</h2>
+                    <h2 style={{margin:'0', textAlign:'center'}}>Se connecter</h2>
                 </div>
                 <div className="form-group">
                     <label className="text-muted">Email</label>

@@ -144,7 +144,6 @@ const ProductDescription = () => {
             </>
             :
             <>
-            <h2>Conquis?</h2>
             <div id="details" style={{width:'80%', margin:'50px', border:'1px solid black', display:'flex',flexDirection:'column', alignItems:"left", padding:'50px'}}>
                 <h1>Details</h1>
                 <p><span style={{height: "10px", width: "10px", backgroundColor: "#007600", borderRadius: "50%", display: "inline-block"}}></span> En stock</p>

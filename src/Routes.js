@@ -30,12 +30,12 @@ const Routes = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home}/>
-                    <Route exact path="/Checkout" component={Checkout}/>
-                    <Route exact path="/CheckoutDirect" component={CheckoutDirect}/>
-                    <Route exact path="/CheckoutDirectInvite" component={CheckoutDirectInvite}/>
+                    <Route exact path="/identifier" component={Checkout}/>
+                    <Route exact path="/paiement-secure" component={CheckoutDirect}/>
+                    <Route exact path="/paiement-secure-invite" component={CheckoutDirectInvite}/>
                     <Route exact path="/signin" component={Signin}/>
                     <Route exact path="/signup" component={Signup}/>
-                    <Route exact path="/Contact" component={Contact}/>
+                    <Route exact path="/Assistance" component={Contact}/>
                     <Route exact path="/contact/email" component={ContactEmail}/>
                     <Route exact path="/conditions-dutilisation" component={Conditions}/>
                     <Route exact path="/politiquedeconfidentialitée" component={PolitiqueConf}/>

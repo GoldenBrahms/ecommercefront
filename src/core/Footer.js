@@ -50,12 +50,12 @@ export default function Footer () {
                 <ul style={{listStyleType:'none',}}>
                     <h4 style={{color:"#444"}}>Pour mieux nous connaître</h4>
                     <li style={{fontSize:'14px'}}>À propos de Samemo</li>
-                    <li style={{fontSize:'14px'}}>Numéros de télephone</li>
+                    <li style={{fontSize:'14px'}}>Nos engagements</li>
                 </ul>
                 <ul></ul>
                 <ul style={{listStyleType:'none',}}>
-                    <h4 style={{color:"#444"}}>Contact</h4>
-                    <li style={{fontSize:'14px'}}>Contactez-nous</li>
+                    <h4 style={{color:"#444"}}>Assistance</h4>
+                    <li style={{fontSize:'14px'}}><a style={{color:'black'}} href="/Assistance">Contactez-nous</a></li>
                     <li style={{fontSize:'14px'}}>Numéros de télephone</li>
                 </ul>
                 <ul></ul>
