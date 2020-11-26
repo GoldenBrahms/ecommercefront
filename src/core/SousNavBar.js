@@ -26,9 +26,9 @@ const SousNavBar = () => {
                      <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>
                     :
                     <>
-                    <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>
-                    
                     <a style={{ paddingRight:'20px', textDecoration:'', color:'#525252', fontFamily:'Roboto'}} href="#details">Avis</a>
+                    <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="">29E</a>
+                    
                     </>
                     }
                     { width < breakpoint ?
@@ -41,13 +41,13 @@ const SousNavBar = () => {
                        
                     : 
                     !isAuthenticated() ?
-                        <a className="btn btn-primary btn-sm" href="/identifier">Acheter</a>
-
+                        <a className="btn btn-primary btn-sm" href="/identifier">Acheter</a>                      
                         :
                          isAuthenticated() &&(
                         <Link className="btn btn-primary btn-sm" to="/CheckoutDirect">Acheter</Link>)
                     
-    }
+                    }
+                    
                     { width < breakpoint ? "" :
                     isAuthenticated() && (
                         <Link className="nav-link" to="/user/dashboard">

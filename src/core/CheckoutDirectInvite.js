@@ -159,33 +159,63 @@ const CheckoutDirectInvite = ({ history }) => {
         success && (<Redirect to="/"/>)
 }
     const handleChangeName = event => {
+        document.getElementById("Name").style.display = 'none';
         setData({...data, name: event.target.value})
         console.log(data.name)
     }
     const handleAdress = event => {
+        document.getElementById("Adresse").style.display = 'none';
         setData({...data, address: event.target.value})
         console.log(data.address)
     }
     const handleChangePrenom = event => {
+        document.getElementById("Prename").style.display = 'none';
         setData({...data, prename: event.target.value})
         console.log(data.prename)
     }
     const handleChangeEmail = event => {
+        document.getElementById("Email").style.display = 'none';
         setData({...data, email: event.target.value})
         console.log(data.email)
     }
     const handleCity = event => {
+        document.getElementById("City").style.display = 'none';
         setData({...data, city: event.target.value})
         console.log(data.city)
     }
     const handleZipcode = event => {
+        document.getElementById("ZipCode").style.display = 'none';
         setData({...data, zipcode: event.target.value})
         console.log(data.zipcode)
     }
 
     const disableDiv = event => {
         event.preventDefault()
+        if (data.name){
         document.getElementById("divBlock").style.display = "none";
+        }else{
+            document.getElementById("Name").style.display = "";
+        }
+        if (data.prename){
+        document.getElementById("divBlock").style.display = "none";
+        }else{
+            document.getElementById("Prename").style.display = "";
+        }
+        if (data.addrss){
+        document.getElementById("divBlock").style.display = "none";
+        }else{
+            document.getElementById("Adresse").style.display = "";
+        }
+        if (data.city){
+        document.getElementById("divBlock").style.display = "none";
+        }else{
+            document.getElementById("City").style.display = "";
+        }
+        if (data.zipcode){
+        document.getElementById("divBlock").style.display = "none";
+        }else{
+            document.getElementById("ZipCode").style.display = "";
+        }
     }
     return (
         <>
@@ -247,9 +277,9 @@ const CheckoutDirectInvite = ({ history }) => {
         :
         <>
         <Header/>
-        <div style={{width:'100%', height:'80vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
+        <div style={{width:'100%', height:'112vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
             
-             <div style={{borderRight:'1px solid black', width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+             <div style={{ height:'110vh',borderRight:'1px solid black', width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
              <h1>Vos Informations</h1>
              <h1 style={{position:'absolute', top:'60px', left:'40px'}}>1)</h1>
         <div style={{width:'50%'}} className="form-group">
@@ -263,6 +293,7 @@ const CheckoutDirectInvite = ({ history }) => {
                     
                 />
                 <label className="text-muted">Nom</label>
+                <p id="Name" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre nom</p>
                 <input
                     name="name"
                     type="text"
@@ -271,6 +302,7 @@ const CheckoutDirectInvite = ({ history }) => {
                     value={data.name}
                 />
                 <label className="text-muted">Prénom</label>
+                <p id="Prename" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre prénom</p>
                 <input
                     type="text"
                     className="form-control"
@@ -278,6 +310,7 @@ const CheckoutDirectInvite = ({ history }) => {
                     value={data.prename}
                 />
                 <label className="text-muted">Adresse</label>
+                <p id="Adresse" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre adresse</p>
                 <input
                     type="text"
                     className="form-control"
@@ -286,6 +319,7 @@ const CheckoutDirectInvite = ({ history }) => {
                     
                 />
                 <label className="text-muted">Code Postal</label>
+                <p id="ZipCode" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre Code Postal</p>
                 <input
                     type="text"
                     className="form-control"
@@ -294,6 +328,7 @@ const CheckoutDirectInvite = ({ history }) => {
                     
                 />
                 <label className="text-muted">Ville</label>
+                <p id="City" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre Ville</p>
                 <input
                     type="text"
                     className="form-control"
@@ -310,7 +345,7 @@ const CheckoutDirectInvite = ({ history }) => {
             {showError(data.error)}
             {showSuccess(data.success)}
             {ShowDropIn()}
-            <div id="divBlock" style={{cursor:'none',position:'absolute',zIndex:999, backgroundColor:'rgba(0, 0, 0, 0.5)', width:'50%', height:'80%'}}></div>
+            <div id="divBlock" style={{cursor:'none',position:'absolute',zIndex:999, backgroundColor:'rgba(0, 0, 0, 0.5)', width:'50%', height:'112%'}}></div>
             </div>
         </div>
         </>
