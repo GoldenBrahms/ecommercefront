@@ -57,7 +57,8 @@ const ProductDescription = () => {
                 <div style={{width:'50%', height:'100%', backgroundColor:''}}>
                     <img style={{width:'450px', height:'500px' }} src={LuneJaune}/>
                 </div>
-                <div>
+                <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
+                <div style={{paddingLeft:'50px'}}>
                 <h1 style={{fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h1>
                 <h1 style={{margin:'0'}}>29 €</h1>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
