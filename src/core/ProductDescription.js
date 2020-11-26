@@ -8,6 +8,7 @@ import Veilleuse from '../images/veilleuse.jpg';
 import LuneVerte from '../images/luneVerte.jpg'
 import AppSourate from '../images/AppSourate.jpeg'
 import Visa from '../images/visa.png'
+import Cadena from '../images/cadena.png'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,16 +34,18 @@ const ProductDescription = () => {
             {width < breakpoint? 
             <>
             <div id="details" style={{width:'100%', height:'770px'}}>
-            <img style={{width:'270px', height:'270px' }} src={LuneJaune}/>
+            <div style={{width:'100%', backgroundColor:''}}>
+            <img style={{width:'70%', height:'100%' }} src={LuneJaune}/>
+                </div>
 
             <div  style={{padding:'20px', margin:'10px', display:'flex',flexDirection:'column'}}>
-                <h2 style={{fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
+                <h2 style={{margin:'0',fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
                 <h1 style={{margin:'0'}}>29 €</h1>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
                 <a className="btn btn-primary btn-lg" href="/Checkout">Acheter</a>
                 <p style={{marginTop:'10px'}}>En stock</p>
-                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
-                <p>Paiement par carte bancaire sécurisée</p>
+                <p style={{margin:'0'}}>Livraison Gratuite en 48h en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Transaction sécurisée  <img style={{width:'15px'}} src={Cadena}/></p>
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
 
             </div>
