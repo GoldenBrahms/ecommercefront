@@ -32,16 +32,20 @@ const ProductDescription = () => {
             {/* Decouvrez Qurma */}
             {width < breakpoint? 
             <>
-            <div id="details" style={{width:'100%', height:'55px'}}></div>
-            <div  style={{padding:'20px', margin:'10px', border:'1px solid black', display:'flex',flexDirection:'column'}}>
-                <h1>Details</h1>
-                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
-                <p>Paiement par carte bancaire sécurisée</p>
+            <div id="details" style={{width:'100%', height:'770px'}}>
+            <img style={{width:'270px', height:'270px' }} src={LuneJaune}/>
+
+            <div  style={{padding:'20px', margin:'10px', display:'flex',flexDirection:'column'}}>
+                <h2 style={{fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
                 <h1 style={{margin:'0'}}>29 €</h1>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
+                <a className="btn btn-primary btn-lg" href="/Checkout">Acheter</a>
+                <p style={{marginTop:'10px'}}>En stock</p>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée</p>
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
-                <a className="btn btn-primary btn-sm" href="/Checkout">Acheter</a>
 
+            </div>
             </div>
             </>
             :
