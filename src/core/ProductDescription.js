@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LuneJaune from '../images/lunejaune.png';
 import Multicolor from '../images/nice.png';
 import Smartphone from '../images/smartphone.png';
@@ -11,22 +11,48 @@ import Visa from '../images/visa.png'
 import Cadena from '../images/cadena.png'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
+import Date2 from '../core/Date';
+import Card from '../core/Card';
+import ImageSwiper from '../core/ImageSwiper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import { Link, withRouter } from 'react-router-dom'
 import { css, jsx} from '@emotion/react'
+import {addItem} from './cartHelper'
+import { read, getProduct } from './apiCore';
+
 
 
 
 const color = 'white'
 
 
-const ProductDescription = () => {
+const ProductDescription = props => {
+    const [product, setProduct] = useState([]);
+    const [productsBySell, setProductsBySell] = useState([]);
+
+    const [error, setError] = useState(false);
+
     const width = window.innerWidth;
     
 
     const breakpoint = 720;
     const maxpoint = 1920;
+
+    const loadSingleProduct = () => {
+        getProduct().then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+                setProductsBySell(data);
+            }
+        });
+    };
+
+    useEffect(() => {
+        loadSingleProduct()
+    }, [props]);
+
     return (
         <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
 
@@ -34,16 +60,18 @@ const ProductDescription = () => {
             {width < breakpoint? 
             <>
             <div id="details" style={{width:'100%', height:'770px'}}>
+                <h2 style={{marginLeft:'20px',fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
             <div style={{width:'100%', backgroundColor:''}}>
             <img style={{width:'70%', height:'100%' }} src={LuneJaune}/>
+            
                 </div>
 
             <div  style={{padding:'20px', margin:'10px', display:'flex',flexDirection:'column'}}>
-                <h2 style={{margin:'0',fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
                 <h1 style={{margin:'0'}}>29 €</h1>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
                 <a className="btn btn-primary btn-lg" href="/Checkout">Acheter</a>
-                <p style={{marginTop:'10px'}}>En stock</p>
+                <p style={{marginTop:'10px', marginBottom:'0', color:'#007600', fontSize:'20px'}}>En stock</p>
+                <Date2/>
                 <p style={{margin:'0'}}>Livraison Gratuite en 48h en France <FontAwesomeIcon icon={faShippingFast} /></p>
                 <p>Transaction sécurisée  <img style={{width:'15px'}} src={Cadena}/></p>
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
@@ -53,24 +81,13 @@ const ProductDescription = () => {
             </>
             :
             <>
-            <div id="details" style={{height:'500px',width:'80%', margin:'50px', border:'', display:'flex', alignItems:"left", padding:'50px'}}>
-                <div style={{width:'50%', height:'100%', backgroundColor:''}}>
-                    <img style={{width:'450px', height:'500px' }} src={LuneJaune}/>
-                </div>
-                <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
-                <div style={{paddingLeft:'50px'}}>
-                <h1 style={{fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h1>
-                <h1 style={{margin:'0'}}>29 €</h1>
-                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
-                <a style={{width: '170px', borderRadius:'25px'}} className="btn btn-primary btn-lg" href="/identifier">ACHETER</a>
-                <p style={{marginTop:'10px'}}>En stock</p>
-                <hr/>
-                <span style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</span>
-                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
-                <p>Paiement par carte bancaire sécurisée    <img style={{width:'120px'}} src={Visa}/></p>
-                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
-                </div>
-            </div>
+           
+                {productsBySell.map((product, i) => (
+                    <div key={i}>
+                        <Card product={product} />
+                    </div>
+                ))}
+            
             </>
             }
              <SousNavBar/>
@@ -171,7 +188,6 @@ const ProductDescription = () => {
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Elle contient aussi des Hadiths</h1>
             </div>
             </div>}
-            
             
         </div>
     );

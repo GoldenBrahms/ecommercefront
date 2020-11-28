@@ -1,26 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LuneJaune from '../images/lunejaune.png';
 import Multicolor from '../images/nice.png';
 import Smartphone from '../images/smartphone.png';
 import LuneRose from '../images/LuneRose.jpg';
 import LightControl from '../images/lightControl.jpeg';
 import AppSourate from '../images/AppSourate.jpeg';
-import LuneVerte from '../images/luneVerte.jpg'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
-import { Link, withRouter } from 'react-router-dom'
+import Card from '../core/Card';
+import { read, getProduct } from './apiCore';
 
 
 
 
-const ProductDescription2 = () => {
+
+
+const ProductDescription2 = props => {
+    const [productsBySell, setProductsBySell] = useState([]);
+    const [product, setProduct] = useState([]);
+    const [error, setError] = useState(false);
+
+
+
     const width = window.innerWidth;
     
     const { user: {_id, name, prename, email, role}} = isAuthenticated();
 
     const breakpoint = 720;
+    const loadSingleProduct = () => {
+        getProduct().then(data => {
+            if (data.error) {
+                setError(data.error);
+            } else {
+                setProductsBySell(data);
+            }
+        });
+    };
+
+    useEffect(() => {
+        loadSingleProduct()
+    }, [props]);
 
     const Capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
@@ -28,7 +49,6 @@ const ProductDescription2 = () => {
     
     return (
         <div style={{width:'100%', display:'flex', flexDirection:'column'}}>
-                        <SousNavBar/>
 
             {/* Decouvrez Qurma */}
             {width < breakpoint? 
@@ -45,16 +65,15 @@ const ProductDescription2 = () => {
             </div>
             </>
             :
-            <div id="details" style={{margin:'20px', border:'1px solid black', display:'flex',flexDirection:'column', alignItems:"left", padding:'50px'}}>
-                <h1>Details</h1>
-                <p><span style={{height: "10px", width: "10px", backgroundColor: "#007600", borderRadius: "50%", display: "inline-block"}}></span> En stock</p>
-                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
-                <p>Paiement par carte bancaire sécurisée</p>
-                <h1 style={{margin:'0'}}>29 €</h1>
-                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
-                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
-                <a className="btn btn-primary btn-sm" href="/CheckoutDirect">Acheter</a>
-            </div>
+            <>
+           
+                {productsBySell.map((product, i) => (
+                    <div key={i}>
+                        <Card product={product} />
+                    </div>
+                ))}
+            
+            </>
             }
             { width < breakpoint ?
             <div style={{ marginTop:'00px',padding:'20px', backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
@@ -65,6 +84,9 @@ const ProductDescription2 = () => {
             <img style={{marginTop:'50px',width:'313px', height:'100%' }} src={LuneJaune}/>
             </div>
             :
+            <>
+            <SousNavBar/>
+
             <div style={{backgroundColor:'white', width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
             <div style={{backgroundColor:'', margin:'0', display:'flex', flexDirection:'column', justifyContent:'left'}}>
             <h1 style={{margin:'0', color:'rgb(79, 79, 79)', fontFamily:'Lato'}}>Découvrez Qurma {Capitalize(prename)}</h1>
@@ -72,6 +94,7 @@ const ProductDescription2 = () => {
             </div>
             <img style={{width:'30%', height:'100%' }} src={LuneJaune}/>
             </div>
+            </>
             }
             { width < breakpoint ?
             <>

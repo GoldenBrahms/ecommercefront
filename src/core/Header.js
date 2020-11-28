@@ -5,6 +5,7 @@ import ProductDescritpiton from "./ProductDescription"
 import { isAuthenticated } from '../auth';
 import { signout } from '../auth';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { itemTotal } from './apiCore'
 
 
 
@@ -14,6 +15,7 @@ const Header = ({ history }) => {
 
     useEffect(() => {
         const path1 = history.location.pathname
+        console.log(path1)
         setPath(path1)   
     }, [])
 
@@ -39,6 +41,12 @@ const Header = ({ history }) => {
                     !isAuthenticated() &&  (
                         <>
                         <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'240px', textAlign:'center'}} to='/Assistance'>Assistance</Link>
+                        {
+                            path !== "/cart" ?
+                        <Link className="btn btn-light" style={{ height:'40px',position:'absolute', right:'340px', textAlign:'center'}} to='/cart'>Panier<sup><small style={{border:'50%', backgroundColor:'black', fontSize:'22px', color:'white', width:'20px'}}>{itemTotal()}</small></sup></Link>
+                    :
+                    ""
+                    }
                     <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'10px'}} to="/signin">Connexion</Link>
                     <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'120px'}} to="/signup">Inscription</Link>
                     </>
@@ -56,6 +64,12 @@ const Header = ({ history }) => {
                     :
                     isAuthenticated() && (
                         <>
+                        {
+                            path !== "/cart" ?
+                        <Link className="btn btn-light" style={{ height:'40px',position:'absolute', right:'240px', textAlign:'center'}} to='/cart'>Panier<sup><small style={{border:'50%', backgroundColor:'black', fontSize:'22px', color:'white', width:'20px'}}>{itemTotal()}</small></sup></Link>
+                    :
+                    ""
+                    }
                         <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Assistance'>Assistance</Link>
                         <span onClick={() => {signout(() =>{
                             history.push('/')

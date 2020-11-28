@@ -24,7 +24,9 @@ const Profile = (props) => {
     }
 
     useEffect(() => {
-        init(props.match.params.userId)
+        const userId = props.match.params.userId;
+        console.log(userId)
+        init(userId)
     }, [])
 
     const handleChange = name => event => {

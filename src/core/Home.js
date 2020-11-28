@@ -8,7 +8,7 @@ const Home = () => {
     return (
     <Layout>
         {!isAuthenticated() && (
-        <ProductDescription/>)}
+        <ProductDescription />)}
         {isAuthenticated() && (
             <ProductDescription2/>
         )}

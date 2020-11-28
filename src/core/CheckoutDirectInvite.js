@@ -4,16 +4,21 @@ import DropIn from 'braintree-web-drop-in-react';
 import { getBraintreeClientToken1, processPayment1, createInviteOrder } from './apiCore';
 import { isAuthenticated, isIdentified } from '../auth/index';
 import { Redirect } from 'react-router-dom';
-import Header from './Header'
+import Header2 from './Header2'
 import Layout from './Layout'
 import { signoutInvite } from '../auth';
+import CardCheckout from './CardCheckout';
+import { getCart } from './cartHelper';
+
+
 
 
 
 
 
 const CheckoutDirectInvite = ({ history }) => {
-    
+    const [items, setItems] = useState([]);
+    const [run, setRun] = useState(false);
     const [data, setData] = useState({
         loading: false,
         success: false,
@@ -74,6 +79,7 @@ const CheckoutDirectInvite = ({ history }) => {
         .catch(error => {
             console.log("dropin :", error)
             setData({...data, error: error.message})
+            
         })
     }
 
@@ -148,7 +154,8 @@ const CheckoutDirectInvite = ({ history }) => {
         if ({name} !== 'undefined'){
         getToken(userId, token);
         }
-    }, []);
+        setItems(getCart());
+    }, [run]);
 
     const showError = error => (
         <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
@@ -178,7 +185,7 @@ const CheckoutDirectInvite = ({ history }) => {
         setData({...data, email: event.target.value})
         console.log(data.email)
     }
-    const handleCity = event => {
+    const handleChangeCity = event => {
         document.getElementById("City").style.display = 'none';
         setData({...data, city: event.target.value})
         console.log(data.city)
@@ -276,77 +283,95 @@ const CheckoutDirectInvite = ({ history }) => {
    </div>
         :
         <>
-        <Header/>
-        <div style={{width:'100%', height:'112vh', display:'flex', justifyContent:'center', textAlign:'center' } }>
-            
-             <div style={{ height:'110vh',borderRight:'1px solid black', width:'50%', backgroundColor:'', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-             <h1>Vos Informations</h1>
-             <h1 style={{position:'absolute', top:'60px', left:'40px'}}>1)</h1>
-        <div style={{width:'50%'}} className="form-group">
-                <label className="text-muted">Email</label>
-                <input
+        <Header2/>
+        <h1 style={{fontSize:'50px', marginLeft:'250px'}}>Paiement</h1>
+        <div style={{width:'100%', height:'1400px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
+             <div style={{backgroundColor:'' , width:'65%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
+                <div style={{width:'60%', border:'1px solid black', backgroundColor:''}} className="form-group">
+                    <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <span style={{color:'white'}}>1</span>
+                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>ADRESSE DE LIVRAISON</h2>
+                    </div>
+                        <div style={{width:'100%', padding:'30px'}}>
+                        <h1>Vos Informations</h1>
+                        <label className="text-muted">Email*</label>
+                    <input
                     name="email"
                     type="email"
+                    style={{backgroundColor:'#EEEEEE'}}
                     className="form-control"
                     onChange={handleChangeEmail}
-                    value={email}
+                    value={data.email}
                     
                 />
-                <label className="text-muted">Nom</label>
-                <p id="Name" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre nom</p>
+                <label className="text-muted">Nom*</label>
                 <input
                     name="name"
                     type="text"
+                    style={{backgroundColor:'#EEEEEE'}}
                     className="form-control"
                     onChange={handleChangeName}
                     value={data.name}
                 />
                 <label className="text-muted">Prénom</label>
-                <p id="Prename" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre prénom</p>
                 <input
                     type="text"
                     className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
                     onChange={handleChangePrenom}
                     value={data.prename}
                 />
                 <label className="text-muted">Adresse</label>
-                <p id="Adresse" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre adresse</p>
                 <input
                     type="text"
                     className="form-control"
-                    value={data.address}
+                    style={{backgroundColor:'#EEEEEE'}}
                     onChange={handleAdress}
-                    
+                    value={data.address}
                 />
                 <label className="text-muted">Code Postal</label>
-                <p id="ZipCode" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre Code Postal</p>
                 <input
                     type="text"
                     className="form-control"
-                    value={data.zipcode}
-                    onChange={handleZipcode}
+                    style={{backgroundColor:'#EEEEEE'}}
                     
                 />
                 <label className="text-muted">Ville</label>
-                <p id="City" style={{margin:0, color:'red', display:'none'}}>Veuillez entrer votre Ville</p>
                 <input
                     type="text"
                     className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
                     value={data.city}
-                    onChange={handleCity}
-                    
+                    onChange={handleChangeCity}
                 />
-                <button style={{marginTop:'20px'}} onClick={disableDiv} className="btn btn-dark">Valider</button>
+                <div style={{width:'100%', height:'60px',display:'flex', justifyContent:'center'}}>
+                <button onClick={disableDiv} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
+                </div>
+                </div>
+                </div>
+                <div style={{width:'60%', height:'400px', backgroundColor:'', border:'1px solid black'}}>
+                <div style={{backgroundColor:'black', height:'50px', display:'flex', alignItems:'center'}}>
+                        <p style={{color:'white'}}>2</p>
+                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>PAIEMENT</h2>
+                </div>
+                        {showError(data.error)}
+                        {showSuccess(data.success)}
+                         {ShowDropIn()}
             </div>
-    </div>
-            <div style={{display:'flex', flexDirection:'column', width:'50%'}}>
-            <h1 style={{position:'absolute', top:'60px', left:'760px'}}>2)</h1>
-
-            {showError(data.error)}
-            {showSuccess(data.success)}
-            {ShowDropIn()}
-            <div id="divBlock" style={{cursor:'none',position:'absolute',zIndex:999, backgroundColor:'rgba(0, 0, 0, 0.5)', width:'50%', height:'112%'}}></div>
             </div>
+            <div style={{width:'30%'}}>
+            {items.map((product, i) => (
+                    <CardCheckout
+                        key={i}
+                        product={product}
+                        showAddToCartButton={false}
+                        cartUpdate={true}
+                        showRemoveProductButton={true}
+                        setRun={setRun}
+                        run={run}
+                    />))}
+            </div>
+            
         </div>
         </>
         }

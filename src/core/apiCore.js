@@ -1,6 +1,15 @@
 import { API } from "../config";
 
 
+export const getProduct = () => {
+    return fetch(`${API}/product`, {
+        method: 'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
 export const getBraintreeClientToken = (userId, token) => {
     return fetch(`${API}/braintree/getToken/${userId}`, {
         method: 'GET',
@@ -92,3 +101,22 @@ export const createInviteOrder = (userInviteId, token, createOrderData) => {
     })
     .catch(err => console.log(err));
 }
+
+export const read = (productId) => {
+    return fetch(`${API}/product/${productId}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+export const itemTotal = () => {
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            return JSON.parse(localStorage.getItem('cart')).length;
+        }
+    }
+    return 0;
+};

@@ -11,6 +11,7 @@ import AdminDashboard from './user/AdminDashboard';
 import AdminRoute from './auth/AdminRoute';
 import Header from './core/Header';
 import Checkout from './core/Checkout'
+import Cart from './core/Cart'
 import CheckoutDirect from './core/CheckoutDirect'
 import CheckoutDirectInvite from './core/CheckoutDirectInvite'
 import ProductDescription from './core/ProductDescription';
@@ -31,7 +32,7 @@ const Routes = () => {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/identifier" component={Checkout}/>
-                    <Route exact path="/paiement-secure" component={CheckoutDirect}/>
+                    <Route exact path="/paiement-securisée" component={CheckoutDirect}/>
                     <Route exact path="/paiement-secure-invite" component={CheckoutDirectInvite}/>
                     <Route exact path="/signin" component={Signin}/>
                     <Route exact path="/signup" component={Signup}/>
@@ -41,8 +42,10 @@ const Routes = () => {
                     <Route exact path="/politiquedeconfidentialitée" component={PolitiqueConf}/>
                     <Route exact path="/mentionslegales" component={MentionsLegales}/>
                     <Route exact path="/remerciement" component={Remerciement}/>
+                    <Route path="/cart" exact component={Cart} />
                     <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
                     <PrivateRoute path="/profile/:userId" exact component={Profile}/>
+                    <PrivateRoute path="/product/:productId" exact component={ProductDescription}/>
                     <AdminRoute 
                     path="/admin/dashboard" 
                     exact 
