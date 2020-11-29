@@ -8,7 +8,7 @@ import Header2 from './Header2'
 import Layout from './Layout'
 import { signoutInvite } from '../auth';
 import CardCheckout from './CardCheckout';
-import { getCart } from './cartHelper';
+import { getCart, emptyCart } from './cartHelper';
 
 
 
@@ -69,6 +69,7 @@ const CheckoutDirectInvite = ({ history }) => {
                }
                createInviteOrder(userId, token, createOrderData)
                setData({...data, success: responce.success })
+               emptyCart()
                signoutInvite(() =>{
                 history.push('/remerciement')
                     })
@@ -163,35 +164,35 @@ const CheckoutDirectInvite = ({ history }) => {
         </div>
     )
     const showSuccess = success => {
-        success && (<Redirect to="/"/>)
+        success && (<Redirect to="/remerciement"/>)
 }
     const handleChangeName = event => {
-        document.getElementById("Name").style.display = 'none';
+        //document.getElementById("Name").style.display = 'none';
         setData({...data, name: event.target.value})
         console.log(data.name)
     }
     const handleAdress = event => {
-        document.getElementById("Adresse").style.display = 'none';
+       // document.getElementById("Adresse").style.display = 'none';
         setData({...data, address: event.target.value})
         console.log(data.address)
     }
     const handleChangePrenom = event => {
-        document.getElementById("Prename").style.display = 'none';
+        //document.getElementById("Prename").style.display = 'none';
         setData({...data, prename: event.target.value})
         console.log(data.prename)
     }
     const handleChangeEmail = event => {
-        document.getElementById("Email").style.display = 'none';
+       // document.getElementById("Email").style.display = 'none';
         setData({...data, email: event.target.value})
         console.log(data.email)
     }
     const handleChangeCity = event => {
-        document.getElementById("City").style.display = 'none';
+       // document.getElementById("City").style.display = 'none';
         setData({...data, city: event.target.value})
         console.log(data.city)
     }
     const handleZipcode = event => {
-        document.getElementById("ZipCode").style.display = 'none';
+        //document.getElementById("ZipCode").style.display = 'none';
         setData({...data, zipcode: event.target.value})
         console.log(data.zipcode)
     }
@@ -208,7 +209,7 @@ const CheckoutDirectInvite = ({ history }) => {
         }else{
             document.getElementById("Prename").style.display = "";
         }
-        if (data.addrss){
+        if (data.address){
         document.getElementById("divBlock").style.display = "none";
         }else{
             document.getElementById("Adresse").style.display = "";

@@ -21,7 +21,10 @@ const Cart = () => {
         setItems(getCart());
     }, [run]);
 
+    const width = window.innerWidth;
+    
 
+    const breakpoint = 720;
 
     const showItems = items => {
         return (
@@ -50,6 +53,27 @@ const Cart = () => {
     );
 
     return (
+        <>
+        {width < breakpoint ? 
+            <>
+            <Header/>
+            <div style={{display:'flex', flexDirection:'column', padding:'10px'}}>
+                <h2 className="mb-4">Articles de votre panier</h2>
+                <div style={{width:'100%', backgroundColor:'#e5e5e5'}}>
+                        {items.map((product, i) => (
+                    <CardCart
+                        key={i}
+                        product={product}
+                        showAddToCartButton={false}
+                        cartUpdate={true}
+                        showRemoveProductButton={true}
+                        setRun={setRun}
+                        run={run}
+                    />))}
+                        </div>
+            </div>
+            </>
+        :
         <>
         <Header/>
         <div style={{padding:'70px',width:'100%', height:'600px', backgroundColor:''}}>
@@ -102,6 +126,7 @@ const Cart = () => {
                    {/* <Checkout3 products={items} setRun={setRun} run={run} />*/}
         </div>
         </>
+}</>
     );
 };
 

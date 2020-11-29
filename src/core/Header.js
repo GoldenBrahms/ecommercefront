@@ -4,8 +4,10 @@ import SousNavBar from "./SousNavBar";
 import ProductDescritpiton from "./ProductDescription"
 import { isAuthenticated } from '../auth';
 import { signout } from '../auth';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, UserOutlined,ShoppingCartOutlined  } from '@ant-design/icons';
 import { itemTotal } from './apiCore'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -31,9 +33,14 @@ const Header = ({ history }) => {
                     { width < breakpoint ?
                     !isAuthenticated() && (
                         <>
-                        <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'140px', textAlign:'center'}} to='/Assistance'><QuestionCircleOutlined /></Link>
-
-                    <Link className="btn btn-light" style={{height:'40px',position:'absolute', right:'10px'}} to="/signin">Connexion</Link>
+                    { path !== "/cart" ?  
+                    <Link  style={{ height:'40px',position:'absolute', right:'120px',top:'7px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{itemTotal()}</sup></Link>
+                    :
+                    ""
+                    }                        
+                    <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'70px', textAlign:'center'}} to='/Assistance'><QuestionCircleOutlined style={{color:'white', fontSize:'35px'}} /></Link>
+                        
+                    <Link  style={{height:'40px',position:'absolute', right:'10px'}} to="/signin"><UserOutlined style={{color:'white', fontSize:'40px'}} /></Link>
                     </>
                     )
 

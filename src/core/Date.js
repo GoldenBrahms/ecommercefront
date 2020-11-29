@@ -3,6 +3,10 @@
 
 // import React in our code
 import React, {useState, useEffect} from 'react';
+import moment from 'moment';
+import 'moment/locale/fr.js'
+
+
 
 
 const Date2 = () => {
@@ -34,15 +38,20 @@ const Date2 = () => {
     months[10]="Oct.";
     months[11]="Nov.";
     months[12]="Dec.";
+    moment.locale("fr")
+
+
+
+    const tme = moment().add(3, 'days')
+    console.log(tme._d)
     setCurrentDate(
-      weekday[date - 3] + ' ' + (date1 + 4)  + ' ' + months[month]
-      
+      moment().add(3, 'days').format("D MMM")      
     );
   }, []);
 
   return (
     <div>
-                   <p>Livré: <b>{currentDate} </b></p> 
+                   <p style={{margin:'0'}}>Livré: <b>{currentDate} </b></p> 
 
     </div>
   );

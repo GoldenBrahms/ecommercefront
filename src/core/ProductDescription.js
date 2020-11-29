@@ -59,25 +59,16 @@ const ProductDescription = props => {
             {/* Decouvrez Qurma */}
             {width < breakpoint? 
             <>
-            <div id="details" style={{width:'100%', height:'770px'}}>
-                <h2 style={{marginLeft:'20px',fontWeight:'bold'}}>Lecteur de Coran et Veilleuse</h2>
-            <div style={{width:'100%', backgroundColor:''}}>
-            <img style={{width:'70%', height:'100%' }} src={LuneJaune}/>
+           
+           
+           {productsBySell.map((product, i) => (
+               <div key={i}>
+                   <Card product={product} />
+               </div>
+           ))}
+       
+    
             
-                </div>
-
-            <div  style={{padding:'20px', margin:'10px', display:'flex',flexDirection:'column'}}>
-                <h1 style={{margin:'0'}}>29 €</h1>
-                <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p>
-                <a className="btn btn-primary btn-lg" href="/Checkout">Acheter</a>
-                <p style={{marginTop:'10px', marginBottom:'0', color:'#007600', fontSize:'20px'}}>En stock</p>
-                <Date2/>
-                <p style={{margin:'0'}}>Livraison Gratuite en 48h en France <FontAwesomeIcon icon={faShippingFast} /></p>
-                <p>Transaction sécurisée  <img style={{width:'15px'}} src={Cadena}/></p>
-                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
-
-            </div>
-            </div>
             </>
             :
             <>

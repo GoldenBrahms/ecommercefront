@@ -43,3 +43,9 @@ export const updateItem = (productId, count) => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 };
+
+export const emptyCart = next => {
+    if (typeof window !== 'undefined') {
+        localStorage.removeItem('cart');
+    }
+};

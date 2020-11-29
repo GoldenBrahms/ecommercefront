@@ -20,6 +20,11 @@ const Card = ({
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
+  const width = window.innerWidth;
+    
+
+    const breakpoint = 720;
+    const maxpoint = 1920;
 
   const showViewButton = showViewProductButton => {
     return (
@@ -94,6 +99,24 @@ const Card = ({
     );
   };
   return (
+    <>
+    {width < breakpoint ? 
+      <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
+          <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
+          <img style={{width:'250px', height:'300px' }} src={LuneJaune}/>
+          <h5 style={{margin:'0'}}>Prix de l'offre: {product.price} € <span style={{color:'red',fontSize:'18px'}}>Livraison gratuite</span></h5>
+          <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
+          <Date2/>
+          <p style={{margin:'0px', color:'#007600', fontSize:'24px', fontWeight:"500"}}>En stock.</p>
+          {showAddToCartBtn(showAddToCartButton)}
+          <span style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</span>
+                <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
+                <p>Paiement par carte bancaire sécurisée    <img style={{width:'120px'}} src={Visa}/></p>
+                <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
+                
+
+      </div>
+       :
     <div style={{width:'100%', height:'730px', display:'flex'}}>
         <div id="details" style={{height:'500px',width:'80%', margin:'50px', border:'', display:'flex', alignItems:"left", padding:'50px'}}>
                 <div style={{width:'50%', height:'100%', backgroundColor:''}}>
@@ -126,6 +149,8 @@ const Card = ({
         {showCartUpdateOptions(cartUpdate)}
       </div>
     </div>
+    }
+    </>
   );
 };
 

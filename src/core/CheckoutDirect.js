@@ -7,13 +7,13 @@ import { Redirect } from 'react-router-dom';
 import Header from './Header';
 import Layout from './Layout';
 import CardCheckout from './CardCheckout';
-import { getCart } from './cartHelper';
+import { getCart, emptyCart } from './cartHelper';
 
 
 
 
 
-const CheckoutDirect = ({ history }) => {
+const CheckoutDirect = ({ history}) => {
     const [items, setItems] = useState([]);
     const [run, setRun] = useState(false);
     
@@ -63,8 +63,12 @@ const CheckoutDirect = ({ history }) => {
                    amount: 30
                }
                createOrder(userId, token, createOrderData)
+               .then(
+                   emptyCart(() =>{
+                       history.push('/remerciement')
+                   })
+               )
                setData({...data, success: responce.success })
-               history.push('/remerciement')
            })
            .catch(error => console.log(error))
         })
