@@ -49,9 +49,9 @@ const Card = ({
   const showAddToCartBtn = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <button onClick={addToCart} style={{width:'200px'}} className="btn btn-outline-warning mt-2 mb-2 card-btn-1  ">
+        <Link onClick={addToCart} style={{}} className="btn btn-outline-warning mt-2 mb-2 card-btn-1  ">
           ACHETER
-        </button>
+        </Link>
       )
     );
   };
@@ -104,11 +104,13 @@ const Card = ({
       <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
           <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
           <img style={{width:'250px', height:'300px' }} src={LuneJaune}/>
-          <h5 style={{margin:'0'}}>Prix de l'offre: {product.price} € <span style={{color:'red',fontSize:'18px'}}>Livraison gratuite</span></h5>
+          <h5 style={{margin:'0'}}>Prix de l'offre: {product.price} € <span style={{color:'red',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></h5>
           <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
           <Date2/>
           <p style={{margin:'0px', color:'#007600', fontSize:'24px', fontWeight:"500"}}>En stock.</p>
           {showAddToCartBtn(showAddToCartButton)}
+          {shouldRedirect(redirect)}
+
           <span style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</span>
                 <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
                 <p>Paiement par carte bancaire sécurisée    <img style={{width:'120px'}} src={Visa}/></p>
