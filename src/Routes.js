@@ -42,7 +42,7 @@ const Routes = () => {
                     <Route exact path="/politiquedeconfidentialitée" component={PolitiqueConf}/>
                     <Route exact path="/mentionslegales" component={MentionsLegales}/>
                     <Route exact path="/remerciement" component={Remerciement}/>
-                    <Route path="/cart" exact component={Cart} />
+                    <Route path="/mon-panier" exact component={Cart} />
                     <PrivateRoute path="/user/dashboard" exact component={Dashboard}/>
                     <PrivateRoute path="/profile/:userId" exact component={Profile}/>
                     <PrivateRoute path="/product/:productId" exact component={ProductDescription}/>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { addItem, updateItem, emptyCart} from './cartHelper';
+import { addItem, updateItem} from './cartHelper';
 import LuneJaune from '../images/lunejaune.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
@@ -36,7 +36,10 @@ const CardCart = ({
  
 
 
-  
+  const emptyCartPrev = (e) => {
+    e.preventDefault()
+
+  }
 
   const showStock = quantity => {
     return quantity > 0 ? (
@@ -68,8 +71,8 @@ const CardCart = ({
     return (
       showRemoveProductButton && (
         <a
-          onClick={emptyCart()}
-          
+          onClick={emptyCartPrev}
+          href=""
         >
           Supprimer
         </a>

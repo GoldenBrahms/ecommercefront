@@ -33,8 +33,8 @@ const Header = ({ history }) => {
                     { width < breakpoint ?
                     !isAuthenticated() && (
                         <>
-                    { path !== "/cart" ?  
-                    <Link  style={{ height:'40px',position:'absolute', right:'120px',top:'7px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
+                    { path !== "/mon-panier" ?  
+                    <Link  style={{ height:'40px',position:'absolute', right:'120px',top:'7px', textAlign:'center'}} to='/mon-panier'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
                     :
                     ""
                     }                        
@@ -50,7 +50,7 @@ const Header = ({ history }) => {
                         <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'240px', textAlign:'center'}} to='/Assistance'>Assistance</Link>
                         {
                             path !== "/cart" ?
-                        <Link  style={{ height:'40px',position:'absolute', right:'340px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
+                        <Link  style={{ height:'40px',position:'absolute', right:'340px', textAlign:'center'}} to='/mon-panier'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
                     :
                     ""
                     }

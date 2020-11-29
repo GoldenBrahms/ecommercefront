@@ -36,13 +36,13 @@ const Card = ({
     );
   };
   const addToCart = () => {
-    // console.log('added');
+     console.log('added');
     addItem(product, setRedirect(true));
   };
 
   const shouldRedirect = redirect => {
     if (redirect) {
-      return <Redirect to="/cart" />;
+      return <Redirect to="/mon-panier" />;
     }
   };
 
