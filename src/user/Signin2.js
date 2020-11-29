@@ -65,7 +65,7 @@ const Signin2 = ( history ) => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            return <Redirect to="/paiement-secure"/>
+            return <Redirect to="/paiement-securisée"/>
         }
     }
 

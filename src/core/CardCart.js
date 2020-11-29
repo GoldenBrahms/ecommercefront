@@ -83,7 +83,7 @@ const CardCart = ({
     <>
     {width < breakpoint ?
     <div>
-      <div style={{width:'100%', height:'500px', backgroundColor:'#d9d9d9'}}>
+      <div style={{padding:'20px', width:'100%', height:'500px', backgroundColor:'#d9d9d9'}}>
         <img style={{width:'300px', height:'300px' }} src={LuneJaune}/>
         <p style={{fontWeight:'bold', fontSize:'25px', margin:'0'}}>{product.name}</p>
         <p style={{}}>En stock</p>

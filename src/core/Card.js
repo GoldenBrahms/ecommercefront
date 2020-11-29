@@ -49,7 +49,7 @@ const Card = ({
   const showAddToCartBtn = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <Link onClick={addToCart} style={{}} className="btn btn-outline-warning mt-2 mb-2 card-btn-1  ">
+        <Link onClick={addToCart} style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
           ACHETER
         </Link>
       )

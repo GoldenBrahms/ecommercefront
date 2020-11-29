@@ -79,9 +79,7 @@ const CardCheckout = ({
         <div id="details" style={{height:'300px',width:'100%', margin:'0px', border:'', display:'flex', flexDirection:'column',alignItems:"left", padding:'0px'}}>
             <h1>Ma commande</h1>
             <div style={{display:'flex', backgroundColor:'#F2F2F2', width:'430px', height:'40%'}}>
-                <div style={{width:'30%'}}>
-                    Hello
-                </div>
+                
                 <div style={{borderBottom:'2px solid #dddddd', width:'60%'}}>
                     <p style={{margin:'0', fontWeight:'bold'}}>{product.name}</p>
                     <p style={{margin:'0'}}>En stock</p>

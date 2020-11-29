@@ -14,8 +14,9 @@ import Paypal from '../images/paypal.png'
 import CB from '../images/carte_bancaire.png'
 import Amex from '../images/amex_new.png'
 import { isAuthenticated } from '../auth';
+import Faq from './Faq'
 
-const Cart = () => {
+const Cart = ({products}) => {
     const [items, setItems] = useState([]);
     const [run, setRun] = useState(false);
 
@@ -50,6 +51,11 @@ const Cart = () => {
         );
     };
 
+    const getTotal = () => {
+        return products.reduce((currentValue, nextValue) => {
+            return currentValue + nextValue.count * nextValue.price;
+        }, 0);
+    };
     const noItemsMessage = () => (
         <h2>
             Your cart is empty. <br /> <Link to="/shop">Continue shopping</Link>
@@ -73,7 +79,7 @@ const Cart = () => {
                         {!isAuthenticated() &&
                             <Link type="button" to="/identifier" style={{width:'100%', borderRadius:'30px', marginBottom:'20px'}}class="btn btn-inverse btn-dark"><b>PAIEMENT</b></Link>}
                             {isAuthenticated() &&
-                              <Link type="button" to="/paiement-securisée" style={{width:'200px'}}class="btn btn-inverse btn-outline-dark"><b>PAIEMENT</b></Link>}
+                              <Link type="button" to="/paiement-securisée" style={{width:'100%', borderRadius:'30px', marginBottom:'20px'}}class="btn btn-inverse btn-dark"><b>PAIEMENT</b></Link>}
                           </div>
                 <div style={{width:'100%', backgroundColor:'#e5e5e5'}}>
                         {items.map((product, i) => (
@@ -86,6 +92,7 @@ const Cart = () => {
                         setRun={setRun}
                         run={run}
                     />))}
+                     
                         </div>
                         <div style={{marginTop:'20px', paddingLeft:'10px'}}>
                             <h3>Options de paiement</h3>
@@ -101,27 +108,30 @@ const Cart = () => {
                         <div style={{padding:'20px 0px 0px 10px'}}>
                                 <span style={{fontSize:"16px"}}>Total des produits </span>
                                 
-                                <span style={{fontSize:"16px", float:'right'}}>Prix </span>
+                                <span style={{fontSize:"16px", float:'right'}}>29,00E </span>
                         </div>
-                        <div style={{padding:'0 0 50px 10px', borderBottom:'2px dotted #dddddd'}}>
+                        <div style={{padding:'0 0 20px 10px', borderBottom:'2px dotted #dddddd'}}>
                                 <span style={{fontSize:"16px"}}>Livraison </span>
-                                <span style={{fontSize:"16px", float:'right'}}>Gratuit </span>
+                                <span style={{fontSize:"16px", float:'right'}}>Gratuite </span>
                         </div>
                         <br/><br/>
-                        <div style={{padding:'0 0 0px 0', borderBottom:'2px solid #dddddd'}}>
-                            <p style={{padding:'0px', marginBottom:'5px'}}>Sous-total:</p>
+                        <div style={{padding:'0 0 10px 0', borderBottom:'2px solid #dddddd'}}>
+                            <span style={{padding:'0px', marginBottom:'0px'}}>Sous-total:</span>
+                            <span style={{float:'right'}}>29,00E</span>
                         </div>
                         <div>
-                        <p><b>Total du panier:</b></p>
+                        <span><b>Total du panier:</b></span>
+                        <span style={{float:'right'}}><b>29,00E</b></span>
                         </div>
-                        <div>
+                        <div style={{marginTop:'20px'}}>
                         {!isAuthenticated() &&
                             <Link type="button" to="/identifier" style={{width:'100%', borderRadius:'30px'}}class="btn btn-inverse btn-outline-dark"><b>PAIEMENT</b></Link>}
                             {isAuthenticated() &&
-                              <Link type="button" to="/paiement-securisée" style={{width:'200px'}}class="btn btn-inverse btn-outline-dark"><b>PAIEMENT</b></Link>}
+                              <Link type="button" to="/paiement-securisée" style={{width:'100%', borderRadius:'30px'}}class="btn btn-inverse btn-outline-dark"><b>PAIEMENT</b></Link>}
                           </div>
 
             </div>}
+            <Faq/>
             </>
         :
         <>
@@ -134,7 +144,7 @@ const Cart = () => {
         : 
         <div style={{padding:'70px',width:'100%', height:'600px', backgroundColor:''}}>
 
-                    <h2 className="mb-4">Articles de votre panier</h2>
+        <h2 className="mb-4">Articles de votre panier ({itemTotal()} article)</h2>
                     <div style={{display:'flex',width:'100%', height:'200px', backgroundColor:''}}>
                         <div style={{width:'60%', backgroundColor:'#e5e5e5'}}>
                         {items.map((product, i) => (
@@ -151,16 +161,22 @@ const Cart = () => {
                         <div style={{paddingLeft:'50px',width:'40%',  backgroundColor:''}}>
                             <div style={{padding:'5px 0px'}}>
                                 <span style={{fontSize:"16px"}}>Total des produits </span>
-                                <span style={{fontSize:"16px", float:'right'}}>Prix </span>
+                                <span style={{fontSize:"16px", float:'right'}}>29,00E </span>
                             </div>
                             <div style={{padding:'5px 0px'}}>
                                 <span style={{fontSize:"16px"}}>Livraison </span>
-                                <span style={{fontSize:"16px", float:'right'}}>Gratuit </span>
+                                <span style={{fontSize:"16px", float:'right'}}>Gratuite </span>
                             </div>
                             <hr style={{borderTop:'1px dotted #dddddd'}}/>
-                            <p>Sous-total:</p>
+                            <div style={{padding:'5px 0px'}}>
+                                <span style={{fontSize:"16px"}}>Sous-total: </span>
+                                <span style={{fontSize:"16px", float:'right'}}>29,00E </span>
+                            </div>
                             <hr style={{borderTop:'2px solid #dddddd'}}/>
-                            <p><b>Total du panier:</b></p>
+                            <div style={{padding:'5px 0px'}}>
+                                <span style={{fontSize:"16px"}}><b>Total de votre panier:</b></span>
+                                <span style={{fontSize:"16px", float:'right'}}>29,00E </span>
+                            </div>
                             {!isAuthenticated() &&
                             <Link type="button" to="/identifier" style={{width:'200px'}}class="btn btn-inverse btn-outline-dark"><b>PAIEMENT</b></Link>}
                             {isAuthenticated() &&
@@ -181,6 +197,7 @@ const Cart = () => {
                     <hr />
                    {/* <Checkout3 products={items} setRun={setRun} run={run} />*/}
         </div>}
+        <Faq/>
         </>
 }</>
     );
