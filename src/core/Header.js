@@ -23,7 +23,7 @@ const Header = ({ history }) => {
 
     const pathname = path;
     const width = window.innerWidth;
-    
+    const total = itemTotal();
 
     const breakpoint = 720;
         return (
@@ -34,7 +34,7 @@ const Header = ({ history }) => {
                     !isAuthenticated() && (
                         <>
                     { path !== "/cart" ?  
-                    <Link  style={{ height:'40px',position:'absolute', right:'120px',top:'7px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{itemTotal()}</sup></Link>
+                    <Link  style={{ height:'40px',position:'absolute', right:'120px',top:'7px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
                     :
                     ""
                     }                        
@@ -50,7 +50,7 @@ const Header = ({ history }) => {
                         <Link className="" style={{color:'white', height:'40px',position:'absolute',top:'10px', right:'240px', textAlign:'center'}} to='/Assistance'>Assistance</Link>
                         {
                             path !== "/cart" ?
-                        <Link className="btn btn-light" style={{ height:'40px',position:'absolute', right:'340px', textAlign:'center'}} to='/cart'>Panier<sup><small style={{border:'50%', backgroundColor:'black', fontSize:'22px', color:'white', width:'20px'}}>{itemTotal()}</small></sup></Link>
+                        <Link  style={{ height:'40px',position:'absolute', right:'340px', textAlign:'center'}} to='/cart'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
                     :
                     ""
                     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { Link, Redirect } from 'react-router-dom';
 import { signin, authenticate } from '../auth/index';
@@ -19,6 +19,9 @@ const Signin = ({ history }) => {
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value })
     }
+    useEffect(() => {
+        document.getElementById("titre").textContent = "Me Connecter"
+    }, []);
 
     const clickSubmit = (event) => {
         event.preventDefault();

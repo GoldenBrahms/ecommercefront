@@ -228,6 +228,8 @@ const CheckoutDirectInvite = ({ history }) => {
     return (
         <>
         { width < breakpoint ? 
+        <>
+        <Header2/>
         <div style={{padding:'20px', width:'100%', height:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
             <h2 style={{marginTop:'10px'}}>1) Vos Informations</h2>
         <div style={{width:'70%', alignItems:'center'}} className="form-group">
@@ -282,6 +284,7 @@ const CheckoutDirectInvite = ({ history }) => {
        {ShowDropInMobile()}
        </div>
    </div>
+   </>
         :
         <>
         <Header2/>

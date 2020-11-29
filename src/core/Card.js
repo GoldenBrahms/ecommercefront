@@ -104,7 +104,7 @@ const Card = ({
       <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
           <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
           <img style={{width:'250px', height:'300px' }} src={LuneJaune}/>
-          <h5 style={{margin:'0'}}>Prix de l'offre: {product.price} € <span style={{color:'red',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></h5>
+          <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></p>
           <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
           <Date2/>
           <p style={{margin:'0px', color:'#007600', fontSize:'24px', fontWeight:"500"}}>En stock.</p>

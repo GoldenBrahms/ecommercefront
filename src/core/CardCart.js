@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { addItem, updateItem} from './cartHelper';
+import { addItem, updateItem, emptyCart} from './cartHelper';
 import LuneJaune from '../images/lunejaune.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +19,10 @@ const CardCart = ({
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
+  const width = window.innerWidth;
+    
+
+    const breakpoint = 720;
 
   const showViewButton = showViewProductButton => {
     return (
@@ -63,18 +67,32 @@ const CardCart = ({
   const showRemoveButton = showRemoveProductButton => {
     return (
       showRemoveProductButton && (
-        <button
-          onClick={() => {
-            setRun(!run); // run useEffect in parent Cart
-          }}
-          className="btn btn-outline-danger mt-2 mb-2"
+        <a
+          onClick={emptyCart()}
+          
         >
-          Sup
-        </button>
+          Supprimer
+        </a>
       )
     );
   };
   return (
+    <>
+    {width < breakpoint ?
+    <div>
+      <div style={{width:'100%', height:'500px', backgroundColor:'#d9d9d9'}}>
+        <img style={{width:'300px', height:'300px' }} src={LuneJaune}/>
+        <p style={{fontWeight:'bold', fontSize:'25px', margin:'0'}}>{product.name}</p>
+        <p style={{}}>En stock</p>
+        <div style={{width:'100%',backgroundColor:''}}>
+                {showCartUpdateOptions(cartUpdate)}
+                    <span style={{margin:'0', float:'right', fontSize:'20px'}}>{product.price} €</span>
+                </div>
+                {showRemoveButton(showRemoveProductButton)}
+
+      </div>
+    </div>
+    :
     <div style={{width:'100%', height:'100px', display:'flex'}}>
         <div id="details" style={{height:'100px',width:'100%', margin:'0px', border:'', display:'flex', alignItems:"left", padding:'0px'}}>
                 <div style={{width:'10%', height:'30%', backgroundColor:''}}>
@@ -101,6 +119,8 @@ const CardCart = ({
 
   {showCartUpdateOptions(cartUpdate)}*/}
     </div>
+}
+    </>
   );
 };
 

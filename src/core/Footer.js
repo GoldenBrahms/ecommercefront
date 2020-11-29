@@ -34,13 +34,13 @@ export default function Footer () {
                                 <li style={{fontSize:'14px'}}><a style={{color:'black'}} href="#">Retours et remplacements</a></li>
                             </ul>
                         </div>
-                        <div style={{ backgroundColor:'#f4f4f4',display:'flex',flexDirection:'', marginBottom:'0', borderTop:'1px solid #d2d2d7', paddingTop:'10px'}}>
+                        <div style={{ backgroundColor:'rgb(48, 48, 48)',display:'flex',justifyContent:"center",width:'100%', marginBottom:'0', borderTop:'1px solid #d2d2d7', paddingTop:'10px'}}>
                             <ul style={{margin:'0',display:'flex', textDecoration:'none', listStyleType:'none', padding:'0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                                <h5 style={{margin:'0', marginRight:'20px',color:'#87878c', fontFamily:'Titillium'}}>Copyright 2020</h5>
-                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
-                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Mentions Légales</a></li>
-                               <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'black', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
-                                <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'#555555', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
+                                <h5 style={{margin:'0', marginRight:'20px',color:'white', fontFamily:'Titillium'}}>© 2020, <a href="/" style={{textDecoration:'none', color:'white'}}>Lirya</a></h5>
+                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Engagement de confidentialité</a></li>
+                                <li><a href='#' style={{fontSize:'11px', textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Mentions Légales</a></li>
+                               <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
+                                <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
                             </ul>
                         </div>
                         </div>
