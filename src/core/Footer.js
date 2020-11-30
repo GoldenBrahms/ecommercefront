@@ -1,13 +1,24 @@
 import React from 'react';
 import { Link} from 'react-router-dom'
+import { UpSquareOutlined } from '@ant-design/icons'
 
 export default function Footer () {
     const width = window.innerWidth;
 
     const breakpoint = 720;
+
+    const topFunction = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+       
+    }
     return (
                     <>
                         {width < breakpoint? 
+                        <>
+                        <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
+                    </div>
                         <div style={{  height:'560px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                             <ul style={{listStyleType:'none'}}>
@@ -44,8 +55,12 @@ export default function Footer () {
                             </ul>
                         </div>
                         </div>
+                        </>
                         :
                         <>
+                        <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                            <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}>Retour en haut <UpSquareOutlined /></Link>
+                        </div>
             <div style={{backgroundColor:'#f4f4f4', display:'flex', width:'100%', height:'200px', paddingLeft:'180px', paddingTop:'20px'}}>
                 <ul style={{listStyleType:'none',}}>
                     <h4 style={{color:"#444"}}>Pour mieux nous connaître</h4>

@@ -7,6 +7,7 @@ import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import Visa from '../images/visa.png'
 import Date2 from './Date'
 import CarouselImage from './CarouselImage'
+import './FAQ.css'
 
 
 
@@ -39,7 +40,7 @@ const Card = ({
   };
   const addToCart = () => {
      console.log('added');
-    addItem(product, setRedirect(true));
+    addItem(product, setRedirect(false));
   };
 
   const shouldRedirect = redirect => {
@@ -51,9 +52,9 @@ const Card = ({
   const showAddToCartBtn = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <Link onClick={addToCart} style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
+        <a onClick={addToCart} href="/mon-panier" style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
           ACHETER
-        </Link>
+        </a>
       )
     );
   };
@@ -108,6 +109,7 @@ const Card = ({
           <CarouselImage/>
           <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></p>
           <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
+          <a href="#Faq"  className="Faqt">Questions fréquentes</a>
           <Date2/>
           <p style={{margin:'0px', color:'#007600', fontSize:'24px', fontWeight:"500"}}>En stock.</p>
           {showAddToCartBtn(showAddToCartButton)}
@@ -131,6 +133,7 @@ const Card = ({
                 <h1 style={{fontWeight:'bold'}}>{product.name}</h1>
                 <span style={{margin:'0'}}>prix de l'offre : <span style={{color:'#B12704',fontSize:'18px'}}>{product.price} €</span> <span style={{fontSize:'14px'}}>Livraison gratuite en France métropolitaine</span></span>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
+                <a href="#Faq"  className="Faqt">Questions fréquentes</a>
                 <Date2/>
                 {showAddToCartBtn(showAddToCartButton)}
 
@@ -155,6 +158,9 @@ const Card = ({
     </>
   );
 };
+
+
+
 
 export default Card;
 

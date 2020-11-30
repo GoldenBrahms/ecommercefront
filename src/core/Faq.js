@@ -20,8 +20,8 @@ const Faq = () => {
     return (
         <>
         { width < breakpoint ? 
-        <div style={{marginBottom:'50px', marginLeft:'10px'}}>
-        <h1>Questions Fréquentes</h1>
+        <div id="Faq" style={{marginBottom:'50px', marginLeft:'10px'}}>
+        <h2>Questions Fréquentes :</h2>
     <Collapse style={{width:'350px'}}  onChange={callback}>
         <Panel  header="Quand vais je recevoir ma commande ?" key="1">
         <span style={{}} >{text}</span>
@@ -35,7 +35,7 @@ const Faq = () => {
     </Collapse>
     </div>
         :
-        <div style={{marginBottom:'50px', marginLeft:'60px'}}>
+        <div id="Faq" style={{marginBottom:'50px', marginLeft:'60px'}}>
             <h1>Questions Fréquentes</h1>
         <Collapse style={{width:'600px'}}  onChange={callback}>
             <Panel  header="Quand vais je recevoir ma commande ?" key="1">

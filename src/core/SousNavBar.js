@@ -23,11 +23,14 @@ const SousNavBar = () => {
                 </div>
                 <div style={{position:"absolute",right:"10px", backgroundColor:'', display:'flex', alignItems:'center'}}>
                     { width < breakpoint ? 
-                     <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#details">Details</a>
+                    <>
+                     <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="#Faq">Questions Fréquentes</a>
+                    </>
                     :
                     <>
-                    <a style={{ paddingRight:'20px', textDecoration:'', color:'#525252', fontFamily:'Roboto'}} href="#details">Avis</a>
-                    <a style={{ paddingRight:'20px', textDecoration:'none', color:'#525252', fontFamily:'Roboto'}} href="">29E</a>
+                    <a style={{ paddingRight:'20px', textDecoration:'', color:'#525252', fontFamily:'Roboto'}} href="#">Avis</a>
+                    <a style={{ paddingRight:'20px', textDecoration:'', color:'#525252', fontFamily:'Roboto'}} href="#Faq">Questions Fréquentes</a>
+                    <span style={{ paddingRight:'20px', textDecoration:'none',fontSize:'18px', color:'rgb(177, 39, 4)', fontFamily:'Roboto'}} href="">29 €</span>
                     
                     </>
                     }

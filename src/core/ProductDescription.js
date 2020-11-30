@@ -20,7 +20,8 @@ import { Link, withRouter } from 'react-router-dom'
 import { css, jsx} from '@emotion/react'
 import {addItem} from './cartHelper'
 import { read, getProduct } from './apiCore';
-import CarouselImage from './CarouselImage'
+import CarouselImage from './CarouselImage';
+import Faq from './Faq'
 
 
 
@@ -50,8 +51,15 @@ const ProductDescription = props => {
         });
     };
 
+    const IpAdress = () => {
+        fetch('https://api.ipify.org/?format=json')
+        .then(results => results.json())
+        .then(data => console.log(data.ip))
+    }
+
     useEffect(() => {
         loadSingleProduct()
+       // IpAdress()
     }, [props]);
 
     return (
@@ -113,7 +121,6 @@ const ProductDescription = props => {
                     <h1 style={{margin:'0'}}>Cet LED</h1>
                     <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
                 </div>
-                <CarouselImage/>
              </div>
              <div style={{padding:'20px', marginTop:'00px',width:'100%', height:'', backgroundColor:'', display:'flex', flexDirection:'column'}}>
              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
@@ -133,7 +140,6 @@ const ProductDescription = props => {
                     <h1 style={{margin:'0'}}>Cette LED génère plusieurs couleurs</h1>
                     <p>Vous pourrez choisir la couleur qui vous convient</p>
                 </div>
-                <CarouselImage/>
              </div>
              <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                  <img style={{width:'600px'}} src={LightControl}/>
@@ -169,17 +175,24 @@ const ProductDescription = props => {
             </div>
             }
             {width < breakpoint? 
-            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'100vh'}}>
+            <>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%'}}>
                 <img style={{width:'200px', height:'200px'}} src={LuneRose}/>
                 <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
+            <Faq/>
+            </>
             :
+            <>
             <div style={{display:'flex', padding:'50px', width:'100%', height:'100vh'}}>
             <img style={{width:'600px'}} src={AppSourate}/>
             <div>
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Elle contient aussi des Hadiths</h1>
             </div>
-            </div>}
+            </div>
+            <Faq/>
+            </>
+            }
             
         </div>
     );

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import Card from '../core/Card';
 import { read, getProduct } from './apiCore';
+import Faq from './Faq'
 
 
 
@@ -183,6 +184,7 @@ const ProductDescription2 = props => {
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
             </div>}
+            <Faq/>
             
         </div>
     );
