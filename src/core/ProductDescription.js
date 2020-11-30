@@ -20,6 +20,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { css, jsx} from '@emotion/react'
 import {addItem} from './cartHelper'
 import { read, getProduct } from './apiCore';
+import CarouselImage from './CarouselImage'
 
 
 
@@ -112,7 +113,7 @@ const ProductDescription = props => {
                     <h1 style={{margin:'0'}}>Cet LED</h1>
                     <p>Une application est fourni avec Qurma pour pouvoir la piloter depuis son smartphone en toute simplicité</p>
                 </div>
-                <img style={{width:'250px'}} src={LightControl}/>
+                <CarouselImage/>
              </div>
              <div style={{padding:'20px', marginTop:'00px',width:'100%', height:'', backgroundColor:'', display:'flex', flexDirection:'column'}}>
              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
@@ -132,7 +133,7 @@ const ProductDescription = props => {
                     <h1 style={{margin:'0'}}>Cette LED génère plusieurs couleurs</h1>
                     <p>Vous pourrez choisir la couleur qui vous convient</p>
                 </div>
-                <img style={{width:'900px', marginTop:'50px'}} src={Multicolor}/>
+                <CarouselImage/>
              </div>
              <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                  <img style={{width:'600px'}} src={LightControl}/>

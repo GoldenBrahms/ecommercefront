@@ -15,7 +15,7 @@ const Date2 = () => {
   useEffect(() => {
     moment.locale("fr")
     setCurrentDate(
-      moment().add(3, 'days').format("D MMMM")      
+      moment().add(3, 'days').format("dddd D MMMM")      
     );
   }, []);
 

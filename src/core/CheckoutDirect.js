@@ -63,11 +63,8 @@ const CheckoutDirect = ({ history}) => {
                    amount: 30
                }
                createOrder(userId, token, createOrderData)
-               .then(
-                   emptyCart(() =>{
-                       history.push('/remerciement')
-                   })
-               )
+               emptyCart()
+               history.push('/remerciement')
                setData({...data, success: responce.success })
            })
            .catch(error => console.log(error))
@@ -152,7 +149,7 @@ const CheckoutDirect = ({ history}) => {
         </div>
     )
     const showSuccess = success => {
-        success && (<Redirect to="/"/>)
+        success && (<Redirect to="/remerciement"/>)
 }
     const handleChangeName = event => {
         setData({...data, name: event.target.value})

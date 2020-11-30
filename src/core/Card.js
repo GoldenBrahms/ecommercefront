@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import Visa from '../images/visa.png'
 import Date2 from './Date'
+import CarouselImage from './CarouselImage'
+
 
 
 const Card = ({
@@ -103,7 +105,7 @@ const Card = ({
     {width < breakpoint ? 
       <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
           <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
-          <img style={{width:'250px', height:'300px' }} src={LuneJaune}/>
+          <CarouselImage/>
           <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></p>
           <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
           <Date2/>
@@ -119,15 +121,15 @@ const Card = ({
 
       </div>
        :
-    <div style={{width:'100%', height:'730px', display:'flex'}}>
-        <div id="details" style={{height:'500px',width:'80%', margin:'50px', border:'', display:'flex', alignItems:"left", padding:'50px'}}>
+    <div style={{width:'100%', height:'730px', display:'flex', justifyContent:'center'}}>
+        <div id="details" style={{height:'500px',width:'80%', margin:'50px', border:'', display:'flex', alignItems:"left"}}>
                 <div style={{width:'50%', height:'100%', backgroundColor:''}}>
-                    <img style={{width:'450px', height:'500px' }} src={LuneJaune}/>
+                  <CarouselImage/>
                 </div>
                 <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
                 <div style={{paddingLeft:'50px'}}>
                 <h1 style={{fontWeight:'bold'}}>{product.name}</h1>
-                <h1 style={{margin:'0'}}>{product.price} €</h1>
+                <span style={{margin:'0'}}>prix de l'offre : <span style={{color:'#B12704',fontSize:'18px'}}>{product.price} €</span> <span style={{fontSize:'14px'}}>Livraison gratuite en France métropolitaine</span></span>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
                 <Date2/>
                 {showAddToCartBtn(showAddToCartButton)}
@@ -140,7 +142,6 @@ const Card = ({
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>
                 </div>
             </div>
-      <div className="card-body">
         {shouldRedirect(redirect)}
         <br />
 
@@ -149,7 +150,6 @@ const Card = ({
         {showRemoveButton(showRemoveProductButton)}
 
         {showCartUpdateOptions(cartUpdate)}
-      </div>
     </div>
     }
     </>
