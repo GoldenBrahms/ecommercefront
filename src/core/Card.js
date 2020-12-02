@@ -58,6 +58,15 @@ const Card = ({
       )
     );
   };
+  const showAddToCartBtnMobile = showAddToCartButton => {
+    return (
+      showAddToCartButton && (
+        <a onClick={addToCart} href="/mon-panier" style={{width:'100%', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
+          Ajouter au panier
+        </a>
+      )
+    );
+  };
 
   const showStock = quantity => {
     return quantity > 0 ? (
@@ -107,13 +116,21 @@ const Card = ({
       <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
           <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
           <CarouselImage/>
-          <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}>Livraison gratuite en France Métropolitaine</span></p>
-          <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
+          <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}><b>Livraison gratuite</b> en France Métropolitaine</span></p>
+          <p style={{color:'#888888'}}>Tout les prix incluent la TVA.</p> 
           <a href="#Faq"  className="Faqt">Questions fréquentes</a>
           <Date2/>
           <p style={{margin:'0px', color:'#007600', fontSize:'24px', fontWeight:"500"}}>En stock.</p>
-          {showAddToCartBtn(showAddToCartButton)}
+          {showAddToCartBtnMobile(showAddToCartButton)}
           {shouldRedirect(redirect)}
+          <hr style={{margin:'0'}}/>
+                <ul style={{margin:'0', paddingLeft:'18px', fontSize:'14px'}}>
+                  <li>Contient tout le Coran</li>
+                  <li>Plusieurs recitateurs</li>
+                  <li>Plusieurs couleurs</li>
+                  <li>Enceinte Bluethoot</li>
+                  <li>Télécommande</li>
+                </ul>
 
           <span style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</span>
                 <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
@@ -133,13 +150,22 @@ const Card = ({
                 <h1 style={{fontWeight:'bold'}}>{product.name}</h1>
                 <span style={{margin:'0'}}>prix de l'offre : <span style={{color:'#B12704',fontSize:'18px'}}>{product.price} €</span> <span style={{fontSize:'14px'}}>Livraison gratuite en France métropolitaine</span></span>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
+                <span>Une question ? </span>
                 <a href="#Faq"  className="Faqt">Questions fréquentes</a>
                 <Date2/>
                 {showAddToCartBtn(showAddToCartButton)}
 
-                <p style={{marginTop:'10px', color:'#007600', fontSize:'20px', fontWeight:"500"}}>En stock</p>
-                <hr/>
-                <span style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</span>
+                <p style={{marginTop:'10px', color:'#007600', fontSize:'20px', fontWeight:"500"}}>En stock.</p>
+                <hr style={{margin:'0'}}/>
+                <ul style={{margin:'0', paddingLeft:'14px', fontSize:'18px'}}>
+                  <li>Contient tout le Coran</li>
+                  <li>Plusieurs recitateurs</li>
+                  <li>Plusieurs couleurs</li>
+                  <li>Enceinte Bluethoot</li>
+                  <li>Télécommande</li>
+                </ul>
+                <a href="#Description">Description du produit</a>
+                <p style={{fontSize:'16px', fontWeight:'bold'}}>EFFECTUEZ VOS ACHATS EN TOUTE CONFIANCE</p>
                 <p style={{margin:'0'}}>Livraison Gratuite à votre domicile en France <FontAwesomeIcon icon={faShippingFast} /></p>
                 <p>Paiement par carte bancaire sécurisée    <img style={{width:'120px'}} src={Visa}/></p>
                 <p>Retour gratuit dans les 30 jours suivant la date de livraison.</p>

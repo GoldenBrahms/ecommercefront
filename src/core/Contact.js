@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import { Link, withRouter, Redirect } from 'react-router-dom'
+import FAQ from './Faq'
 
 
 const Contact = () => {
@@ -62,6 +63,9 @@ const Contact = () => {
                 </div>
                 <div style={{marginTop:'10px',height:'20vh', width:'100%', backgroundColor:'',display:'flex', alignItems:'center', justifyContent:'center'}}>
                     
+                    <div style={{marginRight:'20px',marginTop:'20px', display:'flex', flexDirection:'column'}}>
+                        <FAQ/>
+                    </div>
                     <div style={{marginRight:'20px',marginTop:'20px', display:'flex', flexDirection:'column'}}>
                     <svg width="60" height="55" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
                         <h4 style={{margin:0}}>Facebook</h4>

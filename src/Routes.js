@@ -22,6 +22,7 @@ import Conditions from './Conditions'
 import PolitiqueConf from './PolitiqueConf'
 import MentionsLegales from './MentionsLegales'
 import Remerciement from './Remerciement'
+import NotFound from './core/Notfound.js'
 import './Style.css'
 
 
@@ -50,6 +51,7 @@ const Routes = () => {
                     path="/admin/dashboard" 
                     exact 
                     component={AdminDashboard}/>
+                    <Route component={NotFound} />
                 </Switch>
                 <Footer/>
             </BrowserRouter>

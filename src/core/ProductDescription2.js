@@ -7,11 +7,12 @@ import LightControl from '../images/lightControl.jpeg';
 import AppSourate from '../images/AppSourate.jpeg';
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 import Card from '../core/Card';
 import { read, getProduct } from './apiCore';
 import Faq from './Faq'
+import { UpSquareOutlined } from '@ant-design/icons'
+
 
 
 
@@ -39,6 +40,11 @@ const ProductDescription2 = props => {
             }
         });
     };
+
+    const topFunction = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;  
+    }
 
     useEffect(() => {
         loadSingleProduct()
@@ -173,18 +179,29 @@ const ProductDescription2 = props => {
             </div>
             }
             {width < breakpoint? 
+            <>
             <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'100vh'}}>
                 <img style={{width:'200px', height:'200px'}} src={LuneRose}/>
                 <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
+            <Faq/>
+            <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
+                    </div>
+                    </>
             :
+            <>
             <div style={{display:'flex', padding:'50px', width:'100%', height:'100vh'}}>
             <img style={{width:'50%', height:'100%'}} src={LuneRose}/>
             <div>
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
-            </div>}
+            </div>
             <Faq/>
+            <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
+                    </div>
+            </>}
             
         </div>
     );

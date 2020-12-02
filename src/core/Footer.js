@@ -1,24 +1,22 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link} from 'react-router-dom'
-import { UpSquareOutlined } from '@ant-design/icons'
+import {  withRouter, Redirect } from 'react-router-dom'
+import { LockOutlined } from '@ant-design/icons'
+import Visa from '../images/visa.png'
 
-export default function Footer () {
+
+const Footer = ({ props }) => {
+
+ 
     const width = window.innerWidth;
-
+    
     const breakpoint = 720;
-
-    const topFunction = () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-       
-    }
+    
     return (
                     <>
                         {width < breakpoint? 
                         <>
-                        <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
-                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
-                    </div>
+                        
                         <div style={{  height:'560px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                             <ul style={{listStyleType:'none'}}>
@@ -43,7 +41,10 @@ export default function Footer () {
                                 <h4 style={{color:"#444"}}>Besoin d'aide?</h4>
                                 <li style={{fontSize:'14px'}}><a style={{color:'black'}}  href="#">Samemo et le Covid-19</a></li>
                                 <li style={{fontSize:'14px'}}><a style={{color:'black'}} href="#">Retours et remplacements</a></li>
+                    <li><LockOutlined style={{fontSize:'40px'}} /> Paiement 100% sécurisé </li>
+                    <li><img src={Visa}/></li>
                             </ul>
+
                         </div>
                         <div style={{ backgroundColor:'rgb(48, 48, 48)',display:'flex',justifyContent:"center",width:'100%', marginBottom:'0', borderTop:'1px solid #d2d2d7', paddingTop:'10px'}}>
                             <ul style={{margin:'0',display:'flex', textDecoration:'none', listStyleType:'none', padding:'0', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
@@ -53,14 +54,15 @@ export default function Footer () {
                                <li><a href="#" style={{fontSize:'11px',textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Conditions d'utilisations</a></li>
                                 <li><a href="#" style={{fontSize:'11px', textDecoration:'none', color:'white', fontFamily:'Titillium'}}>Utilisations des cookies</a></li>
                             </ul>
+                
                         </div>
                         </div>
                         </>
                         :
                         <>
-                        <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
-                            <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}>Retour en haut <UpSquareOutlined /></Link>
-                        </div>
+    
+                
+                        
             <div style={{backgroundColor:'#f4f4f4', display:'flex', width:'100%', height:'200px', paddingLeft:'180px', paddingTop:'20px'}}>
                 <ul style={{listStyleType:'none',}}>
                     <h4 style={{color:"#444"}}>Pour mieux nous connaître</h4>
@@ -84,6 +86,8 @@ export default function Footer () {
                     <h4 style={{color:"#444"}}>Besoin d'aide?</h4>
                     <li style={{fontSize:'16px'}}>Samemo et le Covid-19</li>
                     <li style={{fontSize:'16px'}}>Retours et remplacements</li>
+                    <li><LockOutlined style={{fontSize:'40px'}} /> Paiement 100% sécurisé </li>
+                    <li><img src={Visa}/></li>
                 </ul>
             </div>
             <div style={{backgroundColor:'#f4f4f4', padding:'20px',display:'flex',flexDirection:'column', width:'100%', height:'20%', marginBottom:'0', borderTop:'1px solid #d2d2d7'}}>
@@ -104,3 +108,5 @@ export default function Footer () {
 
     );
 }
+
+export default Footer;

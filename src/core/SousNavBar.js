@@ -13,7 +13,7 @@ const SousNavBar = () => {
 
         return (
             <>
-            <div id="navbar" style={{ position:'sticky',zIndex:'1',borderBottom:'0.5px solid #cbcbcb', alignItems:'center', display:'flex', width:'100%', height:'50px', backgroundColor:'rgba(255, 255, 255, 0.9)',  top:'0'}}>
+            <div id="Description" style={{ position:'sticky',zIndex:'1',borderBottom:'0.5px solid #cbcbcb', alignItems:'center', display:'flex', width:'100%', height:'50px', backgroundColor:'rgba(255, 255, 255, 0.9)',  top:'0'}}>
                 <div style={{width:'250px',paddingLeft:'20px'}}>
                     { width < breakpoint ?
                     <h6>Qurma</h6>

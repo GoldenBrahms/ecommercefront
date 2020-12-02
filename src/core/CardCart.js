@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { addItem, updateItem} from './cartHelper';
+import { addItem, updateItem, emptyCart} from './cartHelper';
 import LuneJaune from '../images/lunejaune.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
-import Visa from '../images/visa.png'
+import { Checkbox } from 'antd';
+import { itemTotal } from './apiCore'
+
+
+
 
 
 const CardCart = ({
@@ -38,6 +40,8 @@ const CardCart = ({
 
   const emptyCartPrev = (e) => {
     e.preventDefault()
+    emptyCart()
+    window.location.reload(false);
 
   }
 
@@ -72,6 +76,7 @@ const CardCart = ({
       showRemoveProductButton && (
         <a
           onClick={emptyCartPrev}
+          style={{marginLeft:'10px'}}
           href=""
         >
           Supprimer
@@ -82,39 +87,63 @@ const CardCart = ({
   return (
     <>
     {width < breakpoint ?
-    <div>
-      <div style={{padding:'20px', width:'100%', height:'500px', backgroundColor:'#d9d9d9'}}>
-        <img style={{width:'300px', height:'300px' }} src={LuneJaune}/>
-        <p style={{fontWeight:'bold', fontSize:'25px', margin:'0'}}>{product.name}</p>
-        <p style={{}}>En stock</p>
-        <div style={{width:'100%',backgroundColor:''}}>
-                {showCartUpdateOptions(cartUpdate)}
-                    <span style={{margin:'0', float:'right', fontSize:'20px'}}>{product.price} €</span>
-                </div>
-                {showRemoveButton(showRemoveProductButton)}
-
+    <>
+      <div style={{padding:'0px', width:'100%', height:'100px', backgroundColor:'white', display:'flex'}}>
+        <div style={{width:'30%'}}>
+          <img style={{width:'100px', height:'100px' }} src={LuneJaune}/>
+        </div>
+        <div>
+        <p style={{fontWeight:'bold', fontSize:'15px', margin:'0'}}>{product.name}</p>
+        <p style={{fontSize:'15px', margin:'0', color:'#B12704'}}>{product.price} €</p>
+        <p style={{color:'#207e1a'}}>En stock</p>
       </div>
-    </div>
+      </div>
+      <div style={{padding:'20px', width:'100%',backgroundColor:'', display:'flex'}}>
+        <div>
+            {showCartUpdateOptions(cartUpdate)}
+        </div>
+        <div>
+                {showRemoveButton(showRemoveProductButton)}
+           </div>
+           </div>
+</>
+      
     :
-    <div style={{width:'100%', height:'100px', display:'flex'}}>
-        <div id="details" style={{height:'100px',width:'100%', margin:'0px', border:'', display:'flex', alignItems:"left", padding:'0px'}}>
-                <div style={{width:'10%', height:'30%', backgroundColor:''}}>
-                    <img style={{width:'50px', height:'50px' }} src={LuneJaune}/>
+    <>
+    <div style={{width:'100%', height:'100%', display:'flex'}}>
+        <div id="details" style={{height:'100px',width:'100%', margin:'0px', border:'', display:'flex',  padding:'0px'}}>
+                <div style={{width:'30%', height:'100%', backgroundColor:'', display:'flex', justifyContent:'', alignItems:''}}>
+                    <img style={{width:'170px', height:'190px' }} src={LuneJaune}/>
                 </div>
-                <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
-                <div style={{paddingLeft:'10px',marginTop:'20px', width:'85%', backgroundColor:''}}>
-                    <p style={{fontWeight:'bold'}}>{product.name}</p>
+                <div style={{width:'2px', height:'150%', backgroundColor:'#d9d9d9'}}></div>
+                <div style={{width:'100%', display:'flex', flexDirection:'column', height:'100px'}}>
+                <div style={{paddingLeft:'10px',margin:'0',marginTop:'20px', width:'100%',height:'30%', backgroundColor:''}}>
+                    <span style={{fontWeight:'bold', fontSize:'18px'}}>{product.name}</span>
+                    <span style={{marginRight:'10px', float:'right', fontSize:'24px', fontWeight:'700'}}>{product.price} €</span>
+                  </div>
+                <div style={{paddingLeft:'10px',marginTop:'0px', width:'85%',height:'15%', backgroundColor:''}}>
+                    <span style={{fontWeight:'bold', fontSize:'14px', color:'#007600'}}>En stock.</span>
+                    
+                  </div>
+                  <div style={{marginTop:'10px', paddingLeft:'10px'}}>
+                  <Checkbox>Ceci est un cadeau</Checkbox>
+                  </div>
+                  <div>
+                  {showRemoveButton(showRemoveProductButton)}
+
+                  </div>
+                  </div>
+                  {/*<div>
                     <p style={{}}>En stock</p>
                 <div style={{width:'100%',backgroundColor:''}}>
                 {showCartUpdateOptions(cartUpdate)}
                 {showRemoveButton(showRemoveProductButton)}
-                    <span style={{margin:'0', float:'right', fontSize:'20px'}}>{product.price} €</span>
+                    <span style={{marginRight:'10px', float:'right', fontSize:'20px'}}>{product.price} €</span>
                 </div>
+                  </div>*/}
                 <hr/>
-                </div>
             </div>
-            <hr/>
-        <br />
+           
 
 
 
@@ -122,6 +151,10 @@ const CardCart = ({
 
   {showCartUpdateOptions(cartUpdate)}*/}
     </div>
+    <div style={{width:'100%', height:'30px', backgroundColor:'', paddingRight:'10px'}}>
+      <span style={{float:'right', fontSize:'24px', lineHeight:'34px'}}>Sous-total({itemTotal()} article): 29 €</span>
+    </div>
+    </>
 }
     </>
   );

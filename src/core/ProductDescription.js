@@ -22,6 +22,8 @@ import {addItem} from './cartHelper'
 import { read, getProduct } from './apiCore';
 import CarouselImage from './CarouselImage';
 import Faq from './Faq'
+import { UpSquareOutlined } from '@ant-design/icons'
+
 
 
 
@@ -50,16 +52,17 @@ const ProductDescription = props => {
             }
         });
     };
-
-    const IpAdress = () => {
-        fetch('https://api.ipify.org/?format=json')
-        .then(results => results.json())
-        .then(data => console.log(data.ip))
+    
+    const topFunction = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+       
     }
+
+    
 
     useEffect(() => {
         loadSingleProduct()
-       // IpAdress()
     }, [props]);
 
     return (
@@ -181,6 +184,9 @@ const ProductDescription = props => {
                 <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
             <Faq/>
+            <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
+                    </div>
             </>
             :
             <>
@@ -191,6 +197,9 @@ const ProductDescription = props => {
             </div>
             </div>
             <Faq/>
+            <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
+                        <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}>Retourner vers le haut<UpSquareOutlined /></Link>
+                    </div>
             </>
             }
             
