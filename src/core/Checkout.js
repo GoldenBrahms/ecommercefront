@@ -8,7 +8,8 @@ import Signin2 from '../user/Signin2'
 import CompteInvite from '../user/CompteInvite'
 import Header2 from './Header2'
 import Layout from './Layout'
-import {Route } from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+import TabPanel from './TabPanel'
 
 
 
@@ -17,16 +18,19 @@ const Checkout = () => {
     const width = window.innerWidth;
 
     const breakpoint = 620;
+    
+
     return (
         
         <>
             {width < breakpoint? 
-            <div style={{display:'flex', flexDirection:'column', width:'100%', height:'850px'}}>
+            <>
             <Header2/>
-            <Route  exat path="/identifier" component={Signin2} />
-            <div style={{marginLeft:'35px', width:'80%', height:'1px', backgroundColor:'black'}}></div>
-            <CompteInvite/>
-             </div>
+            <h4 style={{textAlign:'center'}}>Identification</h4>
+            <TabPanel/>
+            
+
+             </>
             :
             <div style={{width:'100%',height:'82vh'}}>
             <Header2/>

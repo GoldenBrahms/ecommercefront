@@ -59,14 +59,12 @@ const CompteInvite = ({ history }) => {
     }
 
     const InviteFormMobile = () => (
-        <div style={{padding:'10px', backgroundColor:'', display:"flex",flexDirection:'column',justifyContent:'center',alignItems:'center', width:'100%' }}>
-            <h2 style={{margin:'0', textAlign:'center'}}>Vous ne souhaitez pas de compte Samemo?</h2>
-            <p style={{margin:'0', textAlign:'center'}}>Poursuivez ainsi en tant que invité(e).</p>
+        <div style={{padding:'10px', backgroundColor:'', display:"flex",flexDirection:'column',justifyContent:'',alignItems:'center', width:'100%' }}>
             <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input style={{width:'350px'}} onChange={handleChange('email')} value={email} type="email" className="form-control"/>
+                <input style={{width:'300px'}} onChange={handleChange('email')} value={email} placeholder="Adresse e-mail" type="email" className="form-control"/>
             </div>
-            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/CheckoutDirect" className="btn btn-secondary btn-lg btn-block">Continuer comme invité</Link>
+            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/CheckoutDirect" className="btn btn-secondary btn-mg btn-block">Continuer comme invité</Link>
+            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/signup" className="btn btn-secondary btn-mg btn-block">Créer un compte</Link>
         </div>
     )
     const InviteForm = () => (

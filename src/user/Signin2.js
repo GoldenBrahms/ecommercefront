@@ -7,7 +7,6 @@ import { API } from '../config'
 
 
 const Signin2 = ( history ) => {
-    const [path, setPath] = useState()
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -21,12 +20,8 @@ const Signin2 = ( history ) => {
     const breakpoint = 720;
     
     
-    useEffect(() => {
-        const path1 = history.location.pathname
-        setPath(path1)   
-    }, [])
+   
 
-    const pathname = path;
 
     const {  email , password, error, loading, redirectToReferrer } = values;
     
@@ -72,7 +67,7 @@ const Signin2 = ( history ) => {
     const signInForm = () => (
  
         
-        <div style={{ width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
+        <div style={{  width:'50%', padding: '20px', marginTop: '50px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
         <div style={{ width: '80%' }}>
             <div className="form-group">
                 <h2 style={{margin:'0'}}>Se connecter</h2>
@@ -91,34 +86,25 @@ const Signin2 = ( history ) => {
             <div style={{margin:'10px'}}>
                 <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
                 <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
-                {console.log(pathname)}
             </div>
         </div>
     </div>
     )
     const signInFormMobile = () => (
  
-        <div style={{ width:'100%', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width:'100%', padding: '20px', display: 'flex', alignItems: '', justifyContent: 'center' }}>
             <div style={{ width: '100%'}}>
+                
                 <div className="form-group">
-                    <h2 style={{margin:'0', textAlign:'center'}}>Se connecter</h2>
+                    <input placeholder="Adresse E-mail *" style={{width:'300px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
                 </div>
                 <div className="form-group">
-                    <label className="text-muted">Email</label>
-                    <input style={{height:'60px', fontSize:'20px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
-                </div>
-                <div className="form-group">
-                    <label className="text-muted">Password</label>
-                    <input style={{height:'60px', fontSize:'20px'}}  onChange={handleChange('password')} value={password} type="password" className="form-control" />
+                    <input placeholder="Mot de passe *" style={{width:'300px'}} onChange={handleChange('password')} value={password} type="password" className="form-control" />
                 </div>
                 <div>
-                    <button onClick={clickSubmit} style={{borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
+                    <button onClick={clickSubmit} style={{borderRadius:'12px'}} className="btn btn-primary btn-mg btn-block">S'identifier</button>
                 </div>
-                <div style={{margin:'10px'}}>
-                    <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
-                    <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
-                    {console.log(pathname)}
-                </div>
+                
             </div>
         </div>
     )
