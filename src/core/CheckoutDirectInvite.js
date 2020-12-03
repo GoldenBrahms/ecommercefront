@@ -93,9 +93,6 @@ const CheckoutDirectInvite = ({ history }) => {
     let deliveryZipCode = data.zipcode
 
     const getToken = (userId, token, res) => {
-       
-       
-            
            getBraintreeClientToken1(userId, token).then(data => {
                 if (data.error) {
                     console.log(data.error);
@@ -263,19 +260,20 @@ const CheckoutDirectInvite = ({ history }) => {
                className="form-control"
                value={data.address}
                onChange={handleAdress}
-               
            />
            <label className="text-muted">Code Postal</label>
            <input
                type="text"
                className="form-control"
-               
+               value={data.zipcode}
+               onChange={handleZipcode}
            />
            <label className="text-muted">Ville</label>
            <input
                type="text"
                className="form-control"
-               
+               value={data.zipcode}
+               onChange={handleZipcode}
            />
        </div>
        <div style={{borderTop:'1px solid black'}}>
@@ -330,15 +328,16 @@ const CheckoutDirectInvite = ({ history }) => {
                     type="text"
                     className="form-control"
                     style={{backgroundColor:'#EEEEEE'}}
-                    onChange={handleAdress}
                     value={data.address}
+                    onChange={handleAdress}
                 />
                 <label className="text-muted">Code Postal</label>
                 <input
                     type="text"
                     className="form-control"
                     style={{backgroundColor:'#EEEEEE'}}
-                    
+                    value={data.zipcode}
+                    onChange={handleZipcode}
                 />
                 <label className="text-muted">Ville</label>
                 <input

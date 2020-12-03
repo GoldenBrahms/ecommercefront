@@ -121,7 +121,7 @@ const CheckoutDirect = ({ history}) => {
         <div onBlur={() => setData({...data, error: ""})} style={{width:'100%',padding:"20px"}}>
         {data.clientToken !== null  ? (
             <div >
-                           <h2>2) Paiement</h2>
+                <h2>2) Paiement</h2>
                 <DropIn 
                    
                     options={{

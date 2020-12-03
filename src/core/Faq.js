@@ -11,6 +11,7 @@ import {
   } from "@chakra-ui/react"
   import { Box } from "@chakra-ui/react"
   import { PhoneIcon, AddIcon, MinusIcon} from '@chakra-ui/icons'
+  import './FAQ.css'
 
 
 const { Panel } = Collapse;
@@ -48,7 +49,7 @@ const Faq = ({history}) => {
     </div>
         :
         <>
-        <div id="Faq" style={{height:'70px'}}></div>
+        <div id="Faq" style={{height:'70px', width:'100px'}}></div>
         <div  style={{marginBottom:'50px', marginLeft:'60px'}}>
             <h1>Questions Fréquentes</h1>
             <Accordion allowMultiple>

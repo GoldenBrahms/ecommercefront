@@ -17,7 +17,7 @@ const Footer = ({ props }) => {
                         {width < breakpoint? 
                         <>
                         
-                        <div style={{  height:'560px', backgroundColor:'#f4f4f4', alignItems:'center', justifyContent:'center', display:'flex', flexDirection:'column'}}>
+                        <div style={{  height:'727px', backgroundColor:'#f4f4f4', display:'flex', flexDirection:'column'}}>
                         <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                             <ul style={{listStyleType:'none'}}>
                                 <h4 style={{color:"#444"}}>Nous Connaitre</h4>
