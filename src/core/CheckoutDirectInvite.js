@@ -9,7 +9,8 @@ import Layout from './Layout'
 import { signoutInvite } from '../auth';
 import CardCheckout from './CardCheckout';
 import { getCart, emptyCart } from './cartHelper';
-
+import Date2 from './Date'
+import Faq from './Faq'
 
 
 
@@ -110,7 +111,7 @@ const CheckoutDirectInvite = ({ history }) => {
     }
 
     const ShowDropIn = () => (
-        <div onBlur={() => setData({...data, error: ""})} style={{width:'100%', padding:'100px'}}>
+        <div onBlur={() => setData({...data, error: ""})} style={{width:'100%'}}>
         {data.clientToken !== null  ? (
             <div >
                 <DropIn 
@@ -166,6 +167,8 @@ const CheckoutDirectInvite = ({ history }) => {
     const handleChangeName = event => {
         //document.getElementById("Name").style.display = 'none';
         setData({...data, name: event.target.value})
+        document.getElementById("ErrorName").style.borderColor= "#ced4da"
+        document.getElementById("ErrorName").style.boxShadow= "none"
         console.log(data.name)
     }
     const handleAdress = event => {
@@ -193,6 +196,18 @@ const CheckoutDirectInvite = ({ history }) => {
         setData({...data, zipcode: event.target.value})
         console.log(data.zipcode)
     }
+    function scrollWin() {
+        if(data.name){
+        window.scrollBy(0, 750);}
+        else {
+            document.getElementById("ErrorName").style.borderColor= "red"
+            document.getElementById("ErrorName").style.boxShadow= "0px 0px 2px 3px rgba(255,0,0,0.4)"
+        }
+      }
+    function scrolltoTopWin() {
+        
+        window.scrollBy(0, -600);
+      }
 
     const disableDiv = event => {
         event.preventDefault()
@@ -286,16 +301,14 @@ const CheckoutDirectInvite = ({ history }) => {
         :
         <>
         <Header2/>
-        <h1 style={{fontSize:'50px', marginLeft:'250px'}}>Paiement</h1>
-        <div style={{width:'100%', height:'1400px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
+        <div style={{width:'100%', height:'1600px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
              <div style={{backgroundColor:'' , width:'65%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
-                <div style={{width:'60%', border:'1px solid black', backgroundColor:''}} className="form-group">
+                <div style={{width:'60%', height:'800px', border:'1px solid black', backgroundColor:'', marginTop:'20px'}} className="form-group">
                     <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
-                        <span style={{color:'white'}}>1</span>
-                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>ADRESSE DE LIVRAISON</h2>
+                        <span style={{color:'white', margin:'0 5px 0 0px'}}>1</span>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>ADRESSE DE LIVRAISON</h2>
                     </div>
-                        <div style={{width:'100%', padding:'30px'}}>
-                        <h1>Vos Informations</h1>
+                        <div style={{width:'100%', padding:'20px 20px 0px 20px'}}>
                         <label className="text-muted">Email*</label>
                     <input
                     name="email"
@@ -308,6 +321,7 @@ const CheckoutDirectInvite = ({ history }) => {
                 />
                 <label className="text-muted">Nom*</label>
                 <input
+                    id="ErrorName"
                     name="name"
                     type="text"
                     style={{backgroundColor:'#EEEEEE'}}
@@ -347,22 +361,45 @@ const CheckoutDirectInvite = ({ history }) => {
                     value={data.city}
                     onChange={handleChangeCity}
                 />
+                <h5 style={{marginTop:'20px'}}>Ajouter des instructions pour la livraison</h5>
+                <p>Avons-nous besoin de directions supplémentaires pour trouver cette adresse?</p>
+                <textarea style={{width:'50%'}}/>
+
                 <div style={{width:'100%', height:'60px',display:'flex', justifyContent:'center'}}>
-                <button onClick={disableDiv} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
+                <button onClick={scrollWin} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
                 </div>
                 </div>
                 </div>
-                <div style={{width:'60%', height:'400px', backgroundColor:'', border:'1px solid black'}}>
-                <div style={{backgroundColor:'black', height:'50px', display:'flex', alignItems:'center'}}>
-                        <p style={{color:'white'}}>2</p>
-                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>PAIEMENT</h2>
+                <div style={{width:'60%', height:'420px', backgroundColor:'', border:'1px solid black', marginBottom:'30px'}}>
+
+                <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>2 </p>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>VERIFICATION</h2>
+                </div>
+                <div style={{padding:'20px', marginBottom:'30px'}}>
+                    <h5>Adresse de livraison</h5>
+                <p>Votre nom :{data.name}</p>
+                <p>Votre prénom : {data.prename}</p>
+                <p>Votre adresse : {data.address}</p>
+                <p>Votre ville : {data.city}</p>
+                <p>Votre code postal : {data.zipcode}</p>
+                <p>Date de livraison estimée: <Date2/></p>
+                <button onClick={scrolltoTopWin}  className="btn btn-dark">Modifier mes informations</button>
+                <button onClick={scrollWin} style={{marginLeft:'10px'}} className="btn btn-dark">Valider mes informations</button>
+
+                </div>
+                </div>
+                <div style={{width:'60%', height:'450px',marginBottom:'0px', backgroundColor:'', border:'1px solid black'}}>
+                <div style={{padding:'15px', display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>3</p>
+                        <h2 style={{color:'white', fontSize:'14px',margin:'0', padding:'0px 0px 0px 0px'}}>PAIEMENT</h2>
                 </div>
                         {showError(data.error)}
                         {showSuccess(data.success)}
                          {ShowDropIn()}
             </div>
             </div>
-            <div style={{width:'30%'}}>
+            <div style={{width:'30%', position:'sticky', backgroundColor:''}}>
             {items.map((product, i) => (
                     <CardCheckout
                         key={i}
@@ -376,6 +413,7 @@ const CheckoutDirectInvite = ({ history }) => {
             </div>
             
         </div>
+        <div style={{width:'100%', height:'30px'}}></div>
         </>
         }
         </>

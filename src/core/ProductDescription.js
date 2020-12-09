@@ -7,22 +7,14 @@ import LightControl from '../images/lightControl.jpeg';
 import Veilleuse from '../images/veilleuse.jpg';
 import LuneVerte from '../images/luneVerte.jpg'
 import AppSourate from '../images/AppSourate.jpeg'
-import Visa from '../images/visa.png'
-import Cadena from '../images/cadena.png'
 import SousNavBar from "./SousNavBar";
 import {isAuthenticated} from '../auth';
-import Date2 from '../core/Date';
 import Card from '../core/Card';
-import ImageSwiper from '../core/ImageSwiper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faShippingFast} from '@fortawesome/free-solid-svg-icons'
 import { Link, withRouter } from 'react-router-dom'
-import { css, jsx} from '@emotion/react'
-import {addItem} from './cartHelper'
 import { read, getProduct } from './apiCore';
-import CarouselImage from './CarouselImage';
 import Faq from './Faq'
 import { UpSquareOutlined } from '@ant-design/icons'
+import Comments from './Comments'
 
 
 
@@ -184,6 +176,9 @@ const ProductDescription = props => {
                 <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
             <Faq/>
+            <div id="Comments" style={{width:'100%',display:'flex', justifyContent:'center', alignItems:'', height:'700px'}}>
+                <Comments/>
+            </div>
             <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
                         <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
                     </div>
@@ -197,6 +192,10 @@ const ProductDescription = props => {
             </div>
             </div>
             <Faq/>
+            <div style={{width:'80%',display:'flex',justifyContent:'center', height:'600px'}}>
+                <Comments/>
+            </div>
+            <br/>
             <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
                         <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}>Retourner vers le haut<UpSquareOutlined /></Link>
                     </div>

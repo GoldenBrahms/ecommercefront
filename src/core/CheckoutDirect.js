@@ -3,17 +3,21 @@ import Informations from './Informations';
 import DropIn from 'braintree-web-drop-in-react';
 import { getBraintreeClientToken, processPayment, createOrder } from './apiCore';
 import { isAuthenticated } from '../auth/index';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Header from './Header';
-import Layout from './Layout';
 import CardCheckout from './CardCheckout';
 import { getCart, emptyCart } from './cartHelper';
+import  BreadCrumb  from './BreadCrumb';
+import usePathname from './Pathname'
+import { userAdresse } from '../auth/index';
+import Date2 from './Date'
 
 
 
 
 
-const CheckoutDirect = ({ history}) => {
+
+const CheckoutDirect = ({ history, products}) => {
     const [items, setItems] = useState([]);
     const [run, setRun] = useState(false);
     
@@ -26,11 +30,13 @@ const CheckoutDirect = ({ history}) => {
         name: '',
         prenom: '',
         email:"",
-        address: '',
-        city: '',
+        adresse: '',
+        ville: '',
+        codePostal: ''
     });
 
-    const { user: {_id, name, prename, email, role}} = isAuthenticated();
+    const { user: {_id, name, prename, email }} = isAuthenticated();
+    const {  adresse, ville, codePostal } = data;
 
     const width = window.innerWidth;
 
@@ -39,7 +45,15 @@ const CheckoutDirect = ({ history}) => {
     const userId = isAuthenticated() && isAuthenticated().user._id;
     const token = isAuthenticated() && isAuthenticated().token;
 
+    console.log(usePathname())
+
    
+    const getTotal = () => {
+        return products.reduce((currentValue, nextValue) => {
+            return currentValue + nextValue.count * nextValue.price;
+        }, 0);
+    };
+
     const buy = () => {
         let nonce;
         let amount = 30;
@@ -52,20 +66,20 @@ const CheckoutDirect = ({ history}) => {
            // console.log(nonce)
            const paymentData = {
                paymentMethodNonce: nonce,
-               amount: 30
+               amount: 29
            }
            processPayment(userId, token, paymentData)
-           .then(responce => {
+           .then(response => {
                const createOrderData = {
-                   transaction_id: responce.transaction_id,
+                   transaction_id: response.transaction_id,
                    address: deliveryAdress,
                    city: deliveryCity,
-                   amount: 30
+                   amount: response.transaction.amount
                }
                createOrder(userId, token, createOrderData)
                emptyCart()
                history.push('/remerciement')
-               setData({...data, success: responce.success })
+               setData({...data, success: response.success })
            })
            .catch(error => console.log(error))
         })
@@ -137,12 +151,19 @@ const CheckoutDirect = ({ history}) => {
         ) : null}
     </div>
     )
+
+    const path = usePathname()
     useEffect(() => {
         setData({ ...data, email: email, name: name, prename: prename})
         getToken(userId, token);
         setItems(getCart());
+        
     }, [run]);
-
+    const handleZipcode = event => {
+        //document.getElementById("ZipCode").style.display = 'none';
+        setData({...data, zipcode: event.target.value})
+        console.log(data.zipcode)
+    }
     const showError = error => (
         <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
             {error}
@@ -156,8 +177,8 @@ const CheckoutDirect = ({ history}) => {
         console.log(data.name)
     }
     const handleAdress = event => {
-        setData({...data, address: event.target.value})
-        console.log(data.address)
+        setData({...data, adresse: event.target.value})
+        console.log(data.adresse)
     }
     const handleChangePrenom = event => {
         setData({...data, prenom: event.target.value})
@@ -168,91 +189,46 @@ const CheckoutDirect = ({ history}) => {
         console.log(data.email)
     }
     const handleChangeCity = event => {
-        setData({...data, city: event.target.value})
-        console.log(data.city)
+        setData({...data, ville: event.target.value})
+        console.log(data.ville)
     }
+    const handleChangeCodePostal = event => {
+        setData({...data, codePostal: event.target.value})
+        console.log(data.codePostal)
+    }
+    function scrollWin() {
+        if(data.name){
+        window.scrollBy(0, 750);}
+        else {
+            document.getElementById("ErrorName").style.borderColor= "red"
+            document.getElementById("ErrorName").style.boxShadow= "1px 2px 2px 2px red"
+        }
+      }
+    function scrolltoTopWin() {
+        
+        window.scrollBy(0, -600);
+      }
 
     const disableDiv = event => {
         event.preventDefault()
+        //on met a jour les informations users
+        userAdresse({email, adresse, ville, codePostal})
         if (data.name && data.prenom && data.email){
         document.getElementById("divBlock").style.display = "none";}
+        history.push("/paiement-sécurisée")
     }
     return (
         <>
         { width < breakpoint ? 
         <>
                 <Header/>
-        <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' } }>
-            <h2 style={{marginTop:'10px'}}>1) Vos Informations</h2>
-        <div style={{width:'80%'}} className="form-group">
-           <label className="text-muted">Email</label>
-           <input
-               name="email"
-               type="email"
-               className="form-control"
-               onChange={handleChangeEmail}
-               value={email}
-               
-           ></input>
-           <label className="text-muted">Nom</label>
-           <input
-               name="name"
-               type="text"
-               className="form-control"
-               onChange={handleChangeName}
-               value={data.name}
-           />
-           <label className="text-muted">Prénom</label>
-           <input
-               type="text"
-               className="form-control"
-               onChange={handleChangePrenom}
-               value={data.prename}
-           />
-           <label className="text-muted">Adresse</label>
-           <input
-               type="text"
-               className="form-control"
-               value={data.address}
-               onChange={handleAdress}
-               
-           />
-           <label className="text-muted">Code Postal</label>
-           <input
-               type="text"
-               className="form-control"
-               
-           />
-           <label className="text-muted">Ville</label>
-           <input
-               type="text"
-               className="form-control"
-               
-           />
-           <button onClick={disableDiv} style={{marginLeft:'40%', marginTop:'10px'}} className="btn btn-dark">Valider</button>
-       </div>
-       <div style={{borderTop:'1px solid black'}}>
-       {showError(data.error)}
-       {showSuccess(data.success)}
-       {ShowDropInMobile()}
-       <div id="divBlock" style={{top:'590px',cursor:'none',position:'absolute',zIndex:999, backgroundColor:'rgba(0, 0, 0, 0.5)', width:'100%', height:'67%'}}></div>
-
-       </div>
-   </div>
-   </>
-        :
-        <>
-        <Header/>
-        <h1 style={{fontSize:'50px', marginLeft:'250px'}}>Paiement</h1>
-        <div style={{width:'100%', height:'1400px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
-             <div style={{backgroundColor:'' , width:'65%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
-                <div style={{width:'60%', border:'1px solid black', backgroundColor:''}} className="form-group">
+             <div style={{backgroundColor:'' , width:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
+                <div style={{width:'100%', height:'800px', border:'1px solid black', backgroundColor:'', marginTop:'20px'}} className="form-group">
                     <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
-                        <span style={{color:'white'}}>1</span>
-                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>ADRESSE DE LIVRAISON</h2>
+                        <span style={{color:'white', margin:'0 5px 0 0px'}}>1</span>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>ADRESSE DE LIVRAISON</h2>
                     </div>
-                        <div style={{width:'100%', padding:'30px'}}>
-                        <h1>Vos Informations</h1>
+                        <div style={{width:'100%', padding:'20px 20px 0px 20px'}}>
                         <label className="text-muted">Email*</label>
                     <input
                     name="email"
@@ -265,6 +241,7 @@ const CheckoutDirect = ({ history}) => {
                 />
                 <label className="text-muted">Nom*</label>
                 <input
+                    id="ErrorName"
                     name="name"
                     type="text"
                     style={{backgroundColor:'#EEEEEE'}}
@@ -285,15 +262,16 @@ const CheckoutDirect = ({ history}) => {
                     type="text"
                     className="form-control"
                     style={{backgroundColor:'#EEEEEE'}}
-                    onChange={handleAdress}
                     value={data.address}
+                    onChange={handleAdress}
                 />
                 <label className="text-muted">Code Postal</label>
                 <input
                     type="text"
                     className="form-control"
                     style={{backgroundColor:'#EEEEEE'}}
-                    
+                    value={data.zipcode}
+                    onChange={handleZipcode}
                 />
                 <label className="text-muted">Ville</label>
                 <input
@@ -303,22 +281,150 @@ const CheckoutDirect = ({ history}) => {
                     value={data.city}
                     onChange={handleChangeCity}
                 />
+                <h5 style={{marginTop:'20px'}}>Ajouter des instructions pour la livraison</h5>
+                <p>Avons-nous besoin de directions supplémentaires pour trouver cette adresse?</p>
+                <textarea style={{width:'50%'}}/>
+
                 <div style={{width:'100%', height:'60px',display:'flex', justifyContent:'center'}}>
-                <button onClick={disableDiv} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
+                <button onClick={scrollWin} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
                 </div>
                 </div>
                 </div>
-                <div style={{width:'60%', height:'400px', backgroundColor:'', border:'1px solid black'}}>
-                <div style={{backgroundColor:'black', height:'50px', display:'flex', alignItems:'center'}}>
-                        <p style={{color:'white'}}>2</p>
-                        <h2 style={{color:'white', fontSize:'14px', padding:'0px 0px 0px 15px'}}>PAIEMENT</h2>
+        
+       <div style={{width:'100%', height:'450px', backgroundColor:'', border:'1px solid black', marginBottom:'30px'}}>
+
+                <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>2 </p>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>VERIFICATION</h2>
+                </div>
+                <div style={{padding:'20px', marginBottom:'30px'}}>
+                    <h5>Adresse de livraison</h5>
+                <p>Votre nom :{data.name}</p>
+                <p>Votre prénom : {data.prename}</p>
+                <p>Votre adresse : {data.adresse}</p>
+                <p>Votre ville : {data.city}</p>
+                <p>Votre code postal : {data.zipcode}</p>
+                <p>Date de livraison estimée: <Date2/></p>
+                <button onClick={scrolltoTopWin}  className="btn btn-dark">Modifier mes informations</button>
+                <button onClick={scrollWin} style={{marginTop:'10px'}} className="btn btn-dark">Valider mes informations</button>
+
+                </div>
+                </div>
+                <div style={{width:'100%', height:'450px', backgroundColor:'', border:'1px solid black'}}>
+                <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>3</p>
+                        <h2 style={{color:'white', fontSize:'14px',margin:'0', padding:'0px 0px 0px 0px'}}>PAIEMENT</h2>
+                </div>
+                        {showError(data.error)}
+                        {showSuccess(data.success)}
+                         {ShowDropIn()}
+            </div>
+   </div>
+   <div style={{width:'100%', height:'50px'}}></div>
+
+   </>
+        :
+        <>
+        <Header/>
+        <div style={{width:'100%', height:'1600px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
+             <div style={{backgroundColor:'' , width:'65%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
+                <div style={{width:'60%', height:'800px', border:'1px solid black', backgroundColor:'', marginTop:'20px'}} className="form-group">
+                    <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <span style={{color:'white', margin:'0 5px 0 0px'}}>1</span>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>ADRESSE DE LIVRAISON</h2>
+                    </div>
+                        <div style={{width:'100%', padding:'20px 20px 0px 20px'}}>
+                        <label className="text-muted">Email*</label>
+                    <input
+                    name="email"
+                    type="email"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    className="form-control"
+                    onChange={handleChangeEmail}
+                    value={data.email}
+                    
+                />
+                <label className="text-muted">Nom*</label>
+                <input
+                    id="ErrorName"
+                    name="name"
+                    type="text"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    className="form-control"
+                    onChange={handleChangeName}
+                    value={data.name}
+                />
+                <label className="text-muted">Prénom</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    onChange={handleChangePrenom}
+                    value={data.prename}
+                />
+                <label className="text-muted">Adresse</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    value={data.address}
+                    onChange={handleAdress}
+                />
+                <label className="text-muted">Code Postal</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    value={data.zipcode}
+                    onChange={handleZipcode}
+                />
+                <label className="text-muted">Ville</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    style={{backgroundColor:'#EEEEEE'}}
+                    value={data.city}
+                    onChange={handleChangeCity}
+                />
+                <h5 style={{marginTop:'20px'}}>Ajouter des instructions pour la livraison</h5>
+                <p>Avons-nous besoin de directions supplémentaires pour trouver cette adresse?</p>
+                <textarea style={{width:'50%'}}/>
+
+                <div style={{width:'100%', height:'60px',display:'flex', justifyContent:'center'}}>
+                <button onClick={scrollWin} style={{marginTop:'20px', textAlign:'center'}} className="btn btn-dark">Valider</button>
+                </div>
+                </div>
+                </div>
+                <div style={{width:'60%', height:'420px', backgroundColor:'', border:'1px solid black', marginBottom:'30px'}}>
+
+                <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>2 </p>
+                        <h2 style={{color:'white', fontSize:'14px', margin:'0', padding:'0px 0px 0px 0px'}}>VERIFICATION</h2>
+                </div>
+                <div style={{padding:'20px', marginBottom:'30px'}}>
+                    <h5>Adresse de livraison</h5>
+                <p>Votre nom :{data.name}</p>
+                <p>Votre prénom : {data.prename}</p>
+                <p>Votre adresse : {data.adresse}</p>
+                <p>Votre ville : {data.city}</p>
+                <p>Votre code postal : {data.zipcode}</p>
+                <p>Date de livraison estimée: <Date2/></p>
+                <button onClick={scrolltoTopWin}  className="btn btn-dark">Modifier mes informations</button>
+                <button onClick={scrollWin} style={{marginLeft:'10px'}} className="btn btn-dark">Valider mes informations</button>
+
+                </div>
+                </div>
+                <div style={{width:'60%', height:'450px', backgroundColor:'', border:'1px solid black'}}>
+                <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>
+                        <p style={{color:'white', margin:'0 5px 0 0'}}>3</p>
+                        <h2 style={{color:'white', fontSize:'14px',margin:'0', padding:'0px 0px 0px 0px'}}>PAIEMENT</h2>
                 </div>
                         {showError(data.error)}
                         {showSuccess(data.success)}
                          {ShowDropIn()}
             </div>
             </div>
-            <div style={{width:'30%'}}>
+            <div style={{width:'30%', position:'sticky', backgroundColor:''}}>
             {items.map((product, i) => (
                     <CardCheckout
                         key={i}

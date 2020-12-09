@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { addItem} from './cartHelper';
 import LuneJaune from '../images/lunejaune.png';
@@ -8,6 +8,7 @@ import Visa from '../images/visa.png'
 import Date2 from './Date'
 import CarouselImage from './CarouselImage'
 import './FAQ.css'
+import {getComments } from '../user/ApiUser'
 
 
 
@@ -24,6 +25,21 @@ const Card = ({
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
   const width = window.innerWidth;
+  const[comments, setComments] = useState([]);
+
+    const init = () => {
+        getComments().then(data => {
+            if (data.error){
+                console.log(data.error)
+            } else {
+                setComments(data)
+                
+            }
+        })
+    }
+    useEffect(() => {
+        init()
+    }, [])
     
 
     const breakpoint = 720;
@@ -115,6 +131,7 @@ const Card = ({
     {width < breakpoint ? 
       <div style={{padding:'10px', display:'flex', flexDirection:'column'}}>
           <h3 style={{fontWeight:'bold'}}>{product.name}</h3>
+          <a href="#Comments" style={{color:'blue'}}>{comments.length} Commentaires clients</a>
           <CarouselImage/>
           <p style={{margin:'0', fontSize:'18px'}}>Prix de l'offre: <span style={{color:'#B12704'}}>{product.price} €</span> <span style={{color:'black',fontSize:'18px'}}><b>Livraison gratuite</b> en France Métropolitaine</span></p>
           <p style={{color:'#888888'}}>Tout les prix incluent la TVA.</p> 
@@ -148,6 +165,8 @@ const Card = ({
                 <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
                 <div style={{paddingLeft:'50px'}}>
                 <h1 style={{fontWeight:'bold'}}>{product.name}</h1>
+                <a href="#Comments" style={{color:'blue'}}>{comments.length} Avis</a>
+                <br/>
                 <span style={{margin:'0'}}>prix de l'offre : <span style={{color:'#B12704',fontSize:'18px'}}>{product.price} €</span> <span style={{fontSize:'14px'}}>Livraison gratuite en France métropolitaine</span></span>
                 <p style={{color:'#888888'}}>TVA et frais inclus : env. 4.83 €.</p> 
                 <span>Une question ? </span>

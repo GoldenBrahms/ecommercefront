@@ -75,21 +75,22 @@ const CardCheckout = ({
     );
   };
   return (
-    <div style={{width:'100%', height:'300px', display:'flex', backgroundColor:'yellow', border:'1px solid grey'}}>
-        <div id="details" style={{height:'300px',width:'100%', margin:'0px', border:'', display:'flex', flexDirection:'column',alignItems:"left", padding:'0px'}}>
-            <h1>Ma commande</h1>
-            <div style={{display:'flex', backgroundColor:'#F2F2F2', width:'430px', height:'40%'}}>
+    <div style={{position:'sticky',top:'150px',width:'100%', height:'300px', display:'flex', backgroundColor:'', border:'1px solid grey'}}>
+        <div id="details" style={{ height:'300px',width:'100%', margin:'0px', border:'', display:'flex', flexDirection:'column',alignItems:"left", padding:'0px'}}>
+            <h1 style={{marginLeft:'10px'}}>Ma commande</h1>
+            <div style={{display:'flex', backgroundColor:'', width:'100%', height:'40%'}}>
                 
-                <div style={{borderBottom:'2px solid #dddddd', width:'60%'}}>
-                    <p style={{margin:'0', fontWeight:'bold'}}>{product.name}</p>
-                    <p style={{margin:'0'}}>En stock</p>
-                    <p>{product.price}</p>
+                <div style={{borderBottom:'2px solid #dddddd', width:'100%', padding:'20px'}}>
+                    <h4 style={{margin:'0', fontWeight:'bold'}}>{product.name}</h4>
+                    <p style={{margin:'0', color:'green'}}>En stock</p>
+                    <p style={{margin:'0', color:'red', fontWeight:'700', fontSize:'22px'}}>{product.price} E</p>
                 </div>
 
             </div>
-            <div style={{width:'30%'}}>
-                    Hello
-                </div>
+            <div style={{width:'100%', padding:'20px'}}>
+                    <p style={{fontSize:'20px'}}>Livraison: Gratuite</p>
+                    <p style={{fontSize:'20px'}}>Sous-total: 29E</p>
+            </div>
         </div>
     </div>
   );

@@ -23,6 +23,9 @@ import PolitiqueConf from './PolitiqueConf'
 import MentionsLegales from './MentionsLegales'
 import Remerciement from './Remerciement'
 import NotFound from './core/Notfound.js'
+import Validation from './core/Validation'
+import Paiement from './core/Paiement'
+import Review from './core/Review'
 import './Style.css'
 
 
@@ -34,8 +37,11 @@ const Routes = () => {
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/identifier" component={Checkout}/>
                     <Route exact path="/paiement-securisée" component={CheckoutDirect}/>
+                    <Route exact path="/validation" component={Validation}/>
                     <Route exact path="/paiement-secure-invite" component={CheckoutDirectInvite}/>
+                    <Route exact path="/paiement-sécurisée" component={Paiement}/>
                     <Route exact path="/signin" component={Signin}/>
+                    <Route exact path="/écrire-un-avis" component={Review}/>
                     <Route exact path="/signup" component={Signup}/>
                     <Route exact path="/Assistance" component={Contact}/>
                     <Route exact path="/contact/email" component={ContactEmail}/>

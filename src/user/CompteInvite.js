@@ -75,7 +75,7 @@ const CompteInvite = ({ history }) => {
                 <label className="text-muted">Email</label>
                 <input onChange={handleChange('email')} value={email} type="email" className="form-control"/>
             </div>
-            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/CheckoutDirect" className="btn btn-secondary btn-lg btn-block">Continuer comme invité</Link>
+            <Link onClick={clickSubmit} style={{backgroundColor:'#0071e3', borderRadius:'12px'}} to="/paiement-secure-invite" className="btn btn-secondary btn-lg btn-block">Continuer comme invité</Link>
         </div>
     )
     return  (

@@ -15,13 +15,13 @@ const Date2 = () => {
   useEffect(() => {
     moment.locale("fr")
     setCurrentDate(
-      moment().add(3, 'days').format("dddd D MMMM")      
+      moment().add(2, 'days').format("dddd D MMMM")      
     );
   }, []);
 
   return (
     <div>
-       <p style={{margin:'0'}}>Livré: <b>{currentDate} </b></p> 
+       <p style={{margin:'0'}}><b>{currentDate} </b></p> 
 
     </div>
   );

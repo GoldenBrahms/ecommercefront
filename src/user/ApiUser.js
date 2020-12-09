@@ -57,3 +57,17 @@ export const getPurchaseHistory = (userId, token) => {
     })
     .catch(err => console.log(err));
 }
+export const getComments = () => {
+    return fetch(`${API}/comments`, {
+        method: 'GET',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+

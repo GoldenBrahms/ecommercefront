@@ -58,7 +58,7 @@ const Faq = ({history}) => {
   <AccordionItem>
     {({ isExpanded }) => (
       <>
-        <AccordionButton style={{width:'400px', backgroundColor:'rgb(48 48 48)'}}>
+        <AccordionButton style={{ width:'400px', backgroundColor:'rgb(48 48 48)'}}>
           <Box flex="1" fontSize="18px" textAlign="left" style={{color:'white', backgroundColor:'rgb(48 48 48)'}}>
            Quand vais je recevoir ma commande ?
           </Box>

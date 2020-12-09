@@ -12,8 +12,8 @@ import Card from '../core/Card';
 import { read, getProduct } from './apiCore';
 import Faq from './Faq'
 import { UpSquareOutlined } from '@ant-design/icons'
-
-
+import Comments from './Comments'
+import {getComments} from '../user/ApiUser'
 
 
 
@@ -180,11 +180,16 @@ const ProductDescription2 = props => {
             }
             {width < breakpoint? 
             <>
-            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'100vh'}}>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center', padding:'20px', width:'100%', height:'300px'}}>
                 <img style={{width:'200px', height:'200px'}} src={LuneRose}/>
                 <h4 style={{textAlign:'center',marginRight:'20px',marginLeft:'20px', margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h4>       
             </div>
+            <div>
             <Faq/>
+            </div>
+            <div id="Comments" style={{width:'100%',display:'flex', justifyContent:'center', alignItems:'', height:'600px'}}>
+                <Comments/>
+            </div>
             <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
                         <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
                     </div>
@@ -197,7 +202,12 @@ const ProductDescription2 = props => {
                 <h1 style={{margin:'0', color:'rgb(79, 79, 79)'}}>Une couleur rayonnante qui vous rassurera la nuit</h1>
             </div>
             </div>
+            <div style={{width:'80%',display:'flex',justifyContent:'center', height:'550px'}}>
+                <Comments/>
+            </div>
+            <div style={{marginTop:'30px', display:'flex', justifyContent:'center', alignItems:'center', width:'100%', height:'400px'}}>
             <Faq/>
+            </div>
             <div style={{width:'100%', height:'50px', backgroundColor:'rgba(0, 0, 0, 0.85)', textAlign:'center'}}>
                         <Link onClick={topFunction} style={{color:'white', fontSize:'30px'}}><UpSquareOutlined /></Link>
                     </div>
