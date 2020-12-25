@@ -74,17 +74,17 @@ const Signin2 = ( history ) => {
             </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>
-                <input style={{borderRadius:'15px'}} onChange={handleChange('email')} value={email} type="email" className="form-control" />
+                <input style={{}} onChange={handleChange('email')} value={email} type="email" className="form-control" autofocus />
             </div>
             <div className="form-group">
-                <label className="text-muted">Password</label>
+                <label className="text-muted">Mot de passe</label>
                 <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
             </div>
             <div>
                 <button onClick={clickSubmit} style={{borderRadius:'12px'}} className="btn btn-primary btn-lg btn-block">S'identifier</button>
             </div>
             <div style={{margin:'10px'}}>
-                <p style={{margin:'0'}}>Nouveau chez Samemo?</p>
+                <p style={{margin:'0'}}>Nouveau chez Lirya?</p>
                 <Link to="/signup" style={{borderRadius:'12px'}} className="btn btn-secondary btn-lg btn-block">Créer un compte Samemo</Link>
             </div>
         </div>

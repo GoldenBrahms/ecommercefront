@@ -9,6 +9,8 @@ import Date2 from './Date'
 import CarouselImage from './CarouselImage'
 import './FAQ.css'
 import {getComments } from '../user/ApiUser'
+import {cartExist} from './apiCore'
+import { isAuthenticated } from '../auth';
 
 
 
@@ -68,17 +70,34 @@ const Card = ({
   const showAddToCartBtn = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <a onClick={addToCart} href="/mon-panier" style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
-          ACHETER
-        </a>
+        !cartExist() ? (
+         <a onClick={addToCart} href="/mon-panier" style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
+          Ajouter au panier
+        </a>) 
+        : 
+        (
+          isAuthenticated() ? (
+          <a onClick={addToCart} href="/paiement-securisée" style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
+           Acheter
+         </a>)
+         :
+         <a onClick={addToCart} href="/identifier" style={{width:'300px', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
+           Acheter
+         </a>
+         )
       )
     );
   };
   const showAddToCartBtnMobile = showAddToCartButton => {
     return (
       showAddToCartButton && (
+        !cartExist() ? (
         <a onClick={addToCart} href="/mon-panier" style={{width:'100%', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
           Ajouter au panier
+        </a>)
+        :
+        <a onClick={addToCart} href="/mon-panier" style={{width:'100%', fontWeight:'700'}} className="btn btn-outline-dark mt-2 mb-2 card-btn-1">
+          Acheter
         </a>
       )
     );
@@ -164,7 +183,7 @@ const Card = ({
                 </div>
                 <div style={{width:'1px', height:'120%', backgroundColor:'#d9d9d9'}}></div>
                 <div style={{paddingLeft:'50px'}}>
-                <h1 style={{fontWeight:'bold'}}>{product.name}</h1>
+                <h1 style={{fontWeight:'bold', fontFamily:'Lato'}}>{product.name}</h1>
                 <a href="#Comments" style={{color:'blue'}}>{comments.length} Avis</a>
                 <br/>
                 <span style={{margin:'0'}}>prix de l'offre : <span style={{color:'#B12704',fontSize:'18px'}}>{product.price} €</span> <span style={{fontSize:'14px'}}>Livraison gratuite en France métropolitaine</span></span>

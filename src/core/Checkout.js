@@ -36,8 +36,8 @@ const Checkout = () => {
             <Header2/>
             <div style={{display:'flex', height:'100%', justifyContent:'center'}}>
                 <Route  exat path="/identifier" component={Signin2} />
-                <div style={{ width:'1px', height:'450px',marginTop:'20px',right:'800px', backgroundColor:'#CBCBCB'}}></div>
-                <CompteInvite/>
+               {/*} <div style={{ width:'1px', height:'450px',marginTop:'20px',right:'800px', backgroundColor:'#CBCBCB'}}></div>
+                <CompteInvite/>*/}
             </div>
         </div>
             }

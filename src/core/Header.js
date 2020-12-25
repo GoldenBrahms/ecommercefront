@@ -79,7 +79,7 @@ const Header = ({ history }) => {
                         <>
                         {
                             path !== "/mon-panier" ?
-                        <Link style={{ height:'40px',position:'absolute', right:'240px', textAlign:'center'}} to='/mon-panier'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
+                        <Link style={{ height:'40px',position:'absolute', right:'200px', textAlign:'center'}} to='/mon-panier'><ShoppingCartOutlined style={{color:'white', fontSize:'40px'}}/><sup style={{color:'orange', fontSize:'30px'}} >{ total !== 0 && itemTotal()}</sup></Link>
                     :
                     ""
                     }

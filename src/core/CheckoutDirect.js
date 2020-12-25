@@ -326,7 +326,7 @@ const CheckoutDirect = ({ history, products}) => {
         :
         <>
         <Header/>
-        <div style={{width:'100%', height:'1600px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
+        <div style={{width:'100%', height:'1800px', display:'flex', justifyContent:'', textAlign:'' , backgroundColor:''} }>
              <div style={{backgroundColor:'' , width:'65%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:''}}>
                 <div style={{width:'60%', height:'800px', border:'1px solid black', backgroundColor:'', marginTop:'20px'}} className="form-group">
                     <div style={{padding:'15px',display:'flex',alignItems:'center', width:'100%', height:'50px', backgroundColor:'black'}}>

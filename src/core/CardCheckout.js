@@ -83,7 +83,7 @@ const CardCheckout = ({
                 <div style={{borderBottom:'2px solid #dddddd', width:'100%', padding:'20px'}}>
                     <h4 style={{margin:'0', fontWeight:'bold'}}>{product.name}</h4>
                     <p style={{margin:'0', color:'green'}}>En stock</p>
-                    <p style={{margin:'0', color:'red', fontWeight:'700', fontSize:'22px'}}>{product.price} E</p>
+                    <p style={{margin:'0', color:'red', fontWeight:'700', fontSize:'22px'}}>{product.price} €</p>
                 </div>
 
             </div>

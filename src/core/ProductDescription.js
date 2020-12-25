@@ -92,7 +92,6 @@ const ProductDescription = props => {
             <h4 style={{fontSize:'40px', margin:'0', color:'rgb(79, 79, 79)'}}>Découvrez Qurma </h4>
             <span style={{height:'6px'}}>Avec son nouveau design en forme de lune <br/>et son enceinte intégrée, elle est élégante</span>
             </div>
-            <img style={{marginTop:'50px',width:'70%', height:'100%' }} src={LuneJaune}/>
             </div>
             :
             <div style={{ width:'100%',height:'100%', display:'flex',flexDirection:'row', justifyContent:'center', alignItems:'center'}}>

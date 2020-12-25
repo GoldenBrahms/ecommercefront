@@ -120,3 +120,11 @@ export const itemTotal = () => {
     }
     return 0;
 };
+export const cartExist = () => {
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            return true;
+        }
+    }
+    return 0;
+};
